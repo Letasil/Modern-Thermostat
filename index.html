@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport"/>
+<title>Modern Thermostat Card v1.6.0</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117; --surface: #161b22; --card: #1c2128;
+      --border: rgba(255,255,255,0.10); --radius: 18px;
+      --text: #e6edf3; --muted: #8b949e; --dim: #484f58;
+      --divider: rgba(255,255,255,0.08);
+      --heat: #ff6b35; --cool: #4fc3f7; --auto: #a78bfa;
+      --fan: #81c784; --dry: #ffd54f; --warn: #f44336;
+      --shadow: 0 4px 20px rgba(0,0,0,0.45);
+    }
+    body.light {
+      --bg: #f0f2f5; --surface: #fff; --card: #fff;
+      --border: rgba(0,0,0,0.10); --text: #1a1a2e; --muted: #6b7280;
+      --dim: #9ca3af; --divider: rgba(0,0,0,0.08);
+      --shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; transition:background .3s,color .3s; }
+
+    /* TOP BAR */
+    .topbar { position:sticky; top:0; z-index:100; background:var(--surface); border-bottom:1px solid var(--border); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); padding:10px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    .topbar-brand { display:flex; align-items:center; gap:10px; }
+    .topbar-logo { width:32px; height:32px; border-radius:8px; background:var(--heat); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+    .topbar-title { font-size:15px; font-weight:700; color:var(--text); letter-spacing:-0.3px; }
+    .topbar-version { font-size:11px; color:var(--muted); }
+    .topbar-controls { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .ctrl-group { display:flex; gap:2px; background:var(--card); border:1px solid var(--border); border-radius:999px; padding:3px; }
+    .ctrl-label { font-size:10px; font-weight:600; color:var(--dim); text-transform:uppercase; letter-spacing:1px; align-self:center; padding:0 6px; }
+    .ctrl-btn { display:flex; align-items:center; gap:4px; padding:5px 12px; border-radius:999px; border:none; background:transparent; color:var(--muted); font-size:11px; font-weight:500; cursor:pointer; transition:all .18s; font-family:inherit; white-space:nowrap; }
+    .ctrl-btn:hover { color:var(--text); background:rgba(255,255,255,0.06); }
+    .ctrl-btn.active { background:var(--heat); color:#fff; }
+
+    /* LAYOUT */
+    .main { max-width:1200px; margin:0 auto; padding:28px 20px 60px; }
+    .section-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+    .section-title { font-size:12px; font-weight:600; color:var(--dim); text-transform:uppercase; letter-spacing:1.2px; }
+    .section-line { flex:1; height:1px; background:var(--divider); }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; margin-bottom:36px; align-items:start; }
+    .grid-compact { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px; margin-bottom:36px; align-items:start; }
+
+    /* ══════════════════════════════════════════════════════
+       THERMOSTAT CARD
+       KEY: display:flex + flex-direction:column + height:auto
+       → card height = content height, NO wasted space
+    ══════════════════════════════════════════════════════ */
+    .mt-card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);
+      transition:background .3s,border-color .3s,box-shadow .3s;
+      user-select:none; min-width:240px;
+      /* CRITICAL: flex column, auto height */
+      display:flex; flex-direction:column; height:auto;
+    }
+    .mt-card.heating { background:rgba(255,107,53,0.07); border-color:rgba(255,107,53,0.32); box-shadow:0 0 28px rgba(255,107,53,0.09),var(--shadow); }
+    .mt-card.cooling { background:rgba(79,195,247,0.07); border-color:rgba(79,195,247,0.32); box-shadow:0 0 28px rgba(79,195,247,0.09),var(--shadow); }
+    .mt-card.off { opacity:0.82; }
+    .mt-card.off .mt-ist { opacity:0.35; color:var(--muted) !important; }
+
+    /* When graph is active: card loses bottom radius + border */
+    .mt-card.has-graph {
+      border-bottom-left-radius:0;
+      border-bottom-right-radius:0;
+      border-bottom-color:transparent;
+      box-shadow:none;
+    }
+
+    /* Header */
+    .mt-header { display:flex; align-items:flex-start; padding:14px 14px 0; gap:10px; flex-shrink:0; }
+    .mt-icon { width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:18px; transition:background .2s; }
+    .heating .mt-icon { background:rgba(255,107,53,0.18); }
+    .cooling .mt-icon { background:rgba(79,195,247,0.18); }
+    .mt-name { font-size:14px; font-weight:600; color:var(--text); line-height:1.3; }
+    .mt-status { display:flex; align-items:center; gap:4px; font-size:12px; color:var(--muted); margin-top:1px; transition:color .2s; }
+    .heating .mt-status { color:var(--heat); }
+    .cooling .mt-status { color:var(--cool); }
+    .mt-status.window-open { color:var(--warn) !important; }
+
+    /* IST-Temperatur – compact padding, no wasted space */
+    .mt-temp-center { display:flex; align-items:baseline; justify-content:center; padding:10px 14px 4px; flex-shrink:0; }
+    .mt-ist { font-size:62px; font-weight:300; line-height:1; letter-spacing:-3px; color:var(--text); font-variant-numeric:tabular-nums; transition:color .3s,opacity .3s; }
+    .heating .mt-ist { color:var(--heat); }
+    .cooling .mt-ist { color:var(--cool); }
+    .mt-ist-unit { font-size:22px; font-weight:400; opacity:.60; letter-spacing:0; align-self:flex-start; margin-top:10px; margin-left:3px; }
+
+    /* Sollwert row – minimal padding */
+    .mt-soll-row { display:flex; align-items:center; justify-content:center; gap:5px; padding:0 14px 4px; font-size:13px; color:var(--muted); font-weight:500; flex-shrink:0; }
+    .mt-soll-val { font-variant-numeric:tabular-nums; color:var(--text); font-weight:600; }
+
+    /* Panel slot – max-height:0 when closed = ZERO height */
+    .mt-panel-slot { overflow:hidden; max-height:0; opacity:0; flex-shrink:0; transition:max-height 300ms cubic-bezier(0.4,0,0.2,1),opacity 220ms ease; }
+    .mt-panel-slot.open { max-height:160px; opacity:1; }
+
+    /* Temp control */
+    .mt-temp-ctrl { display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 14px 10px; }
+    .mt-adj { width:48px; height:48px; border-radius:50%; border:none; background:rgba(255,255,255,0.08); color:var(--text); font-size:26px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s,transform 80ms; flex-shrink:0; -webkit-tap-highlight-color:transparent; }
+    .mt-adj:hover { background:rgba(255,255,255,0.14); }
+    .mt-adj:active { transform:scale(0.90); }
+    .mt-adj:disabled { opacity:.22; cursor:not-allowed; transform:none; }
+    .mt-soll-wrap { display:flex; flex-direction:column; align-items:center; min-width:96px; gap:1px; }
+    .mt-soll-big { font-size:44px; font-weight:300; line-height:1; letter-spacing:-2px; color:var(--text); font-variant-numeric:tabular-nums; transition:color .3s; }
+    .heating .mt-soll-big { color:var(--heat); }
+    .cooling .mt-soll-big { color:var(--cool); }
+    .mt-soll-big sup { font-size:18px; font-weight:400; opacity:.60; letter-spacing:0; }
+    .mt-soll-sub { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.9px; font-weight:500; }
+
+    /* HVAC pills */
+    .mt-modes { display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 14px 10px; flex-wrap:wrap; }
+    .mt-pill { display:flex; align-items:center; gap:5px; padding:6px 14px; border-radius:999px; border:1px solid var(--border); background:transparent; color:var(--muted); font-size:12px; font-weight:500; cursor:pointer; transition:all .15s; font-family:inherit; white-space:nowrap; -webkit-tap-highlight-color:transparent; }
+    .mt-pill:hover { background:rgba(255,255,255,0.06); }
+    .mt-pill:active { transform:scale(0.95); }
+    .mt-pill.active[data-mode="off"]      { background:rgba(107,114,128,0.15); color:#9ca3af;    border-color:rgba(107,114,128,0.40); }
+    .mt-pill.active[data-mode="heat"]     { background:rgba(255,107,53,0.15);  color:var(--heat); border-color:rgba(255,107,53,0.40); }
+    .mt-pill.active[data-mode="cool"]     { background:rgba(79,195,247,0.15);  color:var(--cool); border-color:rgba(79,195,247,0.40); }
+    .mt-pill.active[data-mode="auto"]     { background:rgba(167,139,250,0.15); color:var(--auto); border-color:rgba(167,139,250,0.40); }
+    .mt-pill.active[data-mode="heat_cool"]{ background:rgba(245,158,11,0.15);  color:#f59e0b;    border-color:rgba(245,158,11,0.40); }
+    .mt-pill.active[data-mode="fan_only"] { background:rgba(129,199,132,0.15); color:var(--fan);  border-color:rgba(129,199,132,0.40); }
+    .mt-pill.active[data-mode="dry"]      { background:rgba(255,213,79,0.15);  color:var(--dry);  border-color:rgba(255,213,79,0.40); }
+
+    /* Button row – compact padding */
+    .mt-btn-row { display:flex; gap:8px; padding:6px 14px 8px; flex-shrink:0; }
+    .mt-main-btn { flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:9px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,0.05); color:var(--muted); font-size:12px; font-weight:500; cursor:pointer; transition:all .18s; font-family:inherit; white-space:nowrap; -webkit-tap-highlight-color:transparent; min-width:0; }
+    .mt-main-btn:hover { background:rgba(255,255,255,0.09); border-color:rgba(255,255,255,0.22); color:var(--text); }
+    .mt-main-btn:active { transform:scale(0.96); }
+    .mt-main-btn.active-heat { background:rgba(255,107,53,0.15); border-color:rgba(255,107,53,0.40); color:var(--heat); }
+    .mt-main-btn.active-cool { background:rgba(79,195,247,0.15); border-color:rgba(79,195,247,0.40); color:var(--cool); }
+    .mt-main-btn.active-auto { background:rgba(167,139,250,0.15); border-color:rgba(167,139,250,0.40); color:var(--auto); }
+    .mt-main-btn.active-off  { background:rgba(107,114,128,0.12); border-color:rgba(107,114,128,0.35); color:#9ca3af; }
+    .mt-main-btn.active-temp { background:rgba(255,255,255,0.10); border-color:rgba(255,255,255,0.28); color:var(--text); }
+    .mt-chevron { font-size:10px; transition:transform 220ms ease; display:inline-block; }
+    .mt-main-btn.open .mt-chevron { transform:rotate(180deg); }
+
+    /* STATUS BAR – NO margin-top:auto (card height is auto) */
+    /* Sits directly below buttons, compact padding */
+    .mt-status-bar { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; border-top:1px solid var(--divider); padding:7px 14px; gap:0; flex-shrink:0; }
+    .mt-stat { display:flex; align-items:center; gap:5px; padding:3px 10px; font-size:12px; font-weight:500; color:var(--muted); position:relative; white-space:nowrap; }
+    .mt-stat + .mt-stat::before { content:''; position:absolute; left:0; top:50%; transform:translateY(-50%); width:1px; height:12px; background:var(--divider); }
+    .mt-stat-val { font-variant-numeric:tabular-nums; color:var(--text); font-weight:600; }
+
+    /* GRAPH WRAPPER – seamless bottom half of unified card */
+    .mt-graph-wrapper {
+      background:var(--card); border:1px solid var(--border);
+      border-top:none;
+      border-bottom-left-radius:var(--radius); border-bottom-right-radius:var(--radius);
+      border-top-left-radius:0; border-top-right-radius:0;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:border-color .3s,background .3s;
+    }
+    .mt-graph-wrapper.heating { border-color:rgba(255,107,53,0.32); background:rgba(255,107,53,0.07); box-shadow:0 0 28px rgba(255,107,53,0.09),var(--shadow); }
+    .mt-graph-wrapper.cooling { border-color:rgba(79,195,247,0.32); background:rgba(79,195,247,0.07); box-shadow:0 0 28px rgba(79,195,247,0.09),var(--shadow); }
+
+
+    /* Graph canvas (simulated SVG) */
+    .mt-graph-canvas { width:100%; height:110px; position:relative; overflow:hidden; background:transparent; padding:10px 14px 6px; }
+    .mt-graph-canvas.compact { height:75px; }
+    .mt-graph-svg { width:100%; height:100%; }
+    .mt-graph-extrema { display:flex; justify-content:space-between; padding:0 14px 8px; font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums; }
+
+    /* COMPACT */
+    .mt-card.compact { --spacing: 10px; }
+    .mt-card.compact .mt-ist { font-size:46px; }
+    .mt-card.compact .mt-ist-unit { font-size:17px; margin-top:7px; }
+    .mt-card.compact .mt-adj { width:40px; height:40px; font-size:22px; }
+    .mt-card.compact .mt-soll-big { font-size:36px; }
+    .mt-card.compact .mt-main-btn { padding:7px 10px; font-size:11px; }
+    .mt-card.compact .mt-stat { font-size:11px; padding:2px 8px; }
+    .mt-card.compact .mt-header { padding:10px 12px 0; }
+    .mt-card.compact .mt-icon { width:30px; height:30px; font-size:15px; }
+    .mt-card.compact .mt-name { font-size:13px; }
+    .mt-card.compact .mt-temp-center { padding:8px 12px 3px; }
+    .mt-card.compact .mt-btn-row { padding:4px 12px 6px; }
+    .mt-card.compact .mt-status-bar { padding:5px 12px; }
+
+    /* FEATURES */
+    .feature-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; margin-bottom:36px; }
+    .feature-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px; display:flex; flex-direction:column; gap:6px; }
+    .feature-icon { font-size:22px; }
+    .feature-title { font-size:13px; font-weight:600; color:var(--text); }
+    .feature-desc { font-size:11px; color:var(--muted); line-height:1.5; }
+
+    /* YAML */
+    .yaml-block { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:20px; overflow-x:auto; margin-bottom:36px; }
+    .yaml-block pre { font-family:'Fira Code','Cascadia Code','Courier New',monospace; font-size:12.5px; color:var(--muted); line-height:1.75; margin:0; }
+    .yaml-key { color:#ff6b35; } .yaml-str { color:#4fc3f7; } .yaml-bool { color:#a78bfa; } .yaml-num { color:#81c784; } .yaml-cmt { color:#484f58; font-style:italic; }
+
+    .footer { text-align:center; padding:24px 20px; border-top:1px solid var(--divider); color:var(--dim); font-size:12px; }
+
+    @media (max-width:600px) {
+      .grid,.grid-compact { grid-template-columns:1fr; }
+      .topbar { padding:8px 14px; }
+      .main { padding:20px 14px 48px; }
+    }
+  </style>
+</head>
+<body>
+<!-- TOP BAR -->
+<div class="topbar">
+<div class="topbar-brand">
+<div class="topbar-logo">🌡️</div>
+<div>
+<div class="topbar-title">Modern Thermostat Card</div>
+<div class="topbar-version">v1.6.0 · Home Assistant Lovelace</div>
+</div>
+</div>
+<div class="topbar-controls">
+<div class="ctrl-group">
+<span class="ctrl-label">Theme</span>
+<button class="ctrl-btn active" id="btn-dark" onclick="setTheme('dark')">🌙 Dark</button>
+<button class="ctrl-btn" id="btn-light" onclick="setTheme('light')">☀️ Light</button>
+</div>
+<div class="ctrl-group">
+<span class="ctrl-label">Sprache</span>
+<button class="ctrl-btn active" id="lang-de" onclick="setLang('de')">🇩🇪 DE</button>
+<button class="ctrl-btn" id="lang-en" onclick="setLang('en')">🇬🇧 EN</button>
+<button class="ctrl-btn" id="lang-fr" onclick="setLang('fr')">🇫🇷 FR</button>
+<button class="ctrl-btn" id="lang-nl" onclick="setLang('nl')">🇳🇱 NL</button>
+</div>
+</div>
+</div>
+<div class="main">
+<!-- NORMAL MODE – no graph (compact height) -->
+<div class="section-header"><div class="section-title">Normal Mode – Dynamische Höhe</div><div class="section-line"></div></div>
+<div class="grid">
+<!-- WOHNZIMMER – Heating, no graph -->
+<div class="mt-card heating" id="card-wohnzimmer">
+<div class="mt-header">
+<div class="mt-icon">🔥</div>
+<div style="margin-left:10px">
+<div class="mt-name">Wohnzimmer</div>
+<div class="mt-status" id="status-wohnzimmer">Heizen</div>
+</div>
+</div>
+<div class="mt-temp-center"><div class="mt-ist" id="ist-wohnzimmer">19.4</div><span class="mt-ist-unit">°C</span></div>
+<div class="mt-soll-row" id="soll-row-wohnzimmer">🌡 <span class="mt-soll-val" id="soll-wohnzimmer">21.0°C</span></div>
+<div class="mt-panel-slot" id="panel-wohnzimmer">
+<div id="panel-temp-wohnzimmer" style="display:none">
+<div class="mt-temp-ctrl">
+<button class="mt-adj" onclick="adjustTemp('wohnzimmer',-0.5)">−</button>
+<div class="mt-soll-wrap"><div class="mt-soll-big" id="soll-big-wohnzimmer">21.0<sup>°C</sup></div><div class="mt-soll-sub" id="soll-sub-wohnzimmer">Sollwert</div></div>
+<button class="mt-adj" onclick="adjustTemp('wohnzimmer',0.5)">+</button>
+</div>
+</div>
+<div id="panel-hvac-wohnzimmer" style="display:none">
+<div class="mt-modes">
+<button class="mt-pill" data-mode="off" onclick="setMode('wohnzimmer','off')">⏻ <span data-i18n-mode="off">Aus</span></button>
+<button class="mt-pill active" data-mode="heat" onclick="setMode('wohnzimmer','heat')">🔥 <span data-i18n-mode="heat">Heizen</span></button>
+<button class="mt-pill" data-mode="cool" onclick="setMode('wohnzimmer','cool')">❄️ <span data-i18n-mode="cool">Kühlen</span></button>
+<button class="mt-pill" data-mode="auto" onclick="setMode('wohnzimmer','auto')">🔄 <span data-i18n-mode="auto">Automatik</span></button>
+</div>
+</div>
+</div>
+<div class="mt-btn-row">
+<button class="mt-main-btn active-heat" id="hvac-btn-wohnzimmer" onclick="togglePanel('wohnzimmer','hvac')">🔥 <span id="hvac-label-wohnzimmer">Heizen</span> <span class="mt-chevron">▾</span></button>
+<button class="mt-main-btn" id="temp-btn-wohnzimmer" onclick="togglePanel('wohnzimmer','temp')">🌡 <span id="temp-label-wohnzimmer">Temperatur</span> <span class="mt-chevron">▾</span></button>
+</div>
+<!-- Status bar sits directly below buttons – no gap -->
+<div class="mt-status-bar">
+<div class="mt-stat">💧 <span class="mt-stat-val">48%</span></div>
+<div class="mt-stat">🚰 <span class="mt-stat-val">42%</span></div>
+<div class="mt-stat">🔋 <span class="mt-stat-val">87%</span></div>
+</div>
+</div>
+<!-- SCHLAFZIMMER – Fenster OFFEN -->
+<div class="mt-card" id="card-schlafzimmer">
+<div class="mt-header">
+<div class="mt-icon">🛏️</div>
+<div style="margin-left:10px">
+<div class="mt-name">Schlafzimmer</div>
+<div class="mt-status window-open" id="status-schlafzimmer">🪟 <span id="window-text-schlafzimmer">Fenster offen</span></div>
+</div>
+</div>
+<div class="mt-temp-center"><div class="mt-ist" id="ist-schlafzimmer">17.8</div><span class="mt-ist-unit">°C</span></div>
+<div class="mt-soll-row" id="soll-row-schlafzimmer">🌡 <span class="mt-soll-val" id="soll-schlafzimmer">18.0°C</span></div>
+<div class="mt-panel-slot" id="panel-schlafzimmer">
+<div id="panel-temp-schlafzimmer" style="display:none">
+<div class="mt-temp-ctrl">
+<button class="mt-adj" onclick="adjustTemp('schlafzimmer',-0.5)">−</button>
+<div class="mt-soll-wrap"><div class="mt-soll-big" id="soll-big-schlafzimmer">18.0<sup>°C</sup></div><div class="mt-soll-sub">Sollwert</div></div>
+<button class="mt-adj" onclick="adjustTemp('schlafzimmer',0.5)">+</button>
+</div>
+</div>
+<div id="panel-hvac-schlafzimmer" style="display:none">
+<div class="mt-modes">
+<button class="mt-pill" data-mode="off">⏻ <span data-i18n-mode="off">Aus</span></button>
+<button class="mt-pill active" data-mode="heat">🔥 <span data-i18n-mode="heat">Heizen</span></button>
+<button class="mt-pill" data-mode="cool">❄️ <span data-i18n-mode="cool">Kühlen</span></button>
+</div>
+</div>
+</div>
+<div class="mt-btn-row">
+<button class="mt-main-btn active-heat" id="hvac-btn-schlafzimmer" onclick="togglePanel('schlafzimmer','hvac')">🔥 <span data-i18n-mode="heat">Heizen</span> <span class="mt-chevron">▾</span></button>
+<button class="mt-main-btn" id="temp-btn-schlafzimmer" onclick="togglePanel('schlafzimmer','temp')">🌡 Temperatur <span class="mt-chevron">▾</span></button>
+</div>
+<div class="mt-status-bar">
+<div class="mt-stat">💧 <span class="mt-stat-val">62%</span></div>
+<div class="mt-stat">🚰 <span class="mt-stat-val">0%</span></div>
+<div class="mt-stat">🔋 <span class="mt-stat-val">54%</span></div>
+</div>
+</div>
+<!-- KINDERZIMMER – Cooling -->
+<div class="mt-card cooling" id="card-kinderzimmer">
+<div class="mt-header">
+<div class="mt-icon">🧸</div>
+<div style="margin-left:10px">
+<div class="mt-name">Kinderzimmer</div>
+<div class="mt-status" id="status-kinderzimmer" style="color:var(--cool)">Kühlen</div>
+</div>
+</div>
+<div class="mt-temp-center"><div class="mt-ist" id="ist-kinderzimmer">24.1</div><span class="mt-ist-unit">°C</span></div>
+<div class="mt-soll-row" id="soll-row-kinderzimmer">🌡 <span class="mt-soll-val" id="soll-kinderzimmer">22.0°C</span></div>
+<div class="mt-panel-slot" id="panel-kinderzimmer">
+<div id="panel-temp-kinderzimmer" style="display:none">
+<div class="mt-temp-ctrl">
+<button class="mt-adj" onclick="adjustTemp('kinderzimmer',-0.5)">−</button>
+<div class="mt-soll-wrap"><div class="mt-soll-big" id="soll-big-kinderzimmer">22.0<sup>°C</sup></div><div class="mt-soll-sub">Sollwert</div></div>
+<button class="mt-adj" onclick="adjustTemp('kinderzimmer',0.5)">+</button>
+</div>
+</div>
+<div id="panel-hvac-kinderzimmer" style="display:none">
+<div class="mt-modes">
+<button class="mt-pill" data-mode="off">⏻ <span data-i18n-mode="off">Aus</span></button>
+<button class="mt-pill" data-mode="heat">🔥 <span data-i18n-mode="heat">Heizen</span></button>
+<button class="mt-pill active" data-mode="cool">❄️ <span data-i18n-mode="cool">Kühlen</span></button>
+<button class="mt-pill" data-mode="auto">🔄 <span data-i18n-mode="auto">Automatik</span></button>
+</div>
+</div>
+</div>
+<div class="mt-btn-row">
+<button class="mt-main-btn active-cool" id="hvac-btn-kinderzimmer" onclick="togglePanel('kinderzimmer','hvac')">❄️ <span data-i18n-mode="cool">Kühlen</span> <span class="mt-chevron">▾</span></button>
+<button class="mt-main-btn" id="temp-btn-kinderzimmer" onclick="togglePanel('kinderzimmer','temp')">🌡 Temperatur <span class="mt-chevron">▾</span></button>
+</div>
+<div class="mt-status-bar">
+<div class="mt-stat">💧 <span class="mt-stat-val">55%</span></div>
+<div class="mt-stat">🚰 <span class="mt-stat-val">100%</span></div>
+<div class="mt-stat">🔋 <span class="mt-stat-val">91%</span></div>
+</div>
+</div>
+<!-- BAD – Off -->
+<div class="mt-card off" id="card-bad">
+<div class="mt-header">
+<div class="mt-icon">🚿</div>
+<div style="margin-left:10px">
+<div class="mt-name">Bad</div>
+<div class="mt-status" id="status-bad">Aus</div>
+</div>
+</div>
+<div class="mt-temp-center"><div class="mt-ist" id="ist-bad">22.1</div><span class="mt-ist-unit">°C</span></div>
+<div class="mt-soll-row" id="soll-row-bad">🌡 <span class="mt-soll-val" style="opacity:.38">18.0°C</span></div>
+<div class="mt-panel-slot" id="panel-bad">
+<div id="panel-temp-bad" style="display:none">
+<div class="mt-temp-ctrl">
+<button class="mt-adj" disabled="">−</button>
+<div class="mt-soll-wrap"><div class="mt-soll-big" style="opacity:.35">18.0<sup>°C</sup></div><div class="mt-soll-sub">Sollwert</div></div>
+<button class="mt-adj" disabled="">+</button>
+</div>
+</div>
+<div id="panel-hvac-bad" style="display:none">
+<div class="mt-modes">
+<button class="mt-pill active" data-mode="off">⏻ <span data-i18n-mode="off">Aus</span></button>
+<button class="mt-pill" data-mode="heat">🔥 <span data-i18n-mode="heat">Heizen</span></button>
+<button class="mt-pill" data-mode="cool">❄️ <span data-i18n-mode="cool">Kühlen</span></button>
+<button class="mt-pill" data-mode="fan_only">🌀 <span data-i18n-mode="fan_only">Lüften</span></button>
+</div>
+</div>
+</div>
+<div class="mt-btn-row">
+<button class="mt-main-btn active-off" id="hvac-btn-bad" onclick="togglePanel('bad','hvac')">⏻ <span data-i18n-mode="off">Aus</span> <span class="mt-chevron">▾</span></button>
+<button class="mt-main-btn" id="temp-btn-bad" onclick="togglePanel('bad','temp')">🌡 Temperatur <span class="mt-chevron">▾</span></button>
+</div>
+<div class="mt-status-bar">
+<div class="mt-stat">💧 <span class="mt-stat-val">44%</span></div>
+<div class="mt-stat">🚰 <span class="mt-stat-val">0%</span></div>
+<div class="mt-stat">🔋 <span class="mt-stat-val">23%</span></div>
+</div>
+</div>
+</div>
+<!-- WITH GRAPH – seamless unified card -->
+<div class="section-header"><div class="section-title">Mit Temperaturverlauf – Nahtlose Integration</div><div class="section-line"></div></div>
+<div class="grid">
+<!-- WOHNZIMMER + GRAPH (heating) -->
+<div>
+<div class="mt-card heating has-graph">
+<div class="mt-header">
+<div class="mt-icon">🔥</div>
+<div style="margin-left:10px">
+<div class="mt-name">Wohnzimmer</div>
+<div class="mt-status" style="color:var(--heat)">Heizen</div>
+</div>
+</div>
+<div class="mt-temp-center"><div class="mt-ist" id="ist-wz2">19.4</div><span class="mt-ist-unit">°C</span></div>
+<div class="mt-soll-row">🌡 <span class="mt-soll-val">21.0°C</span></div>
+<div class="mt-btn-row">
+<button class="mt-main-btn active-heat">🔥 Heizen <span class="mt-chevron">▾</span></button>
+<button class="mt-main-btn">🌡 Temperatur <span class="mt-chevron">▾</span></button>
+</div>
+<div class="mt-status-bar">
+<div class="mt-stat">💧 <span class="mt-stat-val">48%</span></div>
+<div class="mt-stat">🚰 <span class="mt-stat-val">42%</span></div>
+<div class="mt-stat">🔋 <span class="mt-stat-val">87%</span></div>
+</div>
+</div>
+<!-- Graph wrapper: seamless bottom half -->
+<div class="mt-graph-wrapper heating">
+<div class="mt-graph-canvas">
+<svg class="mt-graph-svg" preserveaspectratio="none" viewbox="0 0 400 80">
+<defs>
+<lineargradient id="grad-heat" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#0000FF"></stop>
+<stop offset="14%" stop-color="#2A00D4"></stop>
+<stop offset="29%" stop-color="#5500AA"></stop>
+<stop offset="43%" stop-color="#800080"></stop>
+<stop offset="57%" stop-color="#AA0055"></stop>
+<stop offset="71%" stop-color="#D4002A"></stop>
+<stop offset="86%" stop-color="#E8001A"></stop>
+<stop offset="100%" stop-color="#FF0000"></stop>
+</lineargradient>
+<lineargradient id="fill-heat" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#ff6b35" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#ff6b35" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<path d="" fill="url(#fill-heat)" id="fill-heat-path"></path>
+<path d="" fill="none" id="line-heat-path" stroke="url(#grad-heat)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="mt-graph-extrema">
+<span style="color:#2A00D4">Min: 17.8°C</span>
+<span style="color:var(--muted);font-size:10px">24h</span>
+<span style="color:#FF0000">Max: 21.4°C</span>
+</div>
+</div>
+</div>
+<!-- SCHLAFZIMMER + GRAPH (cooling) -->
+<div>
+<div class="mt-card cooling has-graph">
+<div class="mt-header">
+<div class="mt-icon">🧸</div>
+<div style="margin-left:10px">
+<div class="mt-name">Kinderzimmer</div>
+<div class="mt-status" style="color:var(--cool)">Kühlen</div>
+</div>
+</div>
+<div class="mt-temp-center"><div class="mt-ist" id="ist-kz2">24.1</div><span class="mt-ist-unit">°C</span></div>
+<div class="mt-soll-row">🌡 <span class="mt-soll-val">22.0°C</span></div>
+<div class="mt-btn-row">
+<button class="mt-main-btn active-cool">❄️ Kühlen <span class="mt-chevron">▾</span></button>
+<button class="mt-main-btn">🌡 Temperatur <span class="mt-chevron">▾</span></button>
+</div>
+<div class="mt-status-bar">
+<div class="mt-stat">💧 <span class="mt-stat-val">55%</span></div>
+<div class="mt-stat">🚰 <span class="mt-stat-val">100%</span></div>
+<div class="mt-stat">🔋 <span class="mt-stat-val">91%</span></div>
+</div>
+</div>
+<div class="mt-graph-wrapper cooling">
+<div class="mt-graph-canvas">
+<svg class="mt-graph-svg" preserveaspectratio="none" viewbox="0 0 400 80">
+<defs>
+<lineargradient id="grad-cool" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#FF0000"></stop>
+<stop offset="30%" stop-color="#D4002A"></stop>
+<stop offset="55%" stop-color="#AA0055"></stop>
+<stop offset="75%" stop-color="#800080"></stop>
+<stop offset="90%" stop-color="#5500AA"></stop>
+<stop offset="100%" stop-color="#2A00D4"></stop>
+</lineargradient>
+</defs>
+<path d="" fill="none" id="line-cool-path" stroke="url(#grad-cool)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="mt-graph-extrema">
+<span style="color:#FF0000">Min: 22.8°C</span>
+<span style="color:var(--muted);font-size:10px">24h</span>
+<span style="color:#2A00D4">Max: 26.3°C</span>
+</div>
+</div>
+</div>
+</div>
+<!-- COMPACT MODE -->
+<div class="section-header"><div class="section-title">Compact Mode</div><div class="section-line"></div></div>
+<div class="grid-compact">
+<div class="mt-card compact heating">
+<div class="mt-header"><div class="mt-icon">🔥</div><div style="margin-left:8px"><div class="mt-name">Wohnzimmer</div><div class="mt-status" style="color:var(--heat)">Heizen</div></div></div>
+<div class="mt-temp-center"><div class="mt-ist">19.4</div><span class="mt-ist-unit">°C</span></div>
+<div class="mt-soll-row">🌡 <span class="mt-soll-val">21.0°C</span></div>
+<div class="mt-btn-row">
+<button class="mt-main-btn active-heat">🔥 Heizen <span class="mt-chevron">▾</span></button>
+<button class="mt-main-btn">🌡 Temp <span class="mt-chevron">▾</span></button>
+</div>
+<div class="mt-status-bar"><div class="mt-stat">💧 <span class="mt-stat-val">48%</span></div><div class="mt-stat">🚰 <span class="mt-stat-val">42%</span></div><div class="mt-stat">🔋 <span class="mt-stat-val">87%</span></div></div>
+</div>
+<div class="mt-card compact">
+<div class="mt-header"><div class="mt-icon">🛏️</div><div style="margin-left:8px"><div class="mt-name">Schlafzimmer</div><div class="mt-status window-open">🪟 Fenster offen</div></div></div>
+<div class="mt-temp-center"><div class="mt-ist">17.8</div><span class="mt-ist-unit">°C</span></div>
+<div class="mt-soll-row">🌡 <span class="mt-soll-val">18.0°C</span></div>
+<div class="mt-btn-row">
+<button class="mt-main-btn active-heat">🔥 Heizen <span class="mt-chevron">▾</span></button>
+<button class="mt-main-btn">🌡 Temp <span class="mt-chevron">▾</span></button>
+</div>
+<div class="mt-status-bar"><div class="mt-stat">💧 <span class="mt-stat-val">62%</span></div><div class="mt-stat">🚰 <span class="mt-stat-val">0%</span></div><div class="mt-stat">🔋 <span class="mt-stat-val">54%</span></div></div>
+</div>
+<!-- Compact + Graph -->
+<div>
+<div class="mt-card compact cooling has-graph">
+<div class="mt-header"><div class="mt-icon">🧸</div><div style="margin-left:8px"><div class="mt-name">Kinderzimmer</div><div class="mt-status" style="color:var(--cool)">Kühlen</div></div></div>
+<div class="mt-temp-center"><div class="mt-ist">24.1</div><span class="mt-ist-unit">°C</span></div>
+<div class="mt-soll-row">🌡 <span class="mt-soll-val">22.0°C</span></div>
+<div class="mt-btn-row">
+<button class="mt-main-btn active-cool">❄️ Kühlen <span class="mt-chevron">▾</span></button>
+<button class="mt-main-btn">🌡 Temp <span class="mt-chevron">▾</span></button>
+</div>
+<div class="mt-status-bar"><div class="mt-stat">💧 <span class="mt-stat-val">55%</span></div><div class="mt-stat">🚰 <span class="mt-stat-val">100%</span></div><div class="mt-stat">🔋 <span class="mt-stat-val">91%</span></div></div>
+</div>
+<div class="mt-graph-wrapper cooling">
+<div class="mt-graph-canvas compact">
+<svg class="mt-graph-svg" preserveaspectratio="none" viewbox="0 0 400 55">
+<path d="" fill="none" id="line-compact-path" stroke="url(#grad-cool)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<div class="mt-card compact off">
+<div class="mt-header"><div class="mt-icon">🚿</div><div style="margin-left:8px"><div class="mt-name">Bad</div><div class="mt-status">Aus</div></div></div>
+<div class="mt-temp-center"><div class="mt-ist">22.1</div><span class="mt-ist-unit">°C</span></div>
+<div class="mt-soll-row">🌡 <span class="mt-soll-val" style="opacity:.38">18.0°C</span></div>
+<div class="mt-btn-row">
+<button class="mt-main-btn active-off">⏻ Aus <span class="mt-chevron">▾</span></button>
+<button class="mt-main-btn">🌡 Temp <span class="mt-chevron">▾</span></button>
+</div>
+<div class="mt-status-bar"><div class="mt-stat">💧 <span class="mt-stat-val">44%</span></div><div class="mt-stat">🚰 <span class="mt-stat-val">0%</span></div><div class="mt-stat">🔋 <span class="mt-stat-val">23%</span></div></div>
+</div>
+</div>
+<!-- YAML -->
+<div class="section-header"><div class="section-title">YAML Konfiguration</div><div class="section-line"></div></div>
+<div class="yaml-block">
+<pre><span class="yaml-cmt"># Mit Temperaturverlauf – nahtlose Integration</span>
+<span class="yaml-key">type</span>: custom:modern-thermostat
+<span class="yaml-key">entity</span>: <span class="yaml-str">climate.wohnzimmer</span>
+<span class="yaml-key">window_entity</span>: <span class="yaml-str">binary_sensor.wohnzimmer_fenster</span>
+<span class="yaml-key">humidity_entity</span>: <span class="yaml-str">sensor.wohnzimmer_humidity</span>
+<span class="yaml-key">valve_position_entity</span>: <span class="yaml-str">sensor.wohnzimmer_valve_position</span>
+<span class="yaml-key">battery_entity</span>: <span class="yaml-str">sensor.wohnzimmer_battery</span>
+<span class="yaml-key">show_graph</span>: <span class="yaml-bool">true</span>
+<span class="yaml-key">graph_entity</span>: <span class="yaml-str">sensor.wohnzimmer_temperature</span>
+<span class="yaml-key">hours_to_show</span>: <span class="yaml-num">24</span>
+<span class="yaml-key">graph_line_width</span>: <span class="yaml-num">2</span>
+<span class="yaml-key">step</span>: <span class="yaml-num">0.5</span></pre>
+</div>
+</div>
+<div class="footer">Modern Thermostat Card <strong>v1.6.0</strong>  ·  MIT License  ·  LitElement 3 + TypeScript  ·  HACS kompatibel</div>
+<script>
+    const temps = { wohnzimmer:21.0, schlafzimmer:18.0, kinderzimmer:22.0, bad:18.0 };
+    const activePanel = {};
+
+    const T = {
+      de: { state:{off:'Aus',heat:'Heizen',cool:'Kühlen',auto:'Automatik',heat_cool:'Heizen/Kühlen',fan_only:'Lüften',dry:'Entfeuchten'}, action:{heating:'Heizen',cooling:'Kühlen',idle:'Bereitschaft',off:'Aus'}, temp:'Temperatur', setpoint:'Sollwert', window_open:'Fenster offen' },
+      en: { state:{off:'Off',heat:'Heat',cool:'Cool',auto:'Auto',heat_cool:'Heat/Cool',fan_only:'Fan',dry:'Dry'}, action:{heating:'Heating',cooling:'Cooling',idle:'Idle',off:'Off'}, temp:'Temperature', setpoint:'Setpoint', window_open:'Window open' },
+      fr: { state:{off:'Éteint',heat:'Chauffage',cool:'Climatisation',auto:'Automatique',heat_cool:'Chaud/Froid',fan_only:'Ventilateur',dry:'Déshumidification'}, action:{heating:'Chauffe',cooling:'Refroidit',idle:'Veille',off:'Éteint'}, temp:'Température', setpoint:'Consigne', window_open:'Fenêtre ouverte' },
+      nl: { state:{off:'Uit',heat:'Verwarmen',cool:'Koelen',auto:'Automatisch',heat_cool:'Verwarmen/Koelen',fan_only:'Ventileren',dry:'Ontvochtigen'}, action:{heating:'Verwarmt',cooling:'Koelt',idle:'Stand-by',off:'Uit'}, temp:'Temperatuur', setpoint:'Doelwaarde', window_open:'Raam geopend' },
+    };
+    let lang = 'de';
+
+    function togglePanel(room, type) {
+      const slot = document.getElementById('panel-' + room);
+      const tempDiv = document.getElementById('panel-temp-' + room);
+      const hvacDiv = document.getElementById('panel-hvac-' + room);
+      const hvacBtn = document.getElementById('hvac-btn-' + room);
+      const tempBtn = document.getElementById('temp-btn-' + room);
+      const sollRow = document.getElementById('soll-row-' + room);
+      if (!slot) return;
+      const current = activePanel[room] || 'none';
+      const next = current === type ? 'none' : type;
+      activePanel[room] = next;
+      if (tempDiv) tempDiv.style.display = next === 'temp' ? 'block' : 'none';
+      if (hvacDiv) hvacDiv.style.display = next === 'hvac' ? 'block' : 'none';
+      slot.classList.toggle('open', next !== 'none');
+      if (hvacBtn) hvacBtn.classList.toggle('open', next === 'hvac');
+      if (tempBtn) { tempBtn.classList.toggle('open', next === 'temp'); tempBtn.classList.toggle('active-temp', next === 'temp'); }
+      if (sollRow) sollRow.style.display = next === 'temp' ? 'none' : 'flex';
+    }
+
+    function adjustTemp(room, delta) {
+      temps[room] = Math.round((temps[room] + delta) * 10) / 10;
+      temps[room] = Math.max(5, Math.min(35, temps[room]));
+      const val = temps[room].toFixed(1);
+      const big = document.getElementById('soll-big-' + room);
+      const row = document.getElementById('soll-' + room);
+      if (big) { big.innerHTML = val + '<sup>°C</sup>'; big.style.transition='transform 120ms ease'; big.style.transform='scale(1.08)'; setTimeout(()=>{big.style.transform='scale(1)';},120); }
+      if (row) row.textContent = val + '°C';
+    }
+
+    function setMode(room, mode) {
+      const card = document.getElementById('card-' + room);
+      if (!card) return;
+      card.querySelectorAll('.mt-pill').forEach(p => p.classList.remove('active'));
+      const pill = card.querySelector('.mt-pill[data-mode="' + mode + '"]');
+      if (pill) pill.classList.add('active');
+      const t = T[lang] || T.en;
+      const hvacBtn = document.getElementById('hvac-btn-' + room);
+      const statusEl = document.getElementById('status-' + room);
+      const iconEl = card.querySelector('.mt-icon');
+      card.classList.remove('heating','cooling','off');
+      const icons = {heat:'🔥',cool:'❄️',auto:'🔄',off:'⏻',fan_only:'🌀',dry:'💨'};
+      const cls   = {heat:'active-heat',cool:'active-cool',auto:'active-auto',off:'active-off',fan_only:'active-fan',dry:'active-dry'};
+      if (hvacBtn) { hvacBtn.className='mt-main-btn ' + (cls[mode]||''); hvacBtn.innerHTML=(icons[mode]||'⚙') + ' ' + (t.state[mode]||mode) + ' <span class="mt-chevron">▾</span>'; }
+      if (mode==='heat') { card.classList.add('heating'); if(statusEl){statusEl.textContent=t.action.heating;statusEl.style.color='var(--heat)';statusEl.className='mt-status';} if(iconEl){iconEl.textContent='🔥';iconEl.style.background='rgba(255,107,53,0.18)';} }
+      else if (mode==='cool') { card.classList.add('cooling'); if(statusEl){statusEl.textContent=t.action.cooling;statusEl.style.color='var(--cool)';statusEl.className='mt-status';} if(iconEl){iconEl.textContent='❄️';iconEl.style.background='rgba(79,195,247,0.18)';} }
+      else if (mode==='off') { card.classList.add('off'); if(statusEl){statusEl.textContent=t.action.off;statusEl.style.color='';statusEl.className='mt-status';} if(iconEl){iconEl.textContent='⏻';iconEl.style.background='';} }
+      else { if(statusEl){statusEl.textContent=t.state[mode]||mode;statusEl.style.color='';statusEl.className='mt-status';} if(iconEl)iconEl.style.background=''; }
+      const hp = document.getElementById('hvac-panel-' + room);
+      if (hp) setTimeout(()=>{ hp.classList.remove('open'); if(hvacBtn)hvacBtn.classList.remove('open'); },320);
+    }
+
+    function setTheme(theme) {
+      document.body.classList.toggle('light', theme==='light');
+      document.getElementById('btn-dark').classList.toggle('active', theme==='dark');
+      document.getElementById('btn-light').classList.toggle('active', theme==='light');
+    }
+
+    function setLang(l) {
+      lang = l;
+      ['de','en','fr','nl'].forEach(x => document.getElementById('lang-'+x)?.classList.toggle('active', x===l));
+      const t = T[l] || T.en;
+      document.querySelectorAll('[data-i18n-mode]').forEach(el => { const m=el.getAttribute('data-i18n-mode'); el.textContent=t.state[m]||m; });
+      const tl=document.getElementById('temp-label-wohnzimmer'); if(tl)tl.textContent=t.temp;
+      const hl=document.getElementById('hvac-label-wohnzimmer'); if(hl)hl.textContent=t.state.heat;
+      const ss=document.getElementById('soll-sub-wohnzimmer'); if(ss)ss.textContent=t.setpoint;
+      const wt=document.getElementById('window-text-schlafzimmer'); if(wt)wt.textContent=t.window_open;
+    }
+
+    // ── Generate SVG graph paths ───────────────────────────
+    function genPath(pts, w, h, fill) {
+      if (pts.length < 2) return '';
+      const mn = Math.min(...pts) - 0.5, mx = Math.max(...pts) + 0.5, rng = mx - mn || 1;
+      const xs = pts.map((_, i) => (i / (pts.length-1)) * w);
+      const ys = pts.map(v => h - ((v - mn) / rng) * h);
+      let d = 'M ' + xs[0] + ' ' + ys[0];
+      for (let i = 1; i < pts.length; i++) {
+        const cpx = (xs[i-1] + xs[i]) / 2;
+        d += ' C ' + cpx + ' ' + ys[i-1] + ' ' + cpx + ' ' + ys[i] + ' ' + xs[i] + ' ' + ys[i];
+      }
+      if (fill) d += ' L ' + xs[xs.length-1] + ' ' + h + ' L ' + xs[0] + ' ' + h + ' Z';
+      return d;
+    }
+
+    const heatData = [17.8,17.5,17.2,17.0,17.1,17.4,17.8,18.5,19.2,19.8,20.1,20.4,20.6,20.8,21.0,21.1,21.0,20.8,20.5,20.2,19.8,19.4,19.1,18.8];
+    const coolData = [24.2,24.5,24.8,25.1,25.5,25.8,26.0,26.3,26.1,25.8,25.4,25.0,24.6,24.2,23.8,23.5,23.2,23.0,22.8,22.9,23.1,23.4,23.7,24.0];
+
+    function drawGraphs() {
+      const lh = document.getElementById('line-heat-path');
+      const fh = document.getElementById('fill-heat-path');
+      const lc = document.getElementById('line-cool-path');
+      const lcp = document.getElementById('line-compact-path');
+      if (lh) lh.setAttribute('d', genPath(heatData, 400, 80, false));
+      if (fh) fh.setAttribute('d', genPath(heatData, 400, 80, true));
+      if (lc) lc.setAttribute('d', genPath(coolData, 400, 80, false));
+      if (lcp) lcp.setAttribute('d', genPath(coolData, 400, 55, false));
+    }
+    drawGraphs();
+
+    // Live IST simulation
+    const baseIST = { wohnzimmer:19.4, schlafzimmer:17.8, kinderzimmer:24.1, bad:22.1 };
+    setInterval(() => {
+      Object.keys(baseIST).forEach(room => {
+        const el = document.getElementById('ist-' + room);
+        if (el) el.textContent = (baseIST[room] + (Math.random()-0.5)*0.3).toFixed(1);
+      });
+      // Also update graph-section IST
+      const wz2 = document.getElementById('ist-wz2');
+      if (wz2) wz2.textContent = (19.4 + (Math.random()-0.5)*0.3).toFixed(1);
+      const kz2 = document.getElementById('ist-kz2');
+      if (kz2) kz2.textContent = (24.1 + (Math.random()-0.5)*0.3).toFixed(1);
+    }, 3500);
+
+    console.info('%c MODERN-THERMOSTAT %c v1.6.1 ','background:#ff6b35;color:#fff;font-weight:700;border-radius:4px 0 0 4px;padding:2px 6px;','background:#1c2128;color:#ff6b35;font-weight:600;border-radius:0 4px 4px 0;padding:2px 6px;');
+
+    // ── Automatic version check ────────────────────────────
+    const CURRENT_VERSION = '1.6.1';
+    const GITHUB_REPO = 'your-org/modern-thermostat';
+
+    async function checkForUpdate() {
+      try {
+        const res = await fetch(
+          'https://api.github.com/repos/' + GITHUB_REPO + '/releases/latest',
+          { headers: { 'Accept': 'application/vnd.github.v3+json' }, signal: AbortSignal.timeout(4000) }
+        );
+        if (!res.ok) return;
+        const data = await res.json();
+        const latest = (data.tag_name || '').replace(/^v/, '');
+        if (latest && latest !== CURRENT_VERSION) showUpdateBadge(latest, data.html_url);
+      } catch (e) { /* silent fail */ }
+    }
+
+    function showUpdateBadge(latestVersion, releaseUrl) {
+      if (!document.getElementById('update-pulse-style')) {
+        const s = document.createElement('style');
+        s.id = 'update-pulse-style';
+        s.textContent = '@keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}';
+        document.head.appendChild(s);
+      }
+      const badge = document.createElement('a');
+      badge.href = releaseUrl || '#';
+      badge.target = '_blank';
+      badge.rel = 'noopener';
+      badge.title = 'Update verfuegbar: v' + latestVersion;
+      badge.style.cssText = 'display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:999px;background:#ff9800;color:#fff;font-size:11px;font-weight:600;text-decoration:none;white-space:nowrap;animation:pulse 2s infinite;';
+      badge.textContent = 'Update v' + latestVersion;
+      const controls = document.querySelector('.topbar-controls');
+      if (controls) controls.prepend(badge);
+    }
+
+    window.addEventListener('load', () => setTimeout(checkForUpdate, 1500));
+  </script>
+</body>
+</html>
