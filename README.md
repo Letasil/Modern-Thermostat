@@ -1,9 +1,7 @@
 # Modern Thermostat Card
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
-![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
 [![GitHub release](https://img.shields.io/github/release/your-org/modern-thermostat.svg)](https://github.com/your-org/modern-thermostat/releases)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 An alternative version of the thermostat map for the Home Assistant Lovelace interface. The goal is to create a map with simpler interactions that is more user-friendly, takes up less space, and also offers greater modularity for customization. For example, it allows you to embed sensor readings relevant to your thermostat (such as humidity, valve position, battery status, and—optionally—a temperature history, etc.)
 
