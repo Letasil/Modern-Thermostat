@@ -8,15 +8,14 @@ An alternative version of the thermostat map for the Home Assistant Lovelace int
 
 ---
 
-# Normal Mode
-<img width="372" height="235" alt="modern-thermostat-v1 7 2 normal mode" src="https://github.com/user-attachments/assets/60b53135-fb44-435c-be6e-2f994938c6eb" />
-
-# Temperature Trend
+Temperature Trend
 <img width="370" height="368" alt="modern-thermostat-v1 7 2 Temperaturverlauf" src="https://github.com/user-attachments/assets/4dcf262b-4e1d-4589-ae59-f99eb5a5bdeb" />
 
-# Compact mode
-<img width="234" height="194" alt="modern-thermostat-v1 7 2 Compact Mode" src="https://github.com/user-attachments/assets/f8254cd6-dba1-4ba6-9368-d60a2acf1019" />
+Normal Mode
+<img width="372" height="235" alt="modern-thermostat-v1 7 2 normal mode" src="https://github.com/user-attachments/assets/60b53135-fb44-435c-be6e-2f994938c6eb" />
 
+ Compact mode
+<img width="234" height="194" alt="modern-thermostat-v1 7 2 Compact Mode" src="https://github.com/user-attachments/assets/f8254cd6-dba1-4ba6-9368-d60a2acf1019" />
 
 ## ✨ Features
 
