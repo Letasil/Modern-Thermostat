@@ -39,14 +39,14 @@ An alternative version of the thermostat map for the Home Assistant Lovelace int
 
 1. Open **HACS** → **Frontend**
 2. Click **⋮** → **Custom repositories**
-3. Add: `https://github.com/your-org/modern-thermostat`  
+3. Add: `https://github.com/Letasil/modern-thermostat`  
    Category: **Lovelace**
 4. Click **Install**
 5. **Reload** browser
 
 ### Method 2 – Manual
 
-1. Download `modern-thermostat.js` from the [latest release](https://github.com/your-org/modern-thermostat/releases)
+1. Download `modern-thermostat.js` from the [latest release](https://github.com/Letasil/modern-thermostat/releases)
 2. Copy to `config/www/modern-thermostat.js`
 3. Add to Lovelace resources:
 
