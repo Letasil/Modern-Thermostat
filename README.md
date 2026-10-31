@@ -8,6 +8,9 @@ An alternative version of the thermostat map for the Home Assistant Lovelace int
 
 ---
 
+<img width="372" height="235" alt="modern-thermostat-v1 7 2 normal mode" src="https://github.com/user-attachments/assets/60b53135-fb44-435c-be6e-2f994938c6eb" />
+
+
 ## ✨ Features
 
 - 🌡️ **Current Temperature** large central display
