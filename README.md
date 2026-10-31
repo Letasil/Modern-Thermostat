@@ -4,13 +4,13 @@
 [![GitHub release](https://img.shields.io/github/release/your-org/modern-thermostat.svg)](https://github.com/your-org/modern-thermostat/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A modern, touch-optimised thermostat card for Home Assistant Lovelace — optimised for TRV devices (Shelly BLU TRV, Homematic IP, Zigbee, Z-Wave).
+An alternative version of the thermostat map for the Home Assistant Lovelace interface. The goal is to create a map with simpler interactions that is more user-friendly, takes up less space, and also offers greater modularity for customization. For example, it allows you to embed sensor readings relevant to your thermostat (such as humidity, valve position, battery status, and—optionally—a temperature history, etc.)
 
 ---
 
 ## ✨ Features
 
-- 🌡️ **IST-Temperatur** large central display
+- 🌡️ **Current Temperature** large central display
 - 🔥❄️ **All HVAC modes** – Off / Heat / Cool / Auto / Fan / Dry
 - 🚨 **Alert priority system** – valve errors, calibration, battery, window, custom alerts
 - 📈 **Optional temperature graph** via mini-graph-card
