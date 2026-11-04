@@ -33,6 +33,9 @@ Normal Mode
 - ✅ **HACS compatible** – automatic update detection
 
 ---
+## Requirements
+Operating System 18.4
+
 
 ## 📦 Installation via HACS
 
