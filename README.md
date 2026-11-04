@@ -34,6 +34,7 @@ Normal Mode
 
 ---
 ## Requirements
+
 Operating System 18.4
 
 Download and install `mini-graph-card` from https://github.com/kalkih/mini-graph-card or via HACS
