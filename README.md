@@ -36,9 +36,7 @@ Normal Mode
 ## Requirements
 Operating System 18.4
 
-<img width="4032" height="697" alt="image" src="https://github.com/user-attachments/assets/ffdfd77c-6f28-4db6-818d-7edd8085778a" />
-
-<img width="4032" height="697" alt="image" src="https://github.com/user-attachments/assets/5addd910-f59f-4b79-a97d-5f08cec079b4" />
+<img width="50" height="20" alt="image" src="https://github.com/user-attachments/assets/5addd910-f59f-4b79-a97d-5f08cec079b4" />
 
 Download and install `mini-graph-card` from [Github (https://github.com/kalkih/mini-graph-card) or via HACS
 
