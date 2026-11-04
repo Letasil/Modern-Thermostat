@@ -75,47 +75,25 @@ entity: climate.wohnzimmer
 
 ```yaml
 type: custom:modern-thermostat
-entity: climate.wohnzimmer
-name: Wohnzimmer
+entity: climate.hmip_bwth_000ca0c9af1981
+name: Badezimmer
 step: 0.5
-decimals: 1
-
-# Sensors
-window_entity: binary_sensor.wohnzimmer_fenster
-humidity_entity: sensor.wohnzimmer_humidity
-valve_position_entity: sensor.wohnzimmer_valve_position
-battery_entity: sensor.wohnzimmer_battery
-battery_warning_level: 25
+show_hvac_modes: true
+show_window_status: true
+show_valve_position: true
 show_battery_warning: true
-
-# Device status (Shelly BLU TRV / Homematic IP)
-status_entity: sensor.wohnzimmer_trv_status
-error_entity: sensor.wohnzimmer_trv_error
-fault_entity: binary_sensor.wohnzimmer_fault
-operating_state_entity: sensor.wohnzimmer_operating_state
-update_entity: binary_sensor.wohnzimmer_update
-
-# Custom alerts
-alerts:
-  - entity: binary_sensor.pumpe_fault
-    state: "on"
-    icon: mdi:pump
-    severity: error
-    message_de: "Pumpenstörung"
-    message_en: "Pump fault"
-    message_nl: "Pompstoring"
-    message_fr: "Défaut pompe"
-
-# Temperature graph
+battery_warning_level: 25
+window_entity: binary_sensor.hm_sec_sco_neq1798400
+humidity_entity: sensor.hmip_bwth_000ca0c9af1981_luftfeuchtigkeit
+compact: false
 show_graph: true
-graph_entity: sensor.wohnzimmer_temperature
+graph_entity: sensor.hmip_bwth_000ca0c9af1981_temperatur
 hours_to_show: 24
 graph_line_width: 2
+show_header: true
+valve_position_entity: sensor.schimmelindikator_bad
+battery_entity: sensor.bewmel_schlzife_betriebsspannungspegel
 
-# Layout
-compact: false
-show_version: false
-show_debug_info: false
 ```
 
 ---
