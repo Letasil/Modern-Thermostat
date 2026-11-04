@@ -76,8 +76,8 @@ entity: climate.wohnzimmer
 
 ```yaml
 type: custom:modern-thermostat
-entity: climate.hmip_bwth_000ca0c9af1981
-name: Badezimmer
+entity: climate.wohnzimmer
+name: Wohnzimmer
 step: 0.5
 show_hvac_modes: true
 show_window_status: true
@@ -85,15 +85,15 @@ show_valve_position: true
 show_battery_warning: true
 battery_warning_level: 25
 window_entity: binary_sensor.hm_sec_sco_neq1798400
-humidity_entity: sensor.hmip_bwth_000ca0c9af1981_luftfeuchtigkeit
+humidity_entity: sensor.wohnzimmer_luftfeuchtigkeit
 compact: false
 show_graph: true
-graph_entity: sensor.hmip_bwth_000ca0c9af1981_temperatur
+graph_entity: sensor.wohnzimmer_temperatur
 hours_to_show: 24
 graph_line_width: 2
 show_header: true
-valve_position_entity: sensor.schimmelindikator_bad
-battery_entity: sensor.bewmel_schlzife_betriebsspannungspegel
+valve_position_entity: sensor.wohnzimmer_level
+battery_entity: sensor.wohnzimmer_betriebsspannungspegel
 
 ```
 
