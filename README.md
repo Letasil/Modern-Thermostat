@@ -31,7 +31,6 @@ Normal Mode
 - ⚡ **Optimistic updates** – instant UI response
 - 🔧 **GUI config editor** – no YAML required for basic setup
 - ✅ **HACS compatible** – automatic update detection
-
 ---
 ## Requirements
 
