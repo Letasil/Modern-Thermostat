@@ -31,12 +31,11 @@ Normal Mode
 - ⚡ **Optimistic updates** – instant UI response
 - 🔧 **GUI config editor** – no YAML required for basic setup
 - ✅ **HACS compatible** – automatic update detection
----
-## Requirements
 
-Operating System 18.4
+## 📦 Requirements
 
-Download and install `mini-graph-card` from https://github.com/kalkih/mini-graph-card or via HACS
+- Operating System 18.4
+- Download and install `mini-graph-card` from https://github.com/kalkih/mini-graph-card or via HACS
 
 ## 📦 Installation via HACS
 
