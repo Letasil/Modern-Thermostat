@@ -36,7 +36,6 @@ Normal Mode
 
 - Operating System 18.4
 - Install `mini-graph-card` from <a href="https://github.com/kalkih/mini-graph-card"  rel="nofollow">GitHub</a> or via <a href="https://hacs.xyz/" rel="nofollow">HACS</a>
-- Install via <a href="https://hacs.xyz/" rel="nofollow">HACS</a>.
 
 ## 📦 Installation via HACS
 
@@ -45,20 +44,21 @@ Normal Mode
 1. Open **HACS** → **Frontend**
 2. Click **⋮** → **Custom repositories**
 3. Add: `https://github.com/Letasil/modern-thermostat`  
-   Category: **Lovelace**
+   Category: **Dashboard**
 4. Click **Install**
 5. **Reload** browser
 
 ### Method 2 – Manual
 
 1. Download `modern-thermostat.js` from the [latest release](https://github.com/Letasil/modern-thermostat/releases)
-2. Copy to `config/www/modern-thermostat.js`
-3. Add to Lovelace resources:
+2. Create a Folder `modern-thermostat` on path `config/www/community/`
+3. Copy to `config/www/community/modern-thermostat/modern-thermostat.js`
+4. Add to Lovelace resources:
 
 ```yaml
 resources:
-  - url: /local/modern-thermostat.js
-    type: module
+  - url: /local/community/modern-thermostat/modern-thermostat.js?v=x.x.xx (x.x.xx=Version)
+    type: JavaScript-Module    
 ```
 
 ---
