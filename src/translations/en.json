@@ -1,0 +1,64 @@
+{
+  "state": {
+    "off": "Off",
+    "heat": "Heat",
+    "cool": "Cool",
+    "auto": "Auto",
+    "heat_cool": "Heat / Cool",
+    "fan_only": "Fan",
+    "dry": "Dry"
+  },
+  "action": {
+    "off": "Off",
+    "idle": "Idle",
+    "heating": "Heating",
+    "cooling": "Cooling",
+    "drying": "Drying",
+    "fan": "Fan running"
+  },
+  "sensor": {
+    "window_open": "Window open",
+    "window_closed": "Window closed",
+    "now": "Current",
+    "cool_setpoint": "Cool",
+    "heat_setpoint": "Heat"
+  },
+  "alert": {
+    "battery_low": "Low battery",
+    "calibration": "Calibration running",
+    "valve_error": "Valve error",
+    "valve_blocked": "Valve blocked",
+    "motor_error": "Motor error",
+    "sensor_error": "Sensor error",
+    "communication_error": "Device unavailable",
+    "firmware_update": "Firmware update",
+    "sabotage": "Sabotage alert",
+    "fault": "Fault",
+    "operating_state_calibration": "Calibration drive",
+    "operating_state_reference": "Reference drive"
+  },
+  "ui": {
+    "set_temperature": "Temperature",
+    "operating_mode": "Mode",
+    "setpoint": "Setpoint",
+    "valve": "Valve",
+    "unavailable": "Unavailable"
+  },
+  "aria": {
+    "decrease": "Decrease temperature",
+    "increase": "Increase temperature",
+    "set_mode": "Set mode"
+  },
+  "state_badge": {
+    "unavailable": "Unavailable"
+  },
+  "version": {
+    "update_available": "New version available",
+    "installed": "Installed",
+    "available": "Available",
+    "version": "Version",
+    "build": "Build",
+    "commit": "Commit",
+    "up_to_date": "Up to date"
+  }
+}

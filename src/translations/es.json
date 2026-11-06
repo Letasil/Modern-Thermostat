@@ -1,0 +1,64 @@
+{
+  "state": {
+    "off": "Apagado",
+    "heat": "Calefacción",
+    "cool": "Refrigeración",
+    "auto": "Automático",
+    "heat_cool": "Calor / Frío",
+    "fan_only": "Ventilador",
+    "dry": "Deshumidificación"
+  },
+  "action": {
+    "off": "Apagado",
+    "idle": "En espera",
+    "heating": "Calentando",
+    "cooling": "Enfriando",
+    "drying": "Deshumidificando",
+    "fan": "Ventilador activo"
+  },
+  "sensor": {
+    "window_open": "Ventana abierta",
+    "window_closed": "Ventana cerrada",
+    "now": "Actual",
+    "cool_setpoint": "Frío",
+    "heat_setpoint": "Calor"
+  },
+  "alert": {
+    "battery_low": "Batería baja",
+    "calibration": "Calibración en curso",
+    "valve_error": "Error de válvula",
+    "valve_blocked": "Válvula bloqueada",
+    "motor_error": "Error de motor",
+    "sensor_error": "Error de sensor",
+    "communication_error": "Dispositivo no disponible",
+    "firmware_update": "Actualización de firmware",
+    "sabotage": "Alerta de sabotaje",
+    "fault": "Fallo",
+    "operating_state_calibration": "Carrera de calibración",
+    "operating_state_reference": "Carrera de referencia"
+  },
+  "ui": {
+    "set_temperature": "Temperatura",
+    "operating_mode": "Modo",
+    "setpoint": "Valor objetivo",
+    "valve": "Válvula",
+    "unavailable": "No disponible"
+  },
+  "aria": {
+    "decrease": "Bajar temperatura",
+    "increase": "Subir temperatura",
+    "set_mode": "Establecer modo"
+  },
+  "state_badge": {
+    "unavailable": "No disponible"
+  },
+  "version": {
+    "update_available": "Nueva versión disponible",
+    "installed": "Instalado",
+    "available": "Disponible",
+    "version": "Versión",
+    "build": "Build",
+    "commit": "Commit",
+    "up_to_date": "Actualizado"
+  }
+}
