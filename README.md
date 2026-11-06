@@ -1,3 +1,4 @@
+
 # Modern Thermostat Card
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
@@ -9,7 +10,7 @@ An alternative version of the thermostat map for the Home Assistant Lovelace int
 
 Temperature Trend
 
-<img width="370" height="368" alt="modern-thermostat-v1 7 2 Temperaturverlauf" src="https://github.com/user-attachments/assets/4dcf262b-4e1d-4589-ae59-f99eb5a5bdeb" />
+<img width="499" height="397" alt="NormalModeTrend" src="https://github.com/user-attachments/assets/989f99d0-5d8b-49bb-98c2-c1b80268e510" />
 
 Normal Mode
 
