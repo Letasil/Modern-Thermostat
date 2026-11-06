@@ -6,6 +6,12 @@ Format: `major.minor.patch` — [Semantic Versioning](https://semver.org/)
 
 ---
 
+## v2.0.5 - 2026-11-06
+
+### Changed
+- Added a hover function to the trend display
+- Display error fixed
+
 ## v1.7.2 – 2026-10-23
 
 ### Changed
