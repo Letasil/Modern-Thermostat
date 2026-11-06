@@ -14,11 +14,11 @@ Temperature Trend
 
 Normal Mode
 
-<img width="372" height="235" alt="modern-thermostat-v1 7 2 normal mode" src="https://github.com/user-attachments/assets/60b53135-fb44-435c-be6e-2f994938c6eb" />
+<img width="497" height="180" alt="NormalMode" src="https://github.com/user-attachments/assets/fd09627a-c005-4975-9bd5-89e6e6dad1cf" />
 
  Compact mode
- 
-<img width="234" height="194" alt="modern-thermostat-v1 7 2 Compact Mode" src="https://github.com/user-attachments/assets/f8254cd6-dba1-4ba6-9368-d60a2acf1019" />
+
+ <img width="497" height="163" alt="CompactMode" src="https://github.com/user-attachments/assets/5b744331-24a1-4bcc-a1f0-9e412f487460" />
 
 ## ✨ Features
 
