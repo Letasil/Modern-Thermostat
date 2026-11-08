@@ -8,6 +8,11 @@ Format: `major.minor.patch` — [Semantic Versioning](https://semver.org/)
 ## v2.0.7 - 2026-11-06
 
 ### Changed
+- Added menu labels
+
+## v2.0.7 - 2026-11-06
+
+### Changed
 - Moisture indicator enlarged
 - Moisture threshold added
 - Color changes to yellow when the threshold is exceeded
