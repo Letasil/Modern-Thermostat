@@ -77,32 +77,33 @@ entity: climate.wohnzimmer
 
 ```yaml
 type: custom:modern-thermostat
-entity: climate.hmip_bwth_000ca0c9af1981
-name: Badezimmer
-step: 0.5
-show_hvac_modes: true
-show_window_status: true
-show_valve_position: false
-show_battery_warning: false
-battery_warning_level: 25
-window_entity: binary_sensor.hm_sec_sco_neq1798400
-humidity_entity: sensor.hmip_bwth_000ca0c9af1981_luftfeuchtigkeit
-compact: false
-show_graph: true
-graph_entity: sensor.hmip_bwth_000ca0c9af1981_temperatur
-hours_to_show: 24
-graph_line_width: 2
-show_header: true
-valve_position_entity: sensor.schimmelindikator_bad
-battery_entity: sensor.bewmel_schlzife_betriebsspannungspegel
-show_target_humidity: true
-show_preset: true
-show_fan_mode: true
-show_swing_mode: true
-show_heating_demand: false
-show_humidity: true
-manual_on_temperature_change: true
-show_control_mode: true
+ entity: climate.hmip_bwth_000ca0c9af1981
+ name: Badezimmer
+ step: 0.5
+ show_hvac_modes: true
+ show_window_status: true
+ show_valve_position: false
+ show_battery_warning: false
+ battery_warning_level: 25
+ window_entity: binary_sensor.hm_sec_sco_neq1798400
+ humidity_entity: sensor.hmip_bwth_000ca0c9af1981_luftfeuchtigkeit
+ compact: false
+ show_graph: true
+ graph_entity: sensor.hmip_bwth_000ca0c9af1981_temperatur
+ hours_to_show: 24
+ graph_line_width: 2
+ show_header: true
+ valve_position_entity: sensor.schimmelindikator_bad
+ battery_entity: sensor.bewmel_schlzife_betriebsspannungspegel
+ show_target_humidity: true
+ show_preset: true
+ show_fan_mode: true
+ show_swing_mode: true
+ show_heating_demand: false
+ show_humidity: true
+ humidity_warning_level: 70
+ manual_on_temperature_change: true
+ show_control_mode: true
 
 ```
 
