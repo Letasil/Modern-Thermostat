@@ -5,6 +5,17 @@ All notable changes to **Modern Thermostat Card** are documented here.
 Format: `major.minor.patch` — [Semantic Versioning](https://semver.org/)
 
 ---
+## v2.0.7 - 2026-11-06
+
+### Changed
+- Moisture indicator enlarged
+- Moisture threshold added
+- Color changes to yellow when the threshold is exceeded
+
+## v2.0.6 - 2026-11-06
+
+### Changed
+- A long press on the room name opens the details window
 
 ## v2.0.5 - 2026-11-06
 
