@@ -5,7 +5,7 @@ All notable changes to **Modern Thermostat Card** are documented here.
 Format: `major.minor.patch` — [Semantic Versioning](https://semver.org/)
 
 ---
-## v2.0.7 - 2026-11-06
+## v2.0.8 - 2026-11-06
 
 ### Changed
 - Added menu labels
