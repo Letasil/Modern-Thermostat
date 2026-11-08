@@ -163,9 +163,9 @@ function t(t,e,i,a){var r,o=arguments.length,s=o<3?e:null===a?a=Object.getOwnPro
     margin-top: -15px;
 
     color: var(--primary-text-color);
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 1.2;
+    font-size: 14px;
+    font-weight: 650;
+    line-height: 1.25;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
 }
@@ -175,9 +175,20 @@ function t(t,e,i,a){var r,o=arguments.length,s=o<3?e:null===a?a=Object.getOwnPro
 }
 
 .mt-humidity-row ha-icon {
-    --mdc-icon-size: 12px;
+    --mdc-icon-size: 15px;
     color: var(--secondary-text-color);
     opacity: 0.75;
+}
+.mt-humidity-row.humidity-warning,
+.mt-humidity-row.humidity-warning ha-icon,
+.mt-compact-humidity.humidity-warning,
+.mt-compact-humidity.humidity-warning ha-icon {
+    color: var(--warning-color, #fbc02d) !important;
+    opacity: 1 !important;
+}
+.mt-humidity-row.humidity-warning,
+.mt-compact-humidity.humidity-warning {
+    text-shadow: 0 0 10px rgba(251,192,45,0.22);
 }
 
   /* ── Setpoint row (collapsed state) ──────────────────── */
@@ -771,7 +782,7 @@ function t(t,e,i,a){var r,o=arguments.length,s=o<3?e:null===a?a=Object.getOwnPro
   /* ── Compact: Header/Status/Humidity nie verkleinern ─────────────── */
   :host([compact]) .mt-name, .compact .mt-name { font-size: 14px !important; }
   :host([compact]) .mt-status, .compact .mt-status { font-size: 11px !important; }
-  :host([compact]) .mt-humidity-row, .compact .mt-humidity-row { font-size: 11px !important; }
+  :host([compact]) .mt-humidity-row, .compact .mt-humidity-row { font-size: 13px !important; }
 
   /* ── Panel-Slot max-height erhöhen für Min/Max ───────────────────── */
   .mt-panel-slot.open { max-height: 200px; }
@@ -854,8 +865,8 @@ function t(t,e,i,a){var r,o=arguments.length,s=o<3?e:null===a?a=Object.getOwnPro
     row-gap: 3px;
     width: 100%;
     padding-bottom: 4px;
-    font-size: 11px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 600;
     color: var(--secondary-text-color);
   }
   .mt-unified-card.compact .mt-compact-sensor {
@@ -864,7 +875,7 @@ function t(t,e,i,a){var r,o=arguments.length,s=o<3?e:null===a?a=Object.getOwnPro
   .mt-unified-card.compact .mt-compact-sensor ha-icon {
     grid-column: 1;
     justify-self: center;
-    --mdc-icon-size: 13px;
+    --mdc-icon-size: 15px;
     opacity: 0.75;
   }
   .mt-unified-card.compact .mt-compact-sensor span {
@@ -1234,7 +1245,7 @@ function t(t,e,i,a){var r,o=arguments.length,s=o<3?e:null===a?a=Object.getOwnPro
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     .mt-control-mode-option { background: rgba(50,55,65,0.92); }
   }
-`;var vt={state:{off:"Aus",heat:"Heizen",cool:"Kühlen",auto:"Automatik",heat_cool:"Heizen/Kühlen",fan_only:"Lüften",dry:"Entfeuchten"},action:{off:"Aus",idle:"Bereitschaft",heating:"Heizen",cooling:"Kühlen",drying:"Entfeuchten",fan:"Lüften"},sensor:{window_open:"Fenster offen",window_closed:"Fenster geschlossen",now:"Aktuell",cool_setpoint:"Kühlen",heat_setpoint:"Heizen"},alert:{battery_low:"Batterie schwach",calibration:"Kalibrierung läuft",valve_error:"Ventilfehler",valve_blocked:"Ventil blockiert",motor_error:"Motorfehler",sensor_error:"Sensorfehler",communication_error:"Gerät nicht erreichbar",firmware_update:"Firmware Update",sabotage:"Sabotagemeldung",fault:"Störung",operating_state_calibration:"Kalibrierfahrt",operating_state_reference:"Referenzfahrt"},ui:{set_temperature:"Temperatur",operating_mode:"Modus",setpoint:"Sollwert",valve:"Ventil",unavailable:"Nicht verfügbar",trend:"Trend",minimum:"Min",maximum:"Max",automatic:"Automatik",manual_mode:"Manuell"},aria:{decrease:"Temperatur senken",increase:"Temperatur erhöhen",set_mode:"Modus setzen",toggle_trend:"Trend ein-/ausblenden"},state_badge:{unavailable:"Nicht verfügbar"},version:{update_available:"Neue Version verfügbar",installed:"Installiert",available:"Verfügbar",version:"Version",build:"Build",commit:"Commit",up_to_date:"Aktuell"}},bt={state:{off:"Off",heat:"Heat",cool:"Cool",auto:"Auto",heat_cool:"Heat / Cool",fan_only:"Fan",dry:"Dry"},action:{off:"Off",idle:"Idle",heating:"Heating",cooling:"Cooling",drying:"Drying",fan:"Fan running"},sensor:{window_open:"Window open",window_closed:"Window closed",now:"Current",cool_setpoint:"Cool",heat_setpoint:"Heat"},alert:{battery_low:"Low battery",calibration:"Calibration running",valve_error:"Valve error",valve_blocked:"Valve blocked",motor_error:"Motor error",sensor_error:"Sensor error",communication_error:"Device unavailable",firmware_update:"Firmware update",sabotage:"Sabotage alert",fault:"Fault",operating_state_calibration:"Calibration drive",operating_state_reference:"Reference drive"},ui:{set_temperature:"Temperature",operating_mode:"Mode",setpoint:"Setpoint",valve:"Valve",unavailable:"Unavailable",trend:"Trend",minimum:"Min",maximum:"Max",automatic:"Auto",manual_mode:"Manual"},aria:{decrease:"Decrease temperature",increase:"Increase temperature",set_mode:"Set mode",toggle_trend:"Toggle trend"},state_badge:{unavailable:"Unavailable"},version:{update_available:"New version available",installed:"Installed",available:"Available",version:"Version",build:"Build",commit:"Commit",up_to_date:"Up to date"}},yt={state:{off:"Éteint",heat:"Chauffage",cool:"Climatisation",auto:"Automatique",heat_cool:"Chaud / Froid",fan_only:"Ventilateur",dry:"Déshumidification"},action:{off:"Éteint",idle:"Veille",heating:"Chauffe",cooling:"Refroidit",drying:"Déshumidifie",fan:"Ventilateur actif"},sensor:{window_open:"Fenêtre ouverte",window_closed:"Fenêtre fermée",now:"Actuel",cool_setpoint:"Froid",heat_setpoint:"Chaud"},alert:{battery_low:"Batterie faible",calibration:"Calibration en cours",valve_error:"Erreur vanne",valve_blocked:"Vanne bloquée",motor_error:"Erreur moteur",sensor_error:"Erreur capteur",communication_error:"Appareil indisponible",firmware_update:"Mise à jour firmware",sabotage:"Alerte sabotage",fault:"Défaut",operating_state_calibration:"Course de calibration",operating_state_reference:"Course de référence"},ui:{set_temperature:"Température",operating_mode:"Mode",setpoint:"Consigne",valve:"Vanne",unavailable:"Indisponible",trend:"Tendance",minimum:"Min",maximum:"Max",automatic:"Auto",manual_mode:"Manuel"},aria:{decrease:"Diminuer la température",increase:"Augmenter la température",set_mode:"Définir le mode",toggle_trend:"Afficher/masquer la tendance"},state_badge:{unavailable:"Indisponible"},version:{update_available:"Nouvelle version disponible",installed:"Installé",available:"Disponible",version:"Version",build:"Build",commit:"Commit",up_to_date:"À jour"}},wt={state:{off:"Uit",heat:"Verwarmen",cool:"Koelen",auto:"Automatisch",heat_cool:"Verwarmen/Koelen",fan_only:"Ventileren",dry:"Ontvochtigen"},action:{off:"Uit",idle:"Stand-by",heating:"Verwarmt",cooling:"Koelt",drying:"Ontvochtigt",fan:"Ventilator actief"},sensor:{window_open:"Raam geopend",window_closed:"Raam gesloten",now:"Huidig",cool_setpoint:"Koelen",heat_setpoint:"Verwarmen"},alert:{battery_low:"Batterij bijna leeg",calibration:"Kalibratie actief",valve_error:"Klepfout",valve_blocked:"Klep geblokkeerd",motor_error:"Motorfout",sensor_error:"Sensorfout",communication_error:"Apparaat niet bereikbaar",firmware_update:"Firmware update",sabotage:"Sabotagemelding",fault:"Storing",operating_state_calibration:"Kalibratieritten",operating_state_reference:"Referentieritten"},ui:{set_temperature:"Temperatuur",operating_mode:"Modus",setpoint:"Doelwaarde",valve:"Klep",unavailable:"Niet beschikbaar",trend:"Trend",minimum:"Min",maximum:"Max",automatic:"Auto",manual_mode:"Handmatig"},aria:{decrease:"Temperatuur verlagen",increase:"Temperatuur verhogen",set_mode:"Modus instellen",toggle_trend:"Trend tonen/verbergen"},state_badge:{unavailable:"Niet beschikbaar"},version:{update_available:"Nieuwe versie beschikbaar",installed:"Geïnstalleerd",available:"Beschikbaar",version:"Versie",build:"Build",commit:"Commit",up_to_date:"Actueel"}},$t={state:{off:"Apagado",heat:"Calefacción",cool:"Refrigeración",auto:"Automático",heat_cool:"Calor / Frío",fan_only:"Ventilador",dry:"Deshumidificación"},action:{off:"Apagado",idle:"En espera",heating:"Calentando",cooling:"Enfriando",drying:"Deshumidificando",fan:"Ventilador activo"},sensor:{window_open:"Ventana abierta",window_closed:"Ventana cerrada",now:"Actual",cool_setpoint:"Frío",heat_setpoint:"Calor"},alert:{battery_low:"Batería baja",calibration:"Calibración en curso",valve_error:"Error de válvula",valve_blocked:"Válvula bloqueada",motor_error:"Error de motor",sensor_error:"Error de sensor",communication_error:"Dispositivo no disponible",firmware_update:"Actualización de firmware",sabotage:"Alerta de sabotaje",fault:"Fallo",operating_state_calibration:"Carrera de calibración",operating_state_reference:"Carrera de referencia"},ui:{set_temperature:"Temperatura",operating_mode:"Modo",setpoint:"Valor objetivo",valve:"Válvula",unavailable:"No disponible",trend:"Tendencia",minimum:"Mín",maximum:"Máx",automatic:"Auto",manual_mode:"Manual"},aria:{decrease:"Bajar temperatura",increase:"Subir temperatura",set_mode:"Establecer modo",toggle_trend:"Mostrar/ocultar tendencia"},state_badge:{unavailable:"No disponible"},version:{update_available:"Nueva versión disponible",installed:"Instalado",available:"Disponible",version:"Versión",build:"Build",commit:"Commit",up_to_date:"Actualizado"}};const xt={de:vt,"de-de":vt,"de-at":vt,"de-ch":vt,en:bt,"en-us":bt,"en-gb":bt,"en-au":bt,fr:yt,"fr-fr":yt,"fr-be":yt,"fr-ch":yt,nl:wt,"nl-nl":wt,"nl-be":wt,es:$t,"es-es":$t,"es-mx":$t};class At{constructor(t){this._lang="en",this._hass=t,this._dict=this._resolveDict(t?.language),this._lang=(t?.language??"en").toLowerCase().split("-")[0]}update(t){this._hass=t,this._dict=this._resolveDict(t?.language),this._lang=(t?.language??"en").toLowerCase().split("-")[0]}get lang(){return this._lang}mode(t){const e=`component.climate.entity_component._.state.${t}`,i=this._hass?.localize(e);if(i&&i!==e)return i;const a=t;return this._dict.state[a]??t}action(t){const e=`component.climate.entity_component._.state_attributes.hvac_action.state.${t}`,i=this._hass?.localize(e);if(i&&i!==e)return i;const a=t;return this._dict.action[a]??t}alert(t){return this._dict.alert[t]??t}sensor(t){return this._dict.sensor[t]??t}ui(t){return this._dict.ui[t]??t}aria(t){return this._dict.aria[t]??t}_resolveDict(t){if(!t)return bt;const e=t.toLowerCase();if(xt[e])return xt[e];const i=e.split("-")[0];return xt[i]?xt[i]:bt}}const kt=["critical","error","warning","info","normal"];function St(t){return kt.indexOf(t)}const Ct=new Set(["calibration","calibrating","kalibrierung","kalibrierfahrt","calibration_drive","reference_drive","referenzfahrt","valve_calibration","motor_calibration"]),Et=new Set(["valve_error","valve_blocked","valve_position_error","position_mismatch","motor_error","motor_blocked","ventilfehler","ventil_blockiert"]),Tt=new Set(["fault","error","failure","stoerung","fehler","sabotage","tamper","alarm"]),Mt=new Set(["unavailable","unknown","timeout","offline","not_reachable","communication_error"]),Pt=new Set(["update","updating","firmware_update","ota"]);const zt={off:"mdi:power",heat:"mdi:fire",cool:"mdi:snowflake",auto:"mdi:thermostat-auto",heat_cool:"mdi:autorenew",fan_only:"mdi:fan",dry:"mdi:water-off"};function Ot(t,e=1){return null==t?"—":t.toFixed(e)}function Nt(t,e,i){return Math.min(Math.max(t,e),i)}function Ht(t,e){return Math.round(t/e)*e}function jt(t){return t.startsWith("mdi:")?t:`mdi:${t}`}function Ut(t){const e=parseFloat(t);return isNaN(e)?null:e}const Dt="2.0.5";console.info(`%c MODERN-THERMOSTAT %c v${Dt} `,"background:#ff6b35;color:#fff;font-weight:700;border-radius:4px 0 0 4px;padding:2px 6px;","background:#1c2128;color:#ff6b35;font-weight:600;border-radius:0 4px 4px 0;padding:2px 6px;"),window.customCards=window.customCards??[],window.customCards.push({type:"modern-thermostat",name:"Modern Thermostat",description:"Modern TRV thermostat card with alert system and optional temperature graph.",preview:!0});let Lt=class extends nt{constructor(){var t;super(...arguments),this._localizer=new At(t),this._activePanel="none",this._graphVisible=!1}setConfig(t){try{!function(t){if(!t.entity)throw new Error("[modern-thermostat] Missing required field: entity");if(!t.entity.startsWith("climate."))throw new Error(`[modern-thermostat] Entity must be a climate entity, got: ${t.entity}`)}(t)}catch(ft){return void(this._error=ft.message)}this._config={show_hvac_modes:!0,show_header:!0,show_window_status:!0,show_valve_position:!0,show_current_temperature:!0,show_battery_warning:!0,show_graph:!1,compact:!1,step:.5,decimals:1,hours_to_show:24,graph_line_width:2,battery_warning_level:25,show_version:!1,show_debug_info:!1,show_humidity:!1,show_battery:!1,show_graph_button:!1,show_target_humidity:!1,show_preset:!1,show_fan_mode:!1,show_swing_mode:!1,show_temperature_limits:!0,show_heating_demand:!1,show_control_mode:!1,control_mode_source:"auto",manual_on_temperature_change:!1,...t},this._activePanel="none",this._graphVisible=!1,this._error=void 0}getCardSize(){if(!this._config)return 3;let t=this._config.compact?2:3;return this._config.show_graph&&(t+=2),t}static async getConfigElement(){return await Promise.resolve().then(function(){return Vt}),document.createElement("modern-thermostat-editor")}static getStubConfig(hass, entities, entitiesFallback) {
+`;var vt={state:{off:"Aus",heat:"Heizen",cool:"Kühlen",auto:"Automatik",heat_cool:"Heizen/Kühlen",fan_only:"Lüften",dry:"Entfeuchten"},action:{off:"Aus",idle:"Bereitschaft",heating:"Heizen",cooling:"Kühlen",drying:"Entfeuchten",fan:"Lüften"},sensor:{window_open:"Fenster offen",window_closed:"Fenster geschlossen",now:"Aktuell",cool_setpoint:"Kühlen",heat_setpoint:"Heizen"},alert:{battery_low:"Batterie schwach",calibration:"Kalibrierung läuft",valve_error:"Ventilfehler",valve_blocked:"Ventil blockiert",motor_error:"Motorfehler",sensor_error:"Sensorfehler",communication_error:"Gerät nicht erreichbar",firmware_update:"Firmware Update",sabotage:"Sabotagemeldung",fault:"Störung",operating_state_calibration:"Kalibrierfahrt",operating_state_reference:"Referenzfahrt"},ui:{set_temperature:"Temperatur",operating_mode:"Modus",setpoint:"Sollwert",valve:"Ventil",unavailable:"Nicht verfügbar",trend:"Trend",minimum:"Min",maximum:"Max",automatic:"Automatik",manual_mode:"Manuell"},aria:{decrease:"Temperatur senken",increase:"Temperatur erhöhen",set_mode:"Modus setzen",toggle_trend:"Trend ein-/ausblenden"},state_badge:{unavailable:"Nicht verfügbar"},version:{update_available:"Neue Version verfügbar",installed:"Installiert",available:"Verfügbar",version:"Version",build:"Build",commit:"Commit",up_to_date:"Aktuell"}},bt={state:{off:"Off",heat:"Heat",cool:"Cool",auto:"Auto",heat_cool:"Heat / Cool",fan_only:"Fan",dry:"Dry"},action:{off:"Off",idle:"Idle",heating:"Heating",cooling:"Cooling",drying:"Drying",fan:"Fan running"},sensor:{window_open:"Window open",window_closed:"Window closed",now:"Current",cool_setpoint:"Cool",heat_setpoint:"Heat"},alert:{battery_low:"Low battery",calibration:"Calibration running",valve_error:"Valve error",valve_blocked:"Valve blocked",motor_error:"Motor error",sensor_error:"Sensor error",communication_error:"Device unavailable",firmware_update:"Firmware update",sabotage:"Sabotage alert",fault:"Fault",operating_state_calibration:"Calibration drive",operating_state_reference:"Reference drive"},ui:{set_temperature:"Temperature",operating_mode:"Mode",setpoint:"Setpoint",valve:"Valve",unavailable:"Unavailable",trend:"Trend",minimum:"Min",maximum:"Max",automatic:"Auto",manual_mode:"Manual"},aria:{decrease:"Decrease temperature",increase:"Increase temperature",set_mode:"Set mode",toggle_trend:"Toggle trend"},state_badge:{unavailable:"Unavailable"},version:{update_available:"New version available",installed:"Installed",available:"Available",version:"Version",build:"Build",commit:"Commit",up_to_date:"Up to date"}},yt={state:{off:"Éteint",heat:"Chauffage",cool:"Climatisation",auto:"Automatique",heat_cool:"Chaud / Froid",fan_only:"Ventilateur",dry:"Déshumidification"},action:{off:"Éteint",idle:"Veille",heating:"Chauffe",cooling:"Refroidit",drying:"Déshumidifie",fan:"Ventilateur actif"},sensor:{window_open:"Fenêtre ouverte",window_closed:"Fenêtre fermée",now:"Actuel",cool_setpoint:"Froid",heat_setpoint:"Chaud"},alert:{battery_low:"Batterie faible",calibration:"Calibration en cours",valve_error:"Erreur vanne",valve_blocked:"Vanne bloquée",motor_error:"Erreur moteur",sensor_error:"Erreur capteur",communication_error:"Appareil indisponible",firmware_update:"Mise à jour firmware",sabotage:"Alerte sabotage",fault:"Défaut",operating_state_calibration:"Course de calibration",operating_state_reference:"Course de référence"},ui:{set_temperature:"Température",operating_mode:"Mode",setpoint:"Consigne",valve:"Vanne",unavailable:"Indisponible",trend:"Tendance",minimum:"Min",maximum:"Max",automatic:"Auto",manual_mode:"Manuel"},aria:{decrease:"Diminuer la température",increase:"Augmenter la température",set_mode:"Définir le mode",toggle_trend:"Afficher/masquer la tendance"},state_badge:{unavailable:"Indisponible"},version:{update_available:"Nouvelle version disponible",installed:"Installé",available:"Disponible",version:"Version",build:"Build",commit:"Commit",up_to_date:"À jour"}},wt={state:{off:"Uit",heat:"Verwarmen",cool:"Koelen",auto:"Automatisch",heat_cool:"Verwarmen/Koelen",fan_only:"Ventileren",dry:"Ontvochtigen"},action:{off:"Uit",idle:"Stand-by",heating:"Verwarmt",cooling:"Koelt",drying:"Ontvochtigt",fan:"Ventilator actief"},sensor:{window_open:"Raam geopend",window_closed:"Raam gesloten",now:"Huidig",cool_setpoint:"Koelen",heat_setpoint:"Verwarmen"},alert:{battery_low:"Batterij bijna leeg",calibration:"Kalibratie actief",valve_error:"Klepfout",valve_blocked:"Klep geblokkeerd",motor_error:"Motorfout",sensor_error:"Sensorfout",communication_error:"Apparaat niet bereikbaar",firmware_update:"Firmware update",sabotage:"Sabotagemelding",fault:"Storing",operating_state_calibration:"Kalibratieritten",operating_state_reference:"Referentieritten"},ui:{set_temperature:"Temperatuur",operating_mode:"Modus",setpoint:"Doelwaarde",valve:"Klep",unavailable:"Niet beschikbaar",trend:"Trend",minimum:"Min",maximum:"Max",automatic:"Auto",manual_mode:"Handmatig"},aria:{decrease:"Temperatuur verlagen",increase:"Temperatuur verhogen",set_mode:"Modus instellen",toggle_trend:"Trend tonen/verbergen"},state_badge:{unavailable:"Niet beschikbaar"},version:{update_available:"Nieuwe versie beschikbaar",installed:"Geïnstalleerd",available:"Beschikbaar",version:"Versie",build:"Build",commit:"Commit",up_to_date:"Actueel"}},$t={state:{off:"Apagado",heat:"Calefacción",cool:"Refrigeración",auto:"Automático",heat_cool:"Calor / Frío",fan_only:"Ventilador",dry:"Deshumidificación"},action:{off:"Apagado",idle:"En espera",heating:"Calentando",cooling:"Enfriando",drying:"Deshumidificando",fan:"Ventilador activo"},sensor:{window_open:"Ventana abierta",window_closed:"Ventana cerrada",now:"Actual",cool_setpoint:"Frío",heat_setpoint:"Calor"},alert:{battery_low:"Batería baja",calibration:"Calibración en curso",valve_error:"Error de válvula",valve_blocked:"Válvula bloqueada",motor_error:"Error de motor",sensor_error:"Error de sensor",communication_error:"Dispositivo no disponible",firmware_update:"Actualización de firmware",sabotage:"Alerta de sabotaje",fault:"Fallo",operating_state_calibration:"Carrera de calibración",operating_state_reference:"Carrera de referencia"},ui:{set_temperature:"Temperatura",operating_mode:"Modo",setpoint:"Valor objetivo",valve:"Válvula",unavailable:"No disponible",trend:"Tendencia",minimum:"Mín",maximum:"Máx",automatic:"Auto",manual_mode:"Manual"},aria:{decrease:"Bajar temperatura",increase:"Subir temperatura",set_mode:"Establecer modo",toggle_trend:"Mostrar/ocultar tendencia"},state_badge:{unavailable:"No disponible"},version:{update_available:"Nueva versión disponible",installed:"Instalado",available:"Disponible",version:"Versión",build:"Build",commit:"Commit",up_to_date:"Actualizado"}};const xt={de:vt,"de-de":vt,"de-at":vt,"de-ch":vt,en:bt,"en-us":bt,"en-gb":bt,"en-au":bt,fr:yt,"fr-fr":yt,"fr-be":yt,"fr-ch":yt,nl:wt,"nl-nl":wt,"nl-be":wt,es:$t,"es-es":$t,"es-mx":$t};class At{constructor(t){this._lang="en",this._hass=t,this._dict=this._resolveDict(t?.language),this._lang=(t?.language??"en").toLowerCase().split("-")[0]}update(t){this._hass=t,this._dict=this._resolveDict(t?.language),this._lang=(t?.language??"en").toLowerCase().split("-")[0]}get lang(){return this._lang}mode(t){const e=`component.climate.entity_component._.state.${t}`,i=this._hass?.localize(e);if(i&&i!==e)return i;const a=t;return this._dict.state[a]??t}action(t){const e=`component.climate.entity_component._.state_attributes.hvac_action.state.${t}`,i=this._hass?.localize(e);if(i&&i!==e)return i;const a=t;return this._dict.action[a]??t}alert(t){return this._dict.alert[t]??t}sensor(t){return this._dict.sensor[t]??t}ui(t){return this._dict.ui[t]??t}aria(t){return this._dict.aria[t]??t}_resolveDict(t){if(!t)return bt;const e=t.toLowerCase();if(xt[e])return xt[e];const i=e.split("-")[0];return xt[i]?xt[i]:bt}}const kt=["critical","error","warning","info","normal"];function St(t){return kt.indexOf(t)}const Ct=new Set(["calibration","calibrating","kalibrierung","kalibrierfahrt","calibration_drive","reference_drive","referenzfahrt","valve_calibration","motor_calibration"]),Et=new Set(["valve_error","valve_blocked","valve_position_error","position_mismatch","motor_error","motor_blocked","ventilfehler","ventil_blockiert"]),Tt=new Set(["fault","error","failure","stoerung","fehler","sabotage","tamper","alarm"]),Mt=new Set(["unavailable","unknown","timeout","offline","not_reachable","communication_error"]),Pt=new Set(["update","updating","firmware_update","ota"]);const zt={off:"mdi:power",heat:"mdi:fire",cool:"mdi:snowflake",auto:"mdi:thermostat-auto",heat_cool:"mdi:autorenew",fan_only:"mdi:fan",dry:"mdi:water-off"};function Ot(t,e=1){return null==t?"—":t.toFixed(e)}function Nt(t,e,i){return Math.min(Math.max(t,e),i)}function Ht(t,e){return Math.round(t/e)*e}function jt(t){return t.startsWith("mdi:")?t:`mdi:${t}`}function Ut(t){const e=parseFloat(t);return isNaN(e)?null:e}const Dt="2.0.8";console.info(`%c MODERN-THERMOSTAT %c v${Dt} `,"background:#ff6b35;color:#fff;font-weight:700;border-radius:4px 0 0 4px;padding:2px 6px;","background:#1c2128;color:#ff6b35;font-weight:600;border-radius:0 4px 4px 0;padding:2px 6px;"),window.customCards=window.customCards??[],window.customCards.push({type:"modern-thermostat",name:"Modern Thermostat",description:"Modern TRV thermostat card with alert system and optional temperature graph.",preview:!0});let Lt=class extends nt{constructor(){var t;super(...arguments),this._localizer=new At(t),this._activePanel="none",this._graphVisible=!1}setConfig(t){try{!function(t){if(!t.entity)throw new Error("[modern-thermostat] Missing required field: entity");if(!t.entity.startsWith("climate."))throw new Error(`[modern-thermostat] Entity must be a climate entity, got: ${t.entity}`)}(t)}catch(ft){return void(this._error=ft.message)}this._config={show_hvac_modes:!0,show_header:!0,show_window_status:!0,show_valve_position:!0,show_current_temperature:!0,show_battery_warning:!0,show_graph:!1,compact:!1,step:.5,decimals:1,hours_to_show:24,graph_line_width:2,battery_warning_level:25,humidity_warning_level:60,show_version:!1,show_debug_info:!1,show_humidity:!1,show_battery:!1,show_graph_button:!1,show_target_humidity:!1,show_preset:!1,show_fan_mode:!1,show_swing_mode:!1,show_temperature_limits:!0,show_heating_demand:!1,show_control_mode:!1,control_mode_source:"auto",manual_on_temperature_change:!1,...t},this._activePanel="none",this._graphVisible=!1,this._error=void 0}getCardSize(){if(!this._config)return 3;let t=this._config.compact?2:3;return this._config.show_graph&&(t+=2),t}static async getConfigElement(){return await Promise.resolve().then(function(){return Vt}),document.createElement("modern-thermostat-editor")}static getStubConfig(hass, entities, entitiesFallback) {
   const allEntities = [
     ...(entities ?? []),
     ...(entitiesFallback ?? [])
@@ -1260,6 +1271,7 @@ function t(t,e,i,a){var r,o=arguments.length,s=o<3?e:null===a?a=Object.getOwnPro
     show_hvac_modes: true,
     show_window_status: true,
     show_humidity: true,
+    humidity_warning_level: 60,
     show_valve_position: true,
     show_battery_warning: true,
     show_graph: false,
@@ -1582,6 +1594,43 @@ _renderControlMode(caps,localizer,windowOpen){
 _isWindowOpen(){
   return!!(this._config?.window_entity&&"on"===this.hass?.states[this._config.window_entity]?.state)
 }
+_openMoreInfo(){
+  const entityId=this._config?.entity;
+  if(!entityId)return;
+  const event=new Event("hass-more-info",{bubbles:true,composed:true});
+  event.detail={entityId,view:"info"};
+  this.dispatchEvent(event);
+}
+_startHeaderHold(event){
+  if(event.button!==undefined&&event.button!==0)return;
+  this._cancelHeaderHold();
+  this._headerHoldStart={x:event.clientX,y:event.clientY};
+  this._headerHoldTriggered=false;
+  this._headerHoldTimer=setTimeout(()=>{
+    this._headerHoldTimer=undefined;
+    this._headerHoldTriggered=true;
+    this._openMoreInfo();
+  },500);
+}
+_moveHeaderHold(event){
+  if(!this._headerHoldTimer||!this._headerHoldStart)return;
+  const dx=event.clientX-this._headerHoldStart.x;
+  const dy=event.clientY-this._headerHoldStart.y;
+  if(Math.hypot(dx,dy)>10)this._cancelHeaderHold();
+}
+_cancelHeaderHold(){
+  if(this._headerHoldTimer!==undefined){
+    clearTimeout(this._headerHoldTimer);
+    this._headerHoldTimer=undefined;
+  }
+  this._headerHoldStart=undefined;
+}
+_headerKeydown(event){
+  if(event.key==="Enter"||event.key===" "){
+    event.preventDefault();
+    this._openMoreInfo();
+  }
+}
 _togglePanel(t){
   if(this._isWindowOpen()){this._activePanel="none";return;}
   this._activePanel=this._activePanel===t?"none":t
@@ -1674,6 +1723,8 @@ _togglePanel(t){
 
   const _showHumidity=!1!==this._config.show_humidity;
   let h=(_showHumidity&&dv.humidity.available)?dv.humidity.value:null;
+  const humidityWarningLevel=Math.min(100,Math.max(0,Number(this._config.humidity_warning_level??60)));
+  const humidityWarning=null!==h&&Number.isFinite(h)&&h>humidityWarningLevel;
 
   const _showValve=!1!==this._config.show_valve_position;
   let c=(_showValve&&dv.valve.available)?dv.valve.value:null;
@@ -1732,7 +1783,7 @@ _togglePanel(t){
             <div class="mt-compact-column">
               <div class="mt-compact-sensors">
                 ${null!==h?I`
-                  <div class="mt-compact-sensor mt-compact-humidity">
+                  <div class=${ft({"mt-compact-sensor":!0,"mt-compact-humidity":!0,"humidity-warning":humidityWarning})}>
                     <ha-icon icon="mdi:water-percent"></ha-icon>
                     <span>${Ot(h,0)} %rF</span>
                   </div>
@@ -1765,7 +1816,7 @@ _togglePanel(t){
         `:I`
           <!-- NORMALMODUS: bisherige Anordnung -->
           ${null!==h?I`
-            <div class=${ft({"mt-humidity-row":!0,"without-header":!1===this._config.show_header})}>
+            <div class=${ft({"mt-humidity-row":!0,"without-header":!1===this._config.show_header,"humidity-warning":humidityWarning})}>
               <ha-icon icon="mdi:water-percent"></ha-icon>
               <span>${Ot(h,0)} %rF</span>
             </div>
@@ -1855,7 +1906,17 @@ _renderHeader(t,e,i){
       : e;
 
   return I`
-    <div class="mt-header">
+    <div class="mt-header"
+      role="button"
+      tabindex="0"
+      aria-label=${`${t.name}: Details anzeigen`}
+      @pointerdown=${event=>this._startHeaderHold(event)}
+      @pointermove=${event=>this._moveHeaderHold(event)}
+      @pointerup=${()=>this._cancelHeaderHold()}
+      @pointercancel=${()=>this._cancelHeaderHold()}
+      @pointerleave=${()=>this._cancelHeaderHold()}
+      @contextmenu=${event=>event.preventDefault()}
+      @keydown=${event=>this._headerKeydown(event)}>
       <div class="mt-header-icon">
         <ha-icon icon=${jt(a)}></ha-icon>
       </div>
@@ -2313,6 +2374,7 @@ _clearOptimisticTimer(){
 }
 
 disconnectedCallback(){
+  this._cancelHeaderHold();
   super.disconnectedCallback();
   this._clearOptimisticTimer()
 }
@@ -2348,6 +2410,7 @@ let Rt=class extends nt{
 
         <div class="section-title">Entität</div>
         <ha-entity-picker .hass=${this.hass} .value=${t.entity??""} .includeDomains=${["climate"]} allow-custom-entity
+          label="Thermostat-Entität"
           @value-changed=${t=>this._set("entity",t.detail.value)}></ha-entity-picker>
 
         <div class="section-title">Anzeige</div>
@@ -2363,19 +2426,24 @@ let Rt=class extends nt{
             @change=${t=>this._set("decimals",parseInt(t.target.value,10))}></ha-textfield>
         </div>
 
-        <div class="section-title">Optionen</div>
+        <div class="section-title">Darstellungsoptionen</div>
+        <div class="switch-row"><ha-switch .checked=${!1!==t.show_hvac_modes} @change=${e=>this._set("show_hvac_modes",e.target.checked)}></ha-switch><span>HVAC-Modi anzeigen</span></div>
+        <div class="switch-row"><ha-switch .checked=${!1!==t.show_header} @change=${e=>this._set("show_header",e.target.checked)}></ha-switch><span>Kopfbereich anzeigen</span></div>
+        <div class="switch-row"><ha-switch .checked=${!0===t.compact} @change=${e=>this._set("compact",e.target.checked)}></ha-switch><span>Compact Mode verwenden</span></div>
         <div class="divider"></div>
 
         <div class="section-title">Fensterkontakt</div>
         <ha-entity-picker .hass=${this.hass} .value=${t.window_entity??""} .includeDomains=${["binary_sensor"]} allow-custom-entity
+          label="Fensterkontakt"
           @value-changed=${t=>this._set("window_entity",t.detail.value||void 0)}></ha-entity-picker>
-        <ha-formfield label="Fensterstatus anzeigen">
+        <div class="switch-row">
           <ha-switch .checked=${!1!==t.show_window_status} @change=${t=>this._set("show_window_status",t.target.checked)}></ha-switch>
-        </ha-formfield>
+          <span>Fensterstatus anzeigen</span>
+        </div>
 
         <div class="divider"></div>
 
-        <div class="section-title">Sensoren</div>
+        <div class="section-title">Externe Sensoren</div>
         <ha-entity-picker .hass=${this.hass} .value=${t.humidity_entity??""} .includeDomains=${["sensor"]} allow-custom-entity
           label="Luftfeuchtigkeit"
           @value-changed=${t=>this._set("humidity_entity",t.detail.value||void 0)}></ha-entity-picker>
@@ -2383,9 +2451,10 @@ let Rt=class extends nt{
         <ha-entity-picker .hass=${this.hass} .value=${t.valve_position_entity??""} .includeDomains=${["sensor"]} allow-custom-entity
           label="Ventilstellung"
           @value-changed=${t=>this._set("valve_position_entity",t.detail.value||void 0)}></ha-entity-picker>
-        <ha-formfield label="Ventilstellung anzeigen">
+        <div class="switch-row">
           <ha-switch .checked=${!1!==t.show_valve_position} @change=${t=>this._set("show_valve_position",t.target.checked)}></ha-switch>
-        </ha-formfield>
+          <span>Ventilstellung anzeigen</span>
+        </div>
 
         <ha-entity-picker .hass=${this.hass} .value=${t.battery_entity??""} .includeDomains=${["sensor"]} allow-custom-entity
           label="Batterie"
@@ -2393,12 +2462,11 @@ let Rt=class extends nt{
 
         <div class="divider"></div>
 
-        <div class="divider"></div>
-
         <div class="section-title">Automatik / Handbetrieb</div>
-        <ha-formfield label="Automatik-/Hand-Umschaltung anzeigen">
+        <div class="switch-row">
           <ha-switch .checked=${!1!==t.show_control_mode} @change=${t=>this._set("show_control_mode",t.target.checked)}></ha-switch>
-        </ha-formfield>
+          <span>Automatik-/Hand-Umschaltung anzeigen</span>
+        </div>
         ${!1!==t.show_control_mode?I`
           <ha-select label="Quelle" .value=${t.control_mode_source??"auto"}
             @selected=${e=>this._set("control_mode_source",e.target.value)}>
@@ -2435,30 +2503,47 @@ let Rt=class extends nt{
                 @change=${e=>this._set("manual_entity_value",e.target.value)}></ha-textfield>
             </div>
           `:B}
-          <ha-formfield label="Bei Sollwertänderung Handbetrieb aktivieren">
+          <div class="switch-row">
             <ha-switch .checked=${!0===t.manual_on_temperature_change} @change=${t=>this._set("manual_on_temperature_change",t.target.checked)}></ha-switch>
-          </ha-formfield>
+            <span>Bei Sollwertänderung Handbetrieb aktivieren</span>
+          </div>
         `:B}
 
-        <div class="section-title">Climate-Werte anzeigen</div>
-        <ha-formfield label="Feuchtigkeit (Istwert)">
+        <div class="section-title">Zusätzliche Anzeigen</div>
+        <div class="switch-row">
           <ha-switch .checked=${!1!==t.show_humidity} @change=${t=>this._set("show_humidity",t.target.checked)}></ha-switch>
-        </ha-formfield>
-        <ha-formfield label="Ziel-Feuchtigkeit">
+          <span>Feuchtigkeit (Istwert)</span>
+        </div>
+        <ha-textfield
+          label="Feuchte-Warnwert (% rF)"
+          type="number"
+          min="0"
+          max="100"
+          step="1"
+          .value=${String(t.humidity_warning_level??60)}
+          @change=${e=>this._set("humidity_warning_level",Math.min(100,Math.max(0,parseInt(e.target.value,10)||60)))}>
+        </ha-textfield>
+        <div class="field-help">Bei Überschreitung wird die Luftfeuchtigkeit gelb dargestellt. Standard: 60 % rF.</div>
+        <div class="switch-row">
           <ha-switch .checked=${!0===t.show_target_humidity} @change=${t=>this._set("show_target_humidity",t.target.checked)}></ha-switch>
-        </ha-formfield>
-        <ha-formfield label="Preset-Modus">
+          <span>Ziel-Feuchtigkeit</span>
+        </div>
+        <div class="switch-row">
           <ha-switch .checked=${!0===t.show_preset} @change=${t=>this._set("show_preset",t.target.checked)}></ha-switch>
-        </ha-formfield>
-        <ha-formfield label="Lüftermodus">
+          <span>Preset-Modus</span>
+        </div>
+        <div class="switch-row">
           <ha-switch .checked=${!0===t.show_fan_mode} @change=${t=>this._set("show_fan_mode",t.target.checked)}></ha-switch>
-        </ha-formfield>
-        <ha-formfield label="Schwenkmodus">
+          <span>Lüftermodus</span>
+        </div>
+        <div class="switch-row">
           <ha-switch .checked=${!0===t.show_swing_mode} @change=${t=>this._set("show_swing_mode",t.target.checked)}></ha-switch>
-        </ha-formfield>
-        <ha-formfield label="Wärmebedarf / Stellanforderung">
+          <span>Schwenkmodus</span>
+        </div>
+        <div class="switch-row">
           <ha-switch .checked=${!0===t.show_heating_demand} @change=${t=>this._set("show_heating_demand",t.target.checked)}></ha-switch>
-        </ha-formfield>
+          <span>Wärmebedarf / Stellanforderung</span>
+        </div>
 
         <div class="divider"></div>
 
@@ -2535,6 +2620,13 @@ let Rt=class extends nt{
   display: block;
   flex: 1;
   line-height: 1.3;
+}
+.field-help {
+  margin-top: -8px;
+  padding: 0 4px 2px;
+  color: var(--secondary-text-color);
+  font-size: 12px;
+  line-height: 1.35;
 }
     .divider { height: 1px; background: var(--divider-color); }
   `,t([pt({attribute:!1})],Rt.prototype,"hass",void 0),t([mt()],Rt.prototype,"_config",void 0),Rt=t([ct("modern-thermostat-editor")],Rt);var Vt=Object.freeze({__proto__:null,get ModernThermostatEditor(){return Rt}});export{Lt as ModernThermostat};
