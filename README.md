@@ -1,5 +1,5 @@
 
-# Modern Thermostat Card
+# Modern Thermostat Card V2.0.8
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 [![GitHub release](https://img.shields.io/github/release/your-org/modern-thermostat.svg)](https://github.com/your-org/modern-thermostat/releases)
