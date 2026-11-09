@@ -5,6 +5,11 @@ All notable changes to **Modern Thermostat Card** are documented here.
 Format: `major.minor.patch` — [Semantic Versioning](https://semver.org/)
 
 ---
+## v2.0.9 - 2026-11-09
+
+### Changed
+- Ad width changed from fixed to dynamic.
+  
 ## v2.0.8 - 2026-11-06
 
 ### Changed
