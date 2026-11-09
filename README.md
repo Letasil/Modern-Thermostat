@@ -39,7 +39,7 @@ Normal Mode
 
 ## 📦 Installation
 
-### Method 1 – HACS Custom Repository (recommended)
+### Method 1 – HACS Custom Repository (recommended) Not yet available
 
 1. Open **HACS** → **Frontend**
 2. Click **⋮** → **Custom repositories**
