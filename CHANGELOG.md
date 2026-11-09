@@ -5,6 +5,21 @@ All notable changes to **Modern Thermostat Card** are documented here.
 Format: `major.minor.patch` — [Semantic Versioning](https://semver.org/)
 
 ---
+## v2.2.1 - 2026-11-09
+
+### Changed
+- Correcting the file path for the translation files
+
+## v2.2.0 - 2026-11-09
+
+### Changed
+- Extracting the text into separate language files
+
+## v2.1.0 - 2026-11-09
+
+### Changed
+- Error and alarm messages added
+
 ## v2.0.10 - 2026-11-09
 
 ### Changed
