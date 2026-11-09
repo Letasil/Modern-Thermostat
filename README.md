@@ -48,6 +48,9 @@ Normal Mode
 4. Click **Install**
 5. **Reload** browser
 
+<img width="4032" height="607" alt="image" src="https://github.com/user-attachments/assets/bee818b6-96ba-43f9-86fd-02fbd8887491" />
+
+
 ### Method 2 – Manual
 
 1. Download `modern-thermostat.js` from the [latest release](https://github.com/Letasil/modern-thermostat/releases)
