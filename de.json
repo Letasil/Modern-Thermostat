@@ -1,0 +1,40 @@
+{
+  "state": {
+    "off": "Aus",
+    "heat": "Heizen",
+    "cool": "Kühlen",
+    "auto": "Automatik",
+    "heat_cool": "Heizen/Kühlen",
+    "fan_only": "Lüften",
+    "dry": "Entfeuchten"
+  },
+  "action": {
+    "off": "Aus",
+    "idle": "Bereitschaft",
+    "heating": "Heizen",
+    "cooling": "Kühlen",
+    "drying": "Entfeuchten",
+    "fan": "Lüften"
+  },
+  "sensor": {
+    "window_open": "Fenster offen"
+  },
+  "alert": {
+    "calibration": "Kalibrierung läuft",
+    "valve_error": "Ventilfehler",
+    "valve_blocked": "Ventil blockiert",
+    "motor_error": "Motorfehler",
+    "sensor_error": "Sensorfehler",
+    "communication_error": "Gerät nicht erreichbar",
+    "firmware_update": "Firmware-Update",
+    "sabotage": "Sabotagemeldung",
+    "fault": "Störung",
+    "operating_state_reference": "Referenzfahrt"
+  },
+  "ui": {
+    "trend": "Trend",
+    "boost": "Boost",
+    "loading": "Verlauf wird geladen …",
+    "no_history": "Keine Verlaufsdaten verfügbar"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "state": {
+    "off": "Arrêt",
+    "heat": "Chauffage",
+    "cool": "Refroidissement",
+    "auto": "Automatique",
+    "heat_cool": "Chaud/Froid",
+    "fan_only": "Ventilation",
+    "dry": "Séchage"
+  },
+  "action": {
+    "off": "Arrêt",
+    "idle": "En attente",
+    "heating": "Chauffage",
+    "cooling": "Refroidissement",
+    "drying": "Séchage",
+    "fan": "Ventilation"
+  },
+  "sensor": {
+    "window_open": "Fenêtre ouverte"
+  },
+  "alert": {
+    "calibration": "Étalonnage en cours",
+    "valve_error": "Erreur de vanne",
+    "valve_blocked": "Vanne bloquée",
+    "motor_error": "Erreur moteur",
+    "sensor_error": "Erreur capteur",
+    "communication_error": "Appareil indisponible",
+    "firmware_update": "Mise à jour du firmware",
+    "sabotage": "Alerte sabotage",
+    "fault": "Défaut",
+    "operating_state_reference": "Course de référence"
+  },
+  "ui": {
+    "trend": "Tendance",
+    "boost": "Boost",
+    "loading": "Chargement de l’historique …",
+    "no_history": "Aucune donnée historique"
+  }
+}

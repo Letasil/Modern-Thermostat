@@ -1,0 +1,40 @@
+{
+  "state": {
+    "off": "Uit",
+    "heat": "Verwarmen",
+    "cool": "Koelen",
+    "auto": "Automatisch",
+    "heat_cool": "Verwarmen/Koelen",
+    "fan_only": "Ventilator",
+    "dry": "Drogen"
+  },
+  "action": {
+    "off": "Uit",
+    "idle": "Stand-by",
+    "heating": "Verwarmen",
+    "cooling": "Koelen",
+    "drying": "Drogen",
+    "fan": "Ventileren"
+  },
+  "sensor": {
+    "window_open": "Raam open"
+  },
+  "alert": {
+    "calibration": "Kalibratie actief",
+    "valve_error": "Klepfout",
+    "valve_blocked": "Klep geblokkeerd",
+    "motor_error": "Motorfout",
+    "sensor_error": "Sensorfout",
+    "communication_error": "Apparaat niet bereikbaar",
+    "firmware_update": "Firmware-update",
+    "sabotage": "Sabotagemelding",
+    "fault": "Storing",
+    "operating_state_reference": "Referentieloop"
+  },
+  "ui": {
+    "trend": "Trend",
+    "boost": "Boost",
+    "loading": "Geschiedenis laden …",
+    "no_history": "Geen historische gegevens"
+  }
+}

@@ -1,0 +1,20 @@
+name: Validate
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JavaScript syntax
+        run: node --check dist/modern-thermostat.js
+      - name: Validate JSON files
+        run: |
+          python -m json.tool hacs.json > /dev/null
+          for file in dist/translations/*.json; do python -m json.tool "$file" > /dev/null; done
+      - name: HACS validation
+        uses: hacs/action@main
+        with:
+          category: plugin
