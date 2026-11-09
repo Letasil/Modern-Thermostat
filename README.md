@@ -1,8 +1,12 @@
 
 # Modern Thermostat Card V2.4.0
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
-[![GitHub release](https://img.shields.io/github/release/your-org/modern-thermostat.svg)](https://github.com/your-org/modern-thermostat/releases)
+> [!NOTE]
+> HACS is a third-party community store and is not included in Home Assistant by default.
+
+[![Open your Home Assistant instance and open this repository in HACS or the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Letasil&repository=modern-thermostat&category=plugin)
+
+[![GitHub release](https://img.shields.io/github/v/release/Letasil/modern-thermostat?label=Latest%20Release)](https://github.com/Letasil/modern-thermostat/releases)
 
 An alternative version of the thermostat map for the Home Assistant Lovelace interface. The goal is to create a map with simpler interactions that is more user-friendly, takes up less space, and also offers greater modularity for customization. For example, it allows you to embed sensor readings relevant to your thermostat (such as humidity, valve position, battery status, and—optionally—a temperature history, etc.)
 
@@ -47,9 +51,6 @@ Normal Mode
    Category: **Dashboard**
 4. Click **Install**
 5. **Reload** browser
-
-<img width="4032" height="607" alt="image" src="https://github.com/user-attachments/assets/bee818b6-96ba-43f9-86fd-02fbd8887491" />
-
 
 ### Method 2 – Manual
 
