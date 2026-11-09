@@ -5,10 +5,16 @@ All notable changes to **Modern Thermostat Card** are documented here.
 Format: `major.minor.patch` — [Semantic Versioning](https://semver.org/)
 
 ---
+## v2.0.10 - 2026-11-09
+
+### Changed
+- Removed dynamic background coloring based on status.
+- Added icon coloring based on status.
+  
 ## v2.0.9 - 2026-11-09
 
 ### Changed
-- Ad width changed from fixed to dynamic.
+- Added width changed from fixed to dynamic.
   
 ## v2.0.8 - 2026-11-06
 
