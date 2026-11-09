@@ -5,6 +5,11 @@ All notable changes to **Modern Thermostat Card** are documented here.
 Format: `major.minor.patch` — [Semantic Versioning](https://semver.org/)
 
 ---
+## v2.4.0 - 2026-11-09
+
+### Changed
+- The dependency on mini-graph-card has been completely removed
+  
 ## v2.3.3 - 2026-11-09
 
 ### Changed
