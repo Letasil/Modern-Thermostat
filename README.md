@@ -1,5 +1,5 @@
 
-# Modern Thermostat Card V2.3.3
+# Modern Thermostat Card V2.4.0
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 [![GitHub release](https://img.shields.io/github/release/your-org/modern-thermostat.svg)](https://github.com/your-org/modern-thermostat/releases)
@@ -36,7 +36,6 @@ Normal Mode
 ## 📦 Requirements
 
 - Operating System 18.4
-- Install `mini-graph-card` from <a href="https://github.com/kalkih/mini-graph-card"  rel="nofollow">GitHub</a> or via <a href="https://hacs.xyz/" rel="nofollow">HACS</a>
 
 ## 📦 Installation
 
@@ -77,23 +76,23 @@ entity: climate.wohnzimmer
 
 ```yaml
 type: custom:modern-thermostat
-    entity: climate.hmip_bwth_000ca0c9af1981
-    name: Badezimmer
+    entity: climate.xxxxxxxx
+    name: Raumname
     step: 0.5
     show_hvac_modes: true
     show_window_status: true
     show_valve_position: false
     show_battery_warning: false
     battery_warning_level: 25
-    window_entity: binary_sensor.hm_sec_sco_neq1798400
-    humidity_entity: sensor.hmip_bwth_000ca0c9af1981_luftfeuchtigkeit
+    window_entity: binary_sensor.xxxxxxxx
+    humidity_entity: sensor.xxxxxxxx_luftfeuchtigkeit
     compact: false
     show_graph: true
-    graph_entity: sensor.hmip_bwth_000ca0c9af1981_temperatur
+    graph_entity: sensor.xxxxxxxx_temperatur
     hours_to_show: 24
     graph_line_width: 2
     show_header: true
-    battery_entity: sensor.bewmel_schlzife_betriebsspannungspegel
+    battery_entity: sensor.xxxxxxxx_betriebsspannungspegel
     show_target_humidity: true
     show_preset: true
     show_fan_mode: true
