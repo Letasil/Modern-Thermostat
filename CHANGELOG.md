@@ -5,6 +5,26 @@ All notable changes to **Modern Thermostat Card** are documented here.
 Format: `major.minor.patch` — [Semantic Versioning](https://semver.org/)
 
 ---
+## v2.3.3 - 2026-11-09
+
+### Changed
+- Fixed the bug where the slider value for the humidity threshold was not applied
+  
+## v2.3.2 - 2026-11-09
+
+### Changed
+- Add a slider to the configuration to set the threshold value for humidity measurement
+
+## v2.3.1 - 2026-11-09
+
+### Changed
+- Make the buttons for setting the target value smaller
+  
+## v2.3.0 - 2026-11-09
+
+### Changed
+- Add “Boost Mode” to the menu if it is available
+
 ## v2.2.1 - 2026-11-09
 
 ### Changed
