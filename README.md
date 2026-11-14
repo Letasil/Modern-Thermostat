@@ -42,28 +42,31 @@ Setting the Heating Mode
 - 🌡️ **Current Temperature** large central display
 - 🔥❄️ **All HVAC modes** – Off / Heat / Cool / Auto / Fan / Dry
 - 🚨 **Alert priority system** – valve errors, calibration, battery, window, custom alerts
-- 📈 **Optional temperature graph** via mini-graph-card
-- 🌍 **5 languages** – DE, EN, FR, NL, ES (auto-detected from HA)
-- 🎨 **Dark & Light theme** – full HA CSS variable support
+- 📈 **Built-in temperature trend** with smoothed gradient curve, setpoint history and localized hover; no mini-graph-card dependency
+- 🌍 **9 languages** – DE, EN, ES, FR, NL, TR, RU, AR, PL (auto-detected from HA)
+- 🎨 **Dark & Light theme** – full HA CSS variable support and colored status icons
 - 📱 **Compact mode** – for grid dashboards and mobile
 - ⚡ **Optimistic updates** – instant UI response
+- 🔴 **Setpoint mismatch indicator** – the requested setpoint uses the heating icon color until the climate entity reports the same value
+- 🪟 **Optional window-contact protection** with separate open and close delays
+- 🔥 **Optional Pi heat-demand and battery-voltage displays**, hidden when their value is unavailable
 - 🔧 **GUI config editor** – no YAML required for basic setup
-- ✅ **HACS compatible (In progress)** – automatic update detection
+- ✅ **HACS Dashboard plugin** – update detection through published GitHub releases
 
 ## 📦 Requirements
 
-- Operating System 18.4
+- Home Assistant with Lovelace dashboard support.
 
 ## 📦 Installation
 
-### Method 1 – HACS Custom Repository (recommended) Not yet available
+### Method 1 – HACS Custom Repository (recommended)
 
-1. Open **HACS** → **Frontend**
-2. Click **⋮** → **Custom repositories**
-3. Add: `https://github.com/Letasil/modern-thermostat`  
+1. Open **HACS** and choose **Custom repositories** from the menu.
+2. Add: `https://github.com/Letasil/modern-thermostat`  
    Category: **Dashboard**
-4. Click **Install**
-5. **Reload** browser
+3. Click **Install**.
+4. Add the resource `/hacsfiles/modern-thermostat/modern-thermostat.js` as a JavaScript module.
+5. **Reload** the browser.
 
 > [!NOTE]
 > HACS is a third-party community store and is not included in Home Assistant by default.
@@ -72,15 +75,14 @@ Setting the Heating Mode
 
 ### Method 2 – Manual
 
-1. Download `modern-thermostat.js` from the [latest release](https://github.com/Letasil/modern-thermostat/releases)
-2. Create a Folder `modern-thermostat` on path `config/www/community/`
-3. Copy to `config/www/community/modern-thermostat/modern-thermostat.js`
-4. Add to Lovelace resources:
+1. Download `modern-thermostat-v2.5.0.zip` from the [release](https://github.com/Letasil/Modern-Thermostat/releases).
+2. Copy `modern-thermostat.js` and the complete `translations/` folder into `config/www/community/modern-thermostat/`.
+3. Add this Lovelace resource as a JavaScript module:
 
 ```yaml
 resources:
-  - url: /local/community/modern-thermostat/modern-thermostat.js?v=x.x.xx (x.x.xx=Version)
-    type: JavaScript-Module    
+  - url: /local/community/modern-thermostat/modern-thermostat.js?v=2.5.0
+    type: module
 ```
 
 ---
@@ -98,33 +100,36 @@ entity: climate.wohnzimmer
 
 ```yaml
 type: custom:modern-thermostat
-    entity: climate.xxxxxxxx
-    name: Raumname
-    step: 0.5
-    show_hvac_modes: true
-    show_window_status: true
-    show_valve_position: false
-    show_battery_warning: false
-    battery_warning_level: 25
-    window_entity: binary_sensor.xxxxxxxx
-    humidity_entity: sensor.xxxxxxxx_luftfeuchtigkeit
-    compact: false
-    show_graph: true
-    graph_entity: sensor.xxxxxxxx_temperatur
-    hours_to_show: 24
-    graph_line_width: 2
-    show_header: true
-    battery_entity: sensor.xxxxxxxx_betriebsspannungspegel
-    show_target_humidity: true
-    show_preset: true
-    show_fan_mode: true
-    show_swing_mode: true
-    show_heating_demand: false
-    show_humidity: true
-    humidity_warning_level: 70
-    manual_on_temperature_change: false
-    show_control_mode: true
-
+entity: climate.xxxxxxxx
+name: Raumname
+step: 0.5
+show_hvac_modes: true
+show_window_status: true
+show_valve_position: false
+show_battery_warning: false
+battery_warning_level: 25
+window_entity: binary_sensor.xxxxxxxx
+humidity_entity: sensor.xxxxxxxx_luftfeuchtigkeit
+compact: false
+show_graph: true
+graph_entity: sensor.xxxxxxxx_temperatur
+hours_to_show: 24
+graph_line_width: 2
+show_header: true
+battery_entity: sensor.xxxxxxxx_betriebsspannungspegel
+battery_voltage_entity: sensor.xxxxxxxx_batteriespannung
+show_target_humidity: true
+show_preset: true
+show_fan_mode: true
+show_swing_mode: true
+show_heating_demand: false
+show_humidity: true
+humidity_warning_level: 70
+manual_on_temperature_change: false
+show_control_mode: true
+window_auto_off: false
+window_open_delay: 1
+window_close_delay: 1
 ```
 
 ---
@@ -147,110 +152,24 @@ Alerts are evaluated in priority order. Only the highest-priority active alert i
 
 ---
 
-## 🔧 Development
-
-```bash
-# Install dependencies
-npm install
-
-# Development build (watch mode)
-npm run dev
-
-# Production build
-npm run build
-
-# Type check
-npm run typecheck
-
-# Local release (bump patch)
-npm run release:patch
-
-# Local release (bump minor)
-npm run release:minor
-```
-
----
-
 ## 🚀 GitHub Release Workflow
 
-This repository uses **GitHub Actions** to automate the entire release process.
+The repository includes a manually started GitHub Actions release workflow. It creates a draft release so the files and release notes can be reviewed before publication.
 
-### How to release a new version
+1. Commit the complete release files to the `main` branch.
+2. In GitHub, open **Actions → Release → Run workflow**.
+3. Enter the version without a `v` prefix, for example `2.5.0`.
+4. Check the generated draft release. It uses tag `v2.5.0`, title `modern-thermostat V2.5.0`, and the release notes from `GITHUB_RELEASE_NOTES.md`.
+5. Publish the draft when it is ready. HACS detects published releases for repositories installed through HACS.
 
-**Step 1 – Make your changes**
-
-```bash
-git add .
-git commit -m "feat: add new feature"
-git push
-```
-
-**Step 2 – Update version numbers**
-
-Use the local build script to bump the version:
-
-```bash
-# Patch release (bug fixes): 1.7.1 → 1.7.2
-python3 build.py --bump patch --changes "Fixed layout bug"
-
-# Minor release (new features): 1.7.1 → 1.8.0
-python3 build.py --bump minor --changes "Added new feature"
-
-# Major release (breaking changes): 1.7.1 → 2.0.0
-python3 build.py --bump major
-```
-
-This automatically updates:
-- `package.json` version
-- `hacs.json` version
-- `src/modern-thermostat.ts` CARD_VERSION
-- `CHANGELOG.md`
-
-**Step 3 – Commit the version bump**
-
-```bash
-git add .
-git commit -m "chore: bump version to 1.8.0"
-git push
-```
-
-**Step 4 – Create and push the Git tag**
-
-```bash
-git tag v1.8.0
-git push origin v1.8.0
-```
-
-**That's it!** GitHub Actions automatically:
-
-1. ✅ Validates version consistency (package.json = hacs.json = tag)
-2. 🔨 Installs dependencies
-3. 💉 Injects build metadata (version, date, commit hash)
-4. 📦 Builds production bundle
-5. 🗜️ Creates `modern-thermostat-v1.8.0.zip` (HACS install)
-6. 🗜️ Creates `modern-thermostat-source-v1.8.0.zip` (source code)
-7. 📋 Extracts release notes from `CHANGELOG.md`
-8. 🎉 Creates GitHub Release with both ZIPs attached
-
-### HACS Update Detection
-
-After the GitHub Release is published, HACS automatically detects the new version:
-
-```
-Installed:  1.7.1
-Available:  1.8.0
-```
-
-Users can update with one click in HACS → Frontend.
-
----
-
+The release archive contains `modern-thermostat.js` and the complete `translations/` folder. The card trend is built in; `mini-graph-card` is not required.
 ## 📋 All Configuration Options
 
 | Option | Type | Default | Description |
 |---|---|---|---|
 | `entity` | string | **required** | Climate entity ID |
-| `name` | string | entity name | Display name |
+| 
+ame` | string | entity name | Display name |
 | `icon` | string | auto | MDI icon override |
 | `step` | number | `0.5` | Temperature step |
 | `decimals` | number | `1` | Decimal places |

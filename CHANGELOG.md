@@ -7,16 +7,15 @@ Format: `major.minor.patch` — [Semantic Versioning](https://semver.org/)
 ---
 ## 2.5.0 - 2026-11-14
 
-- Highlight the setpoint in red if it differs from the thermostat's setpoint.
-- Swapped the positions of Heat and Boost in the mode chooser when both are available.
-- Added complete Turkish, Russian, Arabic, and Polish translations and included them in Home Assistant language detection.
-- Kept locale fallback labels for the trend in all supported languages.
-- A custom-translated time specification for the trend was added for all languages.
-- Kept hover labels in the selected Home Assistant language when a translation JSON file cannot be fetched.
-- Clamped the hover panel horizontally and vertically so it stays fully inside the graph frame.
-- Nine languages are included:
-    - Turkish, Russian, Arabic, Polish
+This release bundles the development changes since the published 2.4.0 release.
 
+- Added a built-in, full-width temperature trend with mini-graph-card-style smoothing, threshold colors, fading fill, extrema, times, setpoint history, and localized hover values. No external graph card is required.
+- Highlighted the displayed setpoint in the same red-orange as the heating icon while the card's requested value differs from the value currently reported by the climate entity.
+- Added optional window-contact shutdown with separate adjustable open and close delays.
+- Restored the optional Pi heat-demand display beside valve position; it is hidden when the selected value is unavailable. Added battery-voltage display.
+- Added localized humidity units, configuration labels, trend hover labels, and fallback translations for German, English, Spanish, French, Dutch, Turkish, Russian, Arabic, and Polish.
+- Swapped the positions of Heat and Boost in the mode chooser when both are available.
+- Kept the hover panel inside the graph frame and fixed trend rendering and translation fallbacks.
 ## v2.4.0 - 2026-11-09
 
 ### Changed

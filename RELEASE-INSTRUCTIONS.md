@@ -1,12 +1,13 @@
-# Veröffentlichung von Version 2.4.0
+# GitHub Release für Modern Thermostat
 
-1. Auf GitHub ein öffentliches Repository mit dem Namen `modern-thermostat` anlegen.
-2. Den gesamten Inhalt dieses Pakets in das Stammverzeichnis hochladen. Nicht den äußeren Paketordner hochladen.
-3. Repository-Beschreibung setzen, beispielsweise: `Modern thermostat dashboard card for Home Assistant`.
-4. Repository-Themen ergänzen: `home-assistant`, `hacs`, `lovelace`, `thermostat`, `climate`.
-5. Unter **Actions** den Workflow **Validate** prüfen.
-6. Unter **Actions** den Workflow **Release** starten und als Tag `v2.4.0` eingeben.
-7. Prüfen, dass unter **Releases** die Version `v2.4.0` veröffentlicht wurde.
-8. In Home Assistant unter HACS > Dashboard das benutzerdefinierte Repository `https://github.com/Letasil/modern-thermostat` hinzufügen.
+## Version 2.5.0
 
-Bei späteren Updates die Version konsistent im Code, Changelog und Tag erhöhen und erneut eine GitHub-Release veröffentlichen.
+1. Die Dateien aus diesem Paket in das öffentliche Repository `Letasil/Modern-Thermostat` übernehmen.
+2. Prüfen, dass die Karte unter `dist/modern-thermostat.js` und alle neun Sprachdateien unter `dist/translations/` liegen.
+3. Unter **Actions → Release → Run workflow** die Version `2.5.0` ohne `v` eingeben.
+4. Den Entwurf mit Tag `v2.5.0`, Titel `modern-thermostat V2.5.0`, Release-Notizen und ZIP-Datei kontrollieren.
+5. Den Release-Entwurf veröffentlichen.
+
+## Künftige Releases
+
+Version in `dist/modern-thermostat.js`, `VERSION.txt`, README und Changelog gemeinsam erhöhen. Danach im Release-Workflow die neue Versionsnummer ohne `v` angeben. Der Workflow erstellt ein überprüfbares Release-Entwurfsobjekt; HACS erkennt Versionen nach Veröffentlichung des Releases.
