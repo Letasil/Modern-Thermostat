@@ -7,13 +7,13 @@ An alternative version of the thermostat map for the Home Assistant Lovelace int
 # The Modern Thermostat is available in two views: Compact Mode and Standard View. In Standard View, you can show or hide the trend graph.
 
 ## Standard view
-Temperature Trend
-
-<img width="494" height="362" alt="modern-thermostat-trend" src="https://github.com/user-attachments/assets/aa69556c-3c6e-4e55-b5c2-1985f47824b8" />
-
 Normal Mode
 
 <img width="496" height="187" alt="modern-thermostat" src="https://github.com/user-attachments/assets/fc96e1f1-e8ee-41ce-9bfa-207abadf23e5" />
+
+Temperature Trend
+
+<img width="494" height="362" alt="modern-thermostat-trend" src="https://github.com/user-attachments/assets/aa69556c-3c6e-4e55-b5c2-1985f47824b8" />
 
  ## Compact view
 
