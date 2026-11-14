@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Release version without the v prefix (for example 2.5.0)"
+        description: "Release version without the v prefix (for example 2.5.1)"
         required: true
-        default: "2.5.0"
+        default: "2.5.1"
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Create release archive
-        run: cd dist && zip -r ../modern-thermostat-v${{ inputs.version }}.zip modern-thermostat.js translations
+        run: zip -r modern-thermostat-v${{ inputs.version }}.zip modern-thermostat.js translations
       - name: Create draft GitHub release
         uses: softprops/action-gh-release@v2
         with:

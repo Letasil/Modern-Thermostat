@@ -65,7 +65,7 @@ Setting the Heating Mode
 2. Add: `https://github.com/Letasil/modern-thermostat`  
    Category: **Dashboard**
 3. Click **Install**.
-4. Add the resource `/hacsfiles/modern-thermostat/modern-thermostat.js` as a JavaScript module.
+4. Add the resource `/local/community/Modern-Thermostat/modern-thermostat.js` as a JavaScript module.
 5. **Reload** the browser.
 
 > [!NOTE]
@@ -75,13 +75,13 @@ Setting the Heating Mode
 
 ### Method 2 – Manual
 
-1. Download `modern-thermostat-v2.5.0.zip` from the [release](https://github.com/Letasil/Modern-Thermostat/releases).
+1. Download `modern-thermostat-v2.5.1.zip` from the [release](https://github.com/Letasil/Modern-Thermostat/releases).
 2. Copy `modern-thermostat.js` and the complete `translations/` folder into `config/www/community/modern-thermostat/`.
 3. Add this Lovelace resource as a JavaScript module:
 
 ```yaml
 resources:
-  - url: /local/community/modern-thermostat/modern-thermostat.js?v=2.5.0
+  - url: /local/community/Modern-Thermostat/modern-thermostat.js?v=2.5.1
     type: module
 ```
 
@@ -158,8 +158,8 @@ The repository includes a manually started GitHub Actions release workflow. It c
 
 1. Commit the complete release files to the `main` branch.
 2. In GitHub, open **Actions → Release → Run workflow**.
-3. Enter the version without a `v` prefix, for example `2.5.0`.
-4. Check the generated draft release. It uses tag `v2.5.0`, title `modern-thermostat V2.5.0`, and the release notes from `GITHUB_RELEASE_NOTES.md`.
+3. Enter the version without a `v` prefix, for example `2.5.1`.
+4. Check the generated draft release. It uses tag `v2.5.1`, title `modern-thermostat V2.5.1`, and the release notes from `GITHUB_RELEASE_NOTES.md`.
 5. Publish the draft when it is ready. HACS detects published releases for repositories installed through HACS.
 
 The release archive contains `modern-thermostat.js` and the complete `translations/` folder. The card trend is built in; `mini-graph-card` is not required.

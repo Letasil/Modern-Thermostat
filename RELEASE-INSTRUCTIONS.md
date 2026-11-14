@@ -1,13 +1,12 @@
-# GitHub Release für Modern Thermostat
+# GitHub release for Modern Thermostat
 
-## Version 2.5.0
+## Version 2.5.1
 
-1. Die Dateien aus diesem Paket in das öffentliche Repository `Letasil/Modern-Thermostat` übernehmen.
-2. Prüfen, dass die Karte unter `dist/modern-thermostat.js` und alle neun Sprachdateien unter `dist/translations/` liegen.
-3. Unter **Actions → Release → Run workflow** die Version `2.5.0` ohne `v` eingeben.
-4. Den Entwurf mit Tag `v2.5.0`, Titel `modern-thermostat V2.5.0`, Release-Notizen und ZIP-Datei kontrollieren.
-5. Den Release-Entwurf veröffentlichen.
+1. Commit the complete package to `Letasil/Modern-Thermostat`.
+2. Confirm `modern-thermostat.js` and the nine JSON files under `translations/` are in the repository root layout.
+3. Confirm `hacs.json` contains `"filename": "modern-thermostat.js"` and `"content_in_root": true`.
+4. Under **Actions → Release → Run workflow**, enter `2.5.1` without the `v` prefix.
+5. Review the draft tag `v2.5.1`, title `modern-thermostat V2.5.1`, release notes, and ZIP file.
+6. Publish the release so HACS/Marketplace detects the update.
 
-## Künftige Releases
-
-Version in `dist/modern-thermostat.js`, `VERSION.txt`, README und Changelog gemeinsam erhöhen. Danach im Release-Workflow die neue Versionsnummer ohne `v` angeben. Der Workflow erstellt ein überprüfbares Release-Entwurfsobjekt; HACS erkennt Versionen nach Veröffentlichung des Releases.
+For future releases, update the version in `modern-thermostat.js`, `VERSION.txt`, README, and changelog together. Keep the card and its `translations/` folder in the repository root and update the workflow input version.

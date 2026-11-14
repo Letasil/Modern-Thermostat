@@ -5,6 +5,10 @@ All notable changes to **Modern Thermostat Card** are documented here.
 Format: `major.minor.patch` — [Semantic Versioning](https://semver.org/)
 
 ---
+## 2.5.1 - 2026-11-14
+
+- Fixed HACS/Marketplace installation by placing the card and its translations in the repository root and declaring content_in_root.
+
 ## 2.5.0 - 2026-11-14
 
 This release bundles the development changes since the published 2.4.0 release.

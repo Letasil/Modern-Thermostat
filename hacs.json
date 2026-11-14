@@ -1,5 +1,6 @@
 {
   "name": "Modern Thermostat",
   "filename": "modern-thermostat.js",
+  "content_in_root": true,
   "hide_default_branch": true
 }

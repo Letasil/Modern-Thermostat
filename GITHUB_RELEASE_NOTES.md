@@ -1,13 +1,9 @@
-## modern-thermostat V2.5.0
+## modern-thermostat V2.5.1
 
-Dieses Release bündelt die Änderungen seit der veröffentlichten Version 2.4.0.
+This patch fixes installation through HACS and the Home Assistant Marketplace. The card file and translations are now stored in the repository root layout expected by the Marketplace.
 
-- Integrierte Trendanzeige ohne `mini-graph-card` mit Farbverlauf, Verlauf des Sollwerts, Min-/Max-Angaben, Zeiten und lokalisiertem Hover.
-- Sollwert wird in Heiz-Icon-Rot hervorgehoben, solange der angeforderte Wert vom aktuell gemeldeten Climate-Sollwert abweicht.
-- Übersetzte Oberfläche und Trend-Hover für neun Sprachen.
-- Fensterkontakt-Schutz mit getrennten Zeitverzögerungen für Öffnen und Schließen.
-- Pi-Wärmebedarf neben der Stellgröße; Anzeige ausgeblendet, wenn kein verwendbarer Sensorwert existiert.
-- Batteriespannung über erkannte oder ausgewählte Sensor-Entität.
-- Farbige Status- und Modus-Icons.
+- HACS manifest explicitly declares `content_in_root: true` and `modern-thermostat.js`.
+- The card and all nine translation files are included together, preserving the relative `translations/` path used by the card.
+- No external `mini-graph-card` dependency is required.
 
-HACS-Repository als **Dashboard** hinzufügen. Die Karte liegt unter `/hacsfiles/Modern-Thermostat/modern-thermostat.js`.
+Install via HACS/Marketplace, then reload the Home Assistant frontend. Manual resource path: `/local/community/Modern-Thermostat/modern-thermostat.js`.
