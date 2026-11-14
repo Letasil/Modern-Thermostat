@@ -3,8 +3,8 @@
 
 An alternative version of the thermostat map for the Home Assistant Lovelace interface. The goal is to create a map with simpler interactions that is more user-friendly, takes up less space, and also offers greater modularity for customization. For example, it allows you to embed sensor readings relevant to your thermostat (such as humidity, valve position, battery status, and—optionally—a temperature history, etc.)
 
+The Modern Thermostat is available in two views: Compact Mode and Standard View. In Standard View, you can show or hide the trend graph.
 ---
-# The Modern Thermostat is available in two views: Compact Mode and Standard View. In Standard View, you can show or hide the trend graph.
 
 ## Standard view
 Normal Mode
@@ -14,6 +14,7 @@ Normal Mode
 Temperature Trend
 
 <img width="494" height="362" alt="modern-thermostat-trend" src="https://github.com/user-attachments/assets/aa69556c-3c6e-4e55-b5c2-1985f47824b8" />
+---
 
  ## Compact view
 
