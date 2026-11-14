@@ -23,6 +23,18 @@ Compact view
 
 <img width="495" height="163" alt="modern-thermostat-compact" src="https://github.com/user-attachments/assets/334bbd27-8c4c-4003-9093-924cfb7756ea" />
 
+---
+
+Setting the Setpoint
+
+<img width="495" height="246" alt="modern-thermostat-setpoint" src="https://github.com/user-attachments/assets/1ed3c606-379f-4a00-85eb-941208da00cb" />
+
+---
+
+Setting the Heating Mode
+
+<img width="493" height="287" alt="modern-thermostat-mode" src="https://github.com/user-attachments/assets/f9f21094-fc4a-4232-b45a-a2d543def0c1" />
+
 
 
 ## ✨ Features
