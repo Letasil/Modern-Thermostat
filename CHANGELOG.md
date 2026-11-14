@@ -5,6 +5,18 @@ All notable changes to **Modern Thermostat Card** are documented here.
 Format: `major.minor.patch` — [Semantic Versioning](https://semver.org/)
 
 ---
+## 2.5.0 - 2026-11-14
+
+- Highlight the setpoint in red if it differs from the thermostat's setpoint.
+- Swapped the positions of Heat and Boost in the mode chooser when both are available.
+- Added complete Turkish, Russian, Arabic, and Polish translations and included them in Home Assistant language detection.
+- Kept locale fallback labels for the trend in all supported languages.
+- A custom-translated time specification for the trend was added for all languages.
+- Kept hover labels in the selected Home Assistant language when a translation JSON file cannot be fetched.
+- Clamped the hover panel horizontally and vertically so it stays fully inside the graph frame.
+- Nine languages are included:
+    - Turkish, Russian, Arabic, Polish
+
 ## v2.4.0 - 2026-11-09
 
 ### Changed
