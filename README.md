@@ -20,6 +20,7 @@ Trend view
 ---
 
 Compact view
+
 <img width="495" height="163" alt="modern-thermostat-compact" src="https://github.com/user-attachments/assets/334bbd27-8c4c-4003-9093-924cfb7756ea" />
 
 
