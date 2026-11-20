@@ -27,11 +27,11 @@ These previews show the standard card with its built-in trend, the compact layou
 <table>
   <tr>
     <td width="50%" valign="top"><img width="491" height="396" alt="2026-11-20_19h38_46" src="https://github.com/user-attachments/assets/7691e9ee-e32f-40c9-bab9-70260462437d" /></td>
-    <td width="50%" valign="top"><img width="496" height="216" alt="2026-11-20_19h38_21" src="https://github.com/user-attachments/assets/650e134b-e3ad-4709-87a1-1c17938ab501" /></td>
+    <td width="50%" valign="top"><img width="426" height="579" alt="2026-11-20_20h21_10" src="https://github.com/user-attachments/assets/1f38e848-0d78-4f83-a04a-d03ac929c69b" /></td>
   </tr>
   <tr>
     <td align="center"><strong>Normal mode with trend</strong></td>
-    <td align="center"><strong>Normal mode</strong></td>
+    <td align="center"><strong>Configuration</strong></td>
   </tr>
 </table>
 
@@ -53,7 +53,7 @@ These previews show the standard card with its built-in trend, the compact layou
   </tr>
   <tr>
     <td align="center"><strong>Compact mode</strong></td>
-    <td align="center"><strong>Configuration</strong></td>
+    <td align="center"><strong>Normal mode</strong></td>
   </tr>
 </table>
 
