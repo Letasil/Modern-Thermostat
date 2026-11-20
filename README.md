@@ -38,7 +38,7 @@ These previews show the standard card with its built-in trend, the compact layou
 <table>
   <tr>
     <td width="50%" valign="top"><img width="491" height="315" alt="2026-11-20_19h39_24" src="https://github.com/user-attachments/assets/7a3d12aa-61c9-43dc-91e9-1e9a7afe7064" /></td>
-    <td width="50%" valign="top"><img width="491" height="315" alt="2026-11-20_19h39_31" src="https://github.com/user-attachments/assets/1965bcc0-eafe-495c-a2a8-087eb53080ba" /></td>
+    <td width="50%" valign="top"><img width="493" height="278" alt="2026-11-20_20h18_40" src="https://github.com/user-attachments/assets/b0bd120f-1fb7-4406-9777-f16362949ec1" /></td>
   </tr>
   <tr>
     <td align="center"><strong>Edit HVAC mode</strong></td>
