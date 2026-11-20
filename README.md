@@ -49,7 +49,7 @@ These previews show the standard card with its built-in trend, the compact layou
 <table>
   <tr>
     <td width="50%" valign="top"><img width="498" height="199" alt="2026-11-20_19h35_32" src="https://github.com/user-attachments/assets/917610cb-68ee-4f66-adfd-510e65953705" /></td>
-    <td width="50%" valign="top"><img src="assets/readme/configuration.svg" alt="Configuration editor with sensor selectors and full-width stacked window delay sliders" width="100%"></td>
+    <td width="50%" valign="top"><img width="496" height="216" alt="2026-11-20_19h38_21" src="https://github.com/user-attachments/assets/650e134b-e3ad-4709-87a1-1c17938ab501" /></td>
   </tr>
   <tr>
     <td align="center"><strong>Compact mode</strong></td>
