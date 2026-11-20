@@ -2,7 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/v/release/Letasil/modern-thermostat?label=Latest%20Release)](https://github.com/Letasil/modern-thermostat/releases)
 
-A standalone Home Assistant Lovelace thermostat card. The trend chart, setpoint history, hover details, and nine language files are included; `mini-graph-card` is not required.
+A standalone Home Assistant Lovelace thermostat card. The trend chart, setpoint history, hover details, and nine language files are included.
 
 ## Features
 
