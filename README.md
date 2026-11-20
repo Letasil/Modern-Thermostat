@@ -88,26 +88,42 @@ resources:
 
 ```yaml
 type: custom:modern-thermostat
-entity: climate.living_room
+entity: climate.xxxxxx
 ```
 
 ### Example with sensors and window automation
+Replace xxxxxx with the entity name
 
 ```yaml
 type: custom:modern-thermostat
-entity: climate.living_room
-name: Living room
-compact: false
-humidity_entity: sensor.living_room_humidity
-valve_position_entity: sensor.living_room_valve_position
-heating_demand_entity: sensor.living_room_heat_demand
-battery_entity: sensor.living_room_battery
-window_entity: binary_sensor.living_room_window
-window_auto_off: false
-window_open_delay_seconds: 60
-window_close_delay_seconds: 180
-graph_entity: sensor.living_room_temperature
-hours_to_show: 24
+    entity: climate.xxxxxx
+    name: Badezimmer
+    step: 0.5
+    show_hvac_modes: true
+    show_window_status: true
+    show_valve_position: false
+    show_battery_warning: false
+    battery_warning_level: 25
+    window_entity: binary_sensor.xxxxxx
+    compact: false
+    show_graph: true
+    graph_entity: sensor.xxxxxx
+    hours_to_show: 24
+    graph_line_width: 2
+    show_header: true
+    show_target_humidity: true
+    show_preset: true
+    show_fan_mode: true
+    show_swing_mode: true
+    show_heating_demand: false
+    show_humidity: true
+    humidity_warning_level: 70
+    manual_on_temperature_change: false
+    show_control_mode: true
+    window_close_delay: 0
+    window_open_delay: 0
+    humidity_entity: sensor.xxxxxx
+    window_auto_off: false
 ```
 
 The graphical editor groups settings under **Thermostat**, **Sensors**, **Display**, and **Window automation**. The Boost option uses the same dimensions as the other mode buttons and highlights when active. Its live remaining-time display appears when the climate entity exposes boost timing data. In standard mode, sensor pills appear when values are available. The Trend button opens or closes the built-in chart when the selected sensor has a usable value. Compact mode keeps room/status, temperature, available humidity, and HVAC/setpoint controls; normal mode retains its HVAC and setpoint buttons. The window feature is disabled by default. When enabled, it turns the thermostat off after the open delay only if Home Assistant reports that the climate entity supports the off mode or TURN_OFF feature. Otherwise, it skips the off command without changing the target temperature. It restores the previous HVAC mode after the close delay. Delay sliders use seconds from 0 to 3600. Window automation runs in the browser while the dashboard is open; use a Home Assistant automation if it must run independently.
