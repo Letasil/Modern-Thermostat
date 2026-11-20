@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="760" viewBox="0 0 980 760" role="img" aria-labelledby="title desc">
+  <title id="title">Modern Thermostat configuration editor</title>
+  <desc id="desc">A localized configuration editor with display switches, sensor selectors and full-width stacked window-delay sliders.</desc>
+  <defs>
+    <linearGradient id="page" x2="0" y2="1"><stop stop-color="#1d1e20"/><stop offset="1" stop-color="#111315"/></linearGradient>
+    <linearGradient id="panel" x2="0" y2="1"><stop stop-color="#303133"/><stop offset="1" stop-color="#242527"/></linearGradient>
+  </defs>
+  <rect width="980" height="760" rx="28" fill="#111315"/>
+  <g font-family="Arial,sans-serif">
+    <rect x="72" y="35" width="836" height="206" rx="20" fill="url(#panel)" stroke="#464749" stroke-width="2"/>
+    <text x="100" y="75" fill="#f1f1f2" font-size="21" font-weight="700">Display</text>
+    <path d="M100 94h780" stroke="#4b4c4e"/>
+    <g font-size="15" fill="#e1e2e3">
+      <text x="172" y="127">Compact mode</text><text x="172" y="166">Room name and header</text><text x="172" y="205">Humidity</text>
+    </g>
+    <g>
+      <rect x="100" y="109" width="52" height="24" rx="12" fill="#3c3d3f" stroke="#7b7c7e"/><circle cx="112" cy="121" r="9" fill="#b4b5b6"/>
+      <rect x="100" y="148" width="52" height="24" rx="12" fill="#03a9d2"/><circle cx="140" cy="160" r="9" fill="#d7f7ff"/>
+      <rect x="100" y="187" width="52" height="24" rx="12" fill="#03a9d2"/><circle cx="140" cy="199" r="9" fill="#d7f7ff"/>
+    </g>
+
+    <rect x="72" y="263" width="836" height="218" rx="20" fill="url(#panel)" stroke="#464749" stroke-width="2"/>
+    <text x="100" y="303" fill="#f1f1f2" font-size="21" font-weight="700">Sensors</text>
+    <path d="M100 322h780" stroke="#4b4c4e"/>
+    <text x="100" y="351" fill="#c9cacc" font-size="14">Humidity sensor</text>
+    <rect x="100" y="362" width="780" height="47" rx="8" fill="#3a3b3d"/>
+    <path d="M122 377c0-3 2-5 5-5s5 2 5 5v10h-10Z" fill="none" stroke="#29b6f6" stroke-width="2"/>
+    <text x="151" y="390" fill="#e8e9ea" font-size="15">Bathroom humidity</text><path d="m851 381 8 8 8-8" fill="none" stroke="#a5a6a8" stroke-width="2"/>
+    <text x="100" y="438" fill="#c9cacc" font-size="14">Valve position sensor</text>
+    <rect x="100" y="448" width="780" height="22" rx="5" fill="#3a3b3d"/>
+    <text x="116" y="464" fill="#929497" font-size="13">Select an entity</text><path d="m851 454 8 7 8-7" fill="none" stroke="#a5a6a8" stroke-width="2"/>
+
+    <rect x="72" y="503" width="836" height="222" rx="20" fill="url(#panel)" stroke="#464749" stroke-width="2"/>
+    <text x="100" y="543" fill="#f1f1f2" font-size="21" font-weight="700">Window automation</text>
+    <path d="M100 562h780" stroke="#4b4c4e"/>
+    <rect x="100" y="579" width="52" height="24" rx="12" fill="#03a9d2"/><circle cx="140" cy="591" r="9" fill="#d7f7ff"/>
+    <text x="170" y="596" fill="#e1e2e3" font-size="15">Turn thermostat off while window is open</text>
+    <text x="100" y="638" fill="#c9cacc" font-size="14">Open delay · 60 sec</text>
+    <rect x="100" y="649" width="780" height="6" rx="3" fill="#55575a"/><rect x="100" y="649" width="118" height="6" rx="3" fill="#03b5dd"/><circle cx="218" cy="652" r="10" fill="#03b5dd"/>
+    <text x="100" y="692" fill="#c9cacc" font-size="14">Close delay · 180 sec</text>
+    <rect x="100" y="703" width="780" height="6" rx="3" fill="#55575a"/><rect x="100" y="703" width="219" height="6" rx="3" fill="#03b5dd"/><circle cx="319" cy="706" r="10" fill="#03b5dd"/>
+  </g>
+</svg>
