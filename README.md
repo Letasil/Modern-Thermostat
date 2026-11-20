@@ -37,6 +37,17 @@ These previews show the standard card with its built-in trend, the compact layou
 
 <table>
   <tr>
+    <td width="50%" valign="top"><img width="491" height="315" alt="2026-11-20_19h39_24" src="https://github.com/user-attachments/assets/7a3d12aa-61c9-43dc-91e9-1e9a7afe7064" /></td>
+    <td width="50%" valign="top"><img width="491" height="315" alt="2026-11-20_19h39_31" src="https://github.com/user-attachments/assets/1965bcc0-eafe-495c-a2a8-087eb53080ba" /></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>Edit HVAC mode</strong></td>
+    <td align="center"><strong>Edit setup</strong></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
     <td width="50%" valign="top"><img width="498" height="199" alt="2026-11-20_19h35_32" src="https://github.com/user-attachments/assets/917610cb-68ee-4f66-adfd-510e65953705" /></td>
     <td width="50%" valign="top"><img src="assets/readme/configuration.svg" alt="Configuration editor with sensor selectors and full-width stacked window delay sliders" width="100%"></td>
   </tr>
