@@ -24,17 +24,14 @@ A standalone Home Assistant Lovelace thermostat card. The trend chart, setpoint 
 
 These previews show the standard card with its built-in trend, the compact layout, and the localized configuration editor. Values and available sensors vary with your Home Assistant entities and theme.
 
-<p align="center">
-  <img width="491" height="396" alt="2026-11-20_19h38_46" src="https://github.com/user-attachments/assets/5c7e3adc-6c94-4f2a-81f4-98906998959c" />
-</p>
 <table>
   <tr>
-    <td width="50%" valign="top"><img width="498" height="199" alt="2026-11-20_19h35_32" src="https://github.com/user-attachments/assets/917610cb-68ee-4f66-adfd-510e65953705" /></td>
-    <td width="50%" valign="top"><img src="assets/readme/configuration.svg" alt="Configuration editor with sensor selectors and full-width stacked window delay sliders" width="100%"></td>
+    <td width="50%" valign="top"><img width="491" height="396" alt="2026-11-20_19h38_46" src="https://github.com/user-attachments/assets/7691e9ee-e32f-40c9-bab9-70260462437d" /></td>
+    <td width="50%" valign="top"><img width="496" height="216" alt="2026-11-20_19h38_21" src="https://github.com/user-attachments/assets/650e134b-e3ad-4709-87a1-1c17938ab501" /></td>
   </tr>
   <tr>
-    <td align="center"><strong>Compact mode</strong></td>
-    <td align="center"><strong>Configuration</strong></td>
+    <td align="center"><strong>Normal mode with trend</strong></td>
+    <td align="center"><strong>Normal mode</strong></td>
   </tr>
 </table>
 
