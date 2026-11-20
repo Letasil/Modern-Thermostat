@@ -100,36 +100,34 @@ entity: climate.wohnzimmer
 
 ```yaml
 type: custom:modern-thermostat
-entity: climate.xxxxxxxx
-name: Raumname
-step: 0.5
-show_hvac_modes: true
-show_window_status: true
-show_valve_position: false
-show_battery_warning: false
-battery_warning_level: 25
-window_entity: binary_sensor.xxxxxxxx
-humidity_entity: sensor.xxxxxxxx_luftfeuchtigkeit
-compact: false
-show_graph: true
-graph_entity: sensor.xxxxxxxx_temperatur
-hours_to_show: 24
-graph_line_width: 2
-show_header: true
-battery_entity: sensor.xxxxxxxx_betriebsspannungspegel
-battery_voltage_entity: sensor.xxxxxxxx_batteriespannung
-show_target_humidity: true
-show_preset: true
-show_fan_mode: true
-show_swing_mode: true
-show_heating_demand: false
-show_humidity: true
-humidity_warning_level: 70
-manual_on_temperature_change: false
-show_control_mode: true
-window_auto_off: false
-window_open_delay: 1
-window_close_delay: 1
+    entity: climate.xxxxxx
+    name: Badezimmer
+    step: 0.5
+    show_hvac_modes: true
+    show_window_status: true
+    show_valve_position: false
+    show_battery_warning: false
+    battery_warning_level: 25
+    window_entity: binary_sensor.xxxxxx
+    compact: false
+    show_graph: true
+    graph_entity: sensor.xxxxxx
+    hours_to_show: 24
+    graph_line_width: 2
+    show_header: true
+    show_target_humidity: true
+    show_preset: true
+    show_fan_mode: true
+    show_swing_mode: true
+    show_heating_demand: false
+    show_humidity: true
+    humidity_warning_level: 70
+    manual_on_temperature_change: false
+    show_control_mode: true
+    window_close_delay: 0
+    window_open_delay: 0
+    humidity_entity: sensor.xxxxxx
+    window_auto_off: false
 ```
 
 ---
