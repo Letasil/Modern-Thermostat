@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Release version without the v prefix (for example 2.5.2)"
+        description: "Release version without the v prefix (for example 2.5.3)"
         required: true
-        default: "2.5.2"
+        default: "2.5.3"
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -13,6 +13,25 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      - name: Verify release version and package files
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import os
+          import re
+          version = os.environ["INPUT_VERSION"]
+          declared = Path("VERSION.txt").read_text(encoding="utf-8").strip()
+          root = Path("modern-thermostat.js").read_bytes()
+          dist = Path("dist/modern-thermostat.js").read_bytes()
+          text = root.decode("utf-8")
+          match = re.search(r"""const\s+Dt\s*=\s*["']([^"']+)["']""", text)
+          if version != declared or not match or match.group(1) != version:
+              raise SystemExit("Release input, VERSION.txt, and JavaScript version must match")
+          if root != dist:
+              raise SystemExit("Root and dist JavaScript files differ")
+          PY
       - name: Create release archive
         run: zip -r modern-thermostat-v${{ inputs.version }}.zip modern-thermostat.js translations
       - name: Create draft GitHub release

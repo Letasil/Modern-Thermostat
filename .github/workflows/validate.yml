@@ -13,7 +13,27 @@ jobs:
       - name: Validate JSON files
         run: |
           python -m json.tool hacs.json > /dev/null
+          for file in translations/*.json; do python -m json.tool "$file" > /dev/null; done
           for file in dist/translations/*.json; do python -m json.tool "$file" > /dev/null; done
+      - name: Validate version and synchronized files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          version = Path("VERSION.txt").read_text(encoding="utf-8").strip()
+          root = Path("modern-thermostat.js").read_bytes()
+          dist = Path("dist/modern-thermostat.js").read_bytes()
+          text = root.decode("utf-8")
+          match = re.search(r"""const\s+Dt\s*=\s*["']([^"']+)["']""", text)
+          if not match or match.group(1) != version:
+              raise SystemExit("VERSION.txt and JavaScript internal version differ")
+          if root != dist:
+              raise SystemExit("Root and dist JavaScript files differ")
+          root_translations = {p.name: p.read_bytes() for p in Path("translations").glob("*.json")}
+          dist_translations = {p.name: p.read_bytes() for p in Path("dist/translations").glob("*.json")}
+          if not root_translations or root_translations != dist_translations:
+              raise SystemExit("Root and dist translations are missing or differ")
+          PY
       - name: HACS validation
         uses: hacs/action@main
         with:
