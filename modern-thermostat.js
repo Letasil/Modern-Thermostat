@@ -1695,7 +1695,7 @@ class At{
     return raw;
   }
 }
-const kt=["critical","error","warning","info","normal"];function St(t){return kt.indexOf(t)}const Ct=new Set(["calibration","calibrating","kalibrierung","kalibrierfahrt","calibration_drive","reference_drive","referenzfahrt","valve_calibration","motor_calibration"]),Et=new Set(["valve_error","valve_blocked","valve_position_error","position_mismatch","motor_error","motor_blocked","ventilfehler","ventil_blockiert"]),Tt=new Set(["fault","error","failure","stoerung","fehler","sabotage","tamper","alarm"]),Mt=new Set(["unavailable","unknown","timeout","offline","not_reachable","communication_error"]),Pt=new Set(["update","updating","firmware_update","ota"]);const zt={off:"mdi:power",heat:"mdi:fire",cool:"mdi:snowflake",auto:"mdi:thermostat-auto",heat_cool:"mdi:autorenew",fan_only:"mdi:fan",dry:"mdi:water-off"};function Ot(t,e=1){return null==t?"—":t.toFixed(e)}function Nt(t,e,i){return Math.min(Math.max(t,e),i)}function Ht(t,e){return Math.round(t/e)*e}function jt(t){return t.startsWith("mdi:")?t:`mdi:${t}`}function Ut(t){const e=parseFloat(t);return isNaN(e)?null:e}const Dt="2.5.2";console.info(`%c MODERN-THERMOSTAT %c v${Dt} `,"background:#ff6b35;color:#fff;font-weight:700;border-radius:4px 0 0 4px;padding:2px 6px;","background:#1c2128;color:#ff6b35;font-weight:600;border-radius:0 4px 4px 0;padding:2px 6px;"),window.customCards=window.customCards??[],window.customCards.push({type:"modern-thermostat",name:"Modern Thermostat",description:"Modern TRV thermostat card with alert system and optional temperature graph.",preview:!0});let Lt=class extends nt{constructor(){var t;super(...arguments),this._localizer=new At(t,()=>this.requestUpdate()),this._activePanel="none",this._graphVisible=!1,this._windowTimer=void 0,this._windowLastOpen=null,this._windowTrackedSource=void 0,this._windowAutomationEnabled=false,this._windowRestoreMode=void 0,this._windowForcedMode=void 0,this._boostTimer=void 0,this._boostRemainingSeconds=null,this._lastSupportedTargetByEntity=new Map()}_delaySeconds(config,secondsKey,legacyMinutesKey,defaultSeconds){const seconds=config?.[secondsKey];if(seconds!==undefined&&seconds!==null&&Number.isFinite(Number(seconds)))return Math.min(3600,Math.max(0,Number(seconds)));const legacy=config?.[legacyMinutesKey];if(legacy!==undefined&&legacy!==null&&Number.isFinite(Number(legacy)))return Math.min(3600,Math.max(0,Number(legacy)*60));return defaultSeconds}setConfig(t){try{!function(t){if(!t.entity)throw new Error("[modern-thermostat] Missing required field: entity");if(!t.entity.startsWith("climate."))throw new Error(`[modern-thermostat] Entity must be a climate entity, got: ${t.entity}`)}(t)}catch(ft){return void(this._error=ft.message)}this._config={show_hvac_modes:!0,show_current_temperature:!0,show_battery_warning:!0,show_battery_info:!0,show_valve_position:!0,show_status:!0,show_graph:!1,compact:!1,step:.5,decimals:1,hours_to_show:24,graph_line_width:2,battery_warning_level:25,humidity_warning_level:70,show_version:!1,show_debug_info:!1,show_battery:!1,show_graph_button:!1,show_temperature_limits:!0,manual_on_temperature_change:!1,show_heating_demand:!1,...t,show_header:!0,show_status:!0,show_window_status:!0,window_auto_off:!1,window_open_delay:1,window_close_delay:1,window_open_delay_seconds:this._delaySeconds(t,"window_open_delay_seconds","window_open_delay",60),window_close_delay_seconds:this._delaySeconds(t,"window_close_delay_seconds","window_close_delay",180),show_humidity:!0,show_target_humidity:!1,show_preset:!1,show_fan_mode:!1,show_swing_mode:!1,show_control_mode:!1},this._activePanel="none",this._graphVisible=!1,this._error=void 0}getCardSize(){if(!this._config)return 3;let t=this._config.compact?2:3;return this._graphVisible&&!this._config.compact&&(t+=2),t}static async getConfigElement(){return await Promise.resolve().then(function(){return Vt}),document.createElement("modern-thermostat-editor")}static getStubConfig(hass, entities, entitiesFallback) {
+const kt=["critical","error","warning","info","normal"];function St(t){return kt.indexOf(t)}const Ct=new Set(["calibration","calibrating","kalibrierung","kalibrierfahrt","calibration_drive","reference_drive","referenzfahrt","valve_calibration","motor_calibration"]),Et=new Set(["valve_error","valve_blocked","valve_position_error","position_mismatch","motor_error","motor_blocked","ventilfehler","ventil_blockiert"]),Tt=new Set(["fault","error","failure","stoerung","fehler","sabotage","tamper","alarm"]),Mt=new Set(["unavailable","unknown","timeout","offline","not_reachable","communication_error"]),Pt=new Set(["update","updating","firmware_update","ota"]);const zt={off:"mdi:power",heat:"mdi:fire",cool:"mdi:snowflake",auto:"mdi:thermostat-auto",heat_cool:"mdi:autorenew",fan_only:"mdi:fan",dry:"mdi:water-off"};function Ot(t,e=1){return null==t?"—":t.toFixed(e)}function Nt(t,e,i){return Math.min(Math.max(t,e),i)}function Ht(t,e){return Math.round(t/e)*e}function jt(t){return t.startsWith("mdi:")?t:`mdi:${t}`}function Ut(t){const e=parseFloat(t);return isNaN(e)?null:e}const Dt="2.5.3";console.info(`%c MODERN-THERMOSTAT %c v${Dt} `,"background:#ff6b35;color:#fff;font-weight:700;border-radius:4px 0 0 4px;padding:2px 6px;","background:#1c2128;color:#ff6b35;font-weight:600;border-radius:0 4px 4px 0;padding:2px 6px;"),window.customCards=window.customCards??[],window.customCards.push({type:"modern-thermostat",name:"Modern Thermostat",description:"Modern TRV thermostat card with alert system and optional temperature graph.",preview:!0});let Lt=class extends nt{constructor(){var t;super(...arguments),this._localizer=new At(t,()=>this.requestUpdate()),this._activePanel="none",this._graphVisible=!1,this._windowTimer=void 0,this._windowLastOpen=null,this._windowTrackedSource=void 0,this._windowAutomationEnabled=false,this._windowRestoreMode=void 0,this._windowForcedMode=void 0,this._boostTimer=void 0,this._boostRemainingSeconds=null,this._lastSupportedTargetByEntity=new Map()}_delaySeconds(config,secondsKey,legacyMinutesKey,defaultSeconds){const seconds=config?.[secondsKey];if(seconds!==undefined&&seconds!==null&&Number.isFinite(Number(seconds)))return Math.min(3600,Math.max(0,Number(seconds)));const legacy=config?.[legacyMinutesKey];if(legacy!==undefined&&legacy!==null&&Number.isFinite(Number(legacy)))return Math.min(3600,Math.max(0,Number(legacy)*60));return defaultSeconds}setConfig(t){try{!function(t){if(!t.entity)throw new Error("[modern-thermostat] Missing required field: entity");if(!t.entity.startsWith("climate."))throw new Error(`[modern-thermostat] Entity must be a climate entity, got: ${t.entity}`)}(t)}catch(ft){return void(this._error=ft.message)}this._config={show_hvac_modes:!0,show_current_temperature:!0,show_battery_warning:!0,show_battery_info:!0,show_valve_position:!0,show_status:!0,show_graph:!1,compact:!1,step:.5,decimals:1,hours_to_show:24,graph_line_width:2,battery_warning_level:25,humidity_warning_level:70,show_version:!1,show_debug_info:!1,show_battery:!1,show_graph_button:!1,show_temperature_limits:!0,manual_on_temperature_change:!1,show_heating_demand:!1,...t,show_header:!0,show_status:!0,show_window_status:!0,window_auto_off:!1,window_open_delay:1,window_close_delay:1,window_open_delay_seconds:this._delaySeconds(t,"window_open_delay_seconds","window_open_delay",60),window_close_delay_seconds:this._delaySeconds(t,"window_close_delay_seconds","window_close_delay",180),show_humidity:!0,show_target_humidity:!1,show_preset:!1,show_fan_mode:!1,show_swing_mode:!1,show_control_mode:!1},this._activePanel="none",this._graphVisible=!1,this._error=void 0}getCardSize(){if(!this._config)return 3;let t=this._config.compact?2:3;return this._graphVisible&&!this._config.compact&&(t+=2),t}static async getConfigElement(){return await Promise.resolve().then(function(){return Vt}),document.createElement("modern-thermostat-editor")}static getStubConfig(hass, entities, entitiesFallback) {
   const allEntities = [
     ...(entities ?? []),
     ...(entitiesFallback ?? [])
@@ -2177,6 +2177,64 @@ _getWindowOpenState(){
 _getSavedWindowMode(){const key=this._windowRestoreKey();try{return key?window.localStorage.getItem(key)??this._windowRestoreMode??null:this._windowRestoreMode??null;}catch{return this._windowRestoreMode??null;}}
 _saveWindowMode(mode){this._windowRestoreMode=mode;const key=this._windowRestoreKey();try{if(key)window.localStorage.setItem(key,mode);}catch{}}
 _clearSavedWindowMode(){this._windowRestoreMode=void 0;const key=this._windowRestoreKey();try{if(key)window.localStorage.removeItem(key);}catch{}}
+_setpointStorageKey(entityId){return entityId?"modern-thermostat:setpoint:"+entityId:null;}
+_getSavedSetpoint(entityId){
+ if(!entityId)return null;
+ this._savedSetpointByEntity??=new Map();
+ if(this._savedSetpointByEntity.has(entityId))return this._savedSetpointByEntity.get(entityId);
+ let saved=null;
+ try{
+  const raw=window.localStorage.getItem(this._setpointStorageKey(entityId));
+  if(raw){const parsed=JSON.parse(raw),temperature=parsed?.temperature===undefined||parsed?.temperature===null?NaN:Number(parsed.temperature);if(Number.isFinite(temperature))saved={temperature,pendingRestore:parsed.pendingRestore===true,awaitingOff:parsed.awaitingOff===true};}
+ }catch{}
+ this._savedSetpointByEntity.set(entityId,saved);
+ return saved;
+}
+_saveSetpoint(entityId,temperature,pendingRestore=false,awaitingOff=false){
+ if(!entityId||temperature===undefined||temperature===null||temperature==="")return null;
+ const value=Number(temperature);
+ if(!Number.isFinite(value))return null;
+ const saved={temperature:value,pendingRestore:pendingRestore===true,awaitingOff:awaitingOff===true};
+ this._savedSetpointByEntity??=new Map();
+ this._savedSetpointByEntity.set(entityId,saved);
+ try{window.localStorage.setItem(this._setpointStorageKey(entityId),JSON.stringify(saved));}catch{}
+ return saved;
+}
+_restoreSavedSetpointIfNeeded(){
+ const id=this._config?.entity,entity=this.hass?.states?.[id],saved=this._getSavedSetpoint(id);
+ if(!id||!entity||!saved?.pendingRestore||["off","unknown","unavailable"].includes(entity.state))return;
+ // An off command may have been accepted even if the card has not received
+ // the state change yet. Wait until render observes off (or the target drops).
+ if(saved.awaitingOff)return;
+ const attrs=entity.attributes??{},minValue=Number.isFinite(parseFloat(attrs.min_temp))?parseFloat(attrs.min_temp):5,maxValue=Number.isFinite(parseFloat(attrs.max_temp))?parseFloat(attrs.max_temp):35;
+ const target=Math.min(maxValue,Math.max(minValue,saved.temperature));
+ if(Math.abs(target-saved.temperature)>.01)this._saveSetpoint(id,target,true);
+ const current=attrs.temperature===undefined||attrs.temperature===null?NaN:parseFloat(attrs.temperature);
+ if(Number.isFinite(current)&&Math.abs(current-target)<=.01){
+  this._lastSupportedTargetByEntity??=new Map();this._lastSupportedTargetByEntity.set(id,target);this._saveSetpoint(id,target,false);this._setpointRestoreAttempts?.delete(id+"|"+target);return;
+ }
+ const key=id+"|"+target;
+ this._setpointRestoreInFlight??=new Set();this._setpointRestoreAttempts??=new Map();
+ if(this._setpointRestoreInFlight.has(key))return;
+ const attempts=this._setpointRestoreAttempts.get(key)??0;
+ if(attempts>=5)return;
+ this._setpointRestoreAttempts.set(key,attempts+1);this._setpointRestoreInFlight.add(key);
+ const finish=()=>{
+  this._setpointRestoreTimer=setTimeout(()=>{
+   this._setpointRestoreTimer=void 0;this._setpointRestoreInFlight.delete(key);
+   if(!this.isConnected)return;
+   const latestSaved=this._getSavedSetpoint(id),latestEntity=this.hass?.states?.[id],latest=latestEntity?.attributes?.temperature===undefined||latestEntity?.attributes?.temperature===null?NaN:parseFloat(latestEntity.attributes.temperature);
+   if(!latestSaved?.pendingRestore||Math.abs(latestSaved.temperature-target)>.01)return;
+   if(latestEntity&&!["off","unknown","unavailable"].includes(latestEntity.state)&&Number.isFinite(latest)&&Math.abs(latest-target)<=.01){
+    this._lastSupportedTargetByEntity??=new Map();this._lastSupportedTargetByEntity.set(id,target);this._saveSetpoint(id,target,false);this._setpointRestoreAttempts.delete(key);return;
+   }
+   if((this._setpointRestoreAttempts.get(key)??0)<5)this._restoreSavedSetpointIfNeeded();
+  },1000);
+ };
+ try{
+  Promise.resolve(this.hass.callService("climate","set_temperature",{entity_id:id,temperature:target})).then(finish,error=>{console.warn("[modern-thermostat] Could not restore the saved setpoint after switching the thermostat on",error);finish();});
+ }catch(error){console.warn("[modern-thermostat] Could not restore the saved setpoint after switching the thermostat on",error);finish();}
+}
 _syncWindowAutomation(){
  const enabled=this._config?.window_auto_off===true;
  if(!enabled){if(this._windowTimer!==void 0){clearTimeout(this._windowTimer);this._windowTimer=void 0;}const state=this._getWindowOpenState();if(this._getSavedWindowMode()&&(state===false||this._windowAutomationEnabled))this._restoreWindowMode(true);this._windowAutomationEnabled=false;this._windowLastOpen=state;return;}
@@ -2198,13 +2256,22 @@ async _turnOffForWindowOpen(){
   console.info("[modern-thermostat] Window auto-off skipped: this climate entity does not report off/turn_off support.");
   return;
  }
- const savedMode=this._getSavedWindowMode();
+ const savedMode=this._getSavedWindowMode(),attrs=entity.attributes??{};
+ const savedSetpoint=this._getSavedSetpoint(id),currentTarget=attrs.temperature===undefined||attrs.temperature===null?NaN:parseFloat(attrs.temperature);
+ const rememberedTarget=this._lastSupportedTargetByEntity?.get(id),targetToRestore=Number.isFinite(rememberedTarget)?rememberedTarget:Number.isFinite(currentTarget)?currentTarget:savedSetpoint?.temperature;
+ if(Number.isFinite(targetToRestore))this._saveSetpoint(id,targetToRestore,true,true);
  if(!savedMode)this._saveWindowMode(mode);
  try{
   if(supportsTurnOff)await this.hass.callService("climate","turn_off",{entity_id:id});
   else await this.hass.callService("climate","set_hvac_mode",{entity_id:id,hvac_mode:"off"});
   this._windowForcedMode=mode;
  }catch(error){
+  const latest=this.hass?.states?.[id];
+  const latestTarget=latest?.attributes?.temperature===undefined||latest?.attributes?.temperature===null?NaN:parseFloat(latest.attributes.temperature);
+  const minTarget=Number.isFinite(parseFloat(latest?.attributes?.min_temp))?parseFloat(latest.attributes.min_temp):5;
+  const targetDropped=Number.isFinite(targetToRestore)&&Number.isFinite(latestTarget)&&latestTarget<=minTarget+.01&&targetToRestore>latestTarget+.01;
+  if(latest?.state==="off"||targetDropped){this._saveSetpoint(id,targetToRestore,true,false);setTimeout(()=>this._restoreSavedSetpointIfNeeded(),0);}
+  else if(Number.isFinite(latestTarget))this._saveSetpoint(id,latestTarget,false,false);
   if(!savedMode)this._clearSavedWindowMode();
   console.warn("[modern-thermostat] Could not turn thermostat off for open window",error);
  }
@@ -2215,7 +2282,8 @@ async _restoreWindowMode(force=false){
  if(entity.state!=="off"){this._clearSavedWindowMode();this._windowForcedMode=void 0;return;}
  const modes=entity.attributes?.hvac_modes;
  if(!Array.isArray(modes)||!modes.includes(mode)){this._clearSavedWindowMode();this._windowForcedMode=void 0;return;}
- try{await this.hass.callService("climate","set_hvac_mode",{entity_id:id,hvac_mode:mode});this._clearSavedWindowMode();this._windowForcedMode=void 0;}catch(error){console.warn("[modern-thermostat] Could not restore thermostat mode after window closed",error);}
+ const savedSetpoint=this._getSavedSetpoint(id);if(savedSetpoint)this._saveSetpoint(id,savedSetpoint.temperature,true);
+ try{await this.hass.callService("climate","set_hvac_mode",{entity_id:id,hvac_mode:mode});this._clearSavedWindowMode();this._windowForcedMode=void 0;setTimeout(()=>this._restoreSavedSetpointIfNeeded(),400);}catch(error){console.warn("[modern-thermostat] Could not restore thermostat mode after window closed",error);}
 }
 _getBoostCountdownInfo(){
  const entity=this.hass?.states?.[this._config?.entity];
@@ -2328,18 +2396,31 @@ _togglePanel(t){
   if("unavailable"===e.state)return I`<div class="mt-unified-card mode-off"><ha-card><div class="mt-error"><ha-icon icon="mdi:thermometer-off"></ha-icon>${t.ui("unavailable")}: ${this._config.entity}</div></ha-card></div>`;
 
   // Manche Climate-Integrationen setzen beim Ausschalten den Sollwert auf
-  // min_temp (oft 5 °C), obwohl sie off nicht unterstützen. Den letzten
-  // bestätigten Sollwert behalten und einen solchen Sprung zurückweisen.
+  // min_temp (oft 5 °C). Den bestätigten Sollwert lokal sichern und den
+  // automatischen Rücksprung beim Wiedereinschalten wiederherstellen.
   const incomingTarget=e.attributes?.temperature!==undefined&&e.attributes?.temperature!==null?parseFloat(e.attributes.temperature):null;
   const supportedFeatures=Number(e.attributes?.supported_features??0);
   const hvacModes=Array.isArray(e.attributes?.hvac_modes)?e.attributes.hvac_modes:[];
   const offSupported=hvacModes.includes("off")||(Number.isFinite(supportedFeatures)&&(supportedFeatures&128)!==0);
   this._lastSupportedTargetByEntity??=new Map();
-  const lastTarget=this._lastSupportedTargetByEntity.get(this._config.entity);
+  const entityId=this._config.entity,savedTarget=this._getSavedSetpoint(entityId);
+  let lastTarget=this._lastSupportedTargetByEntity.get(entityId);
+  if(!Number.isFinite(lastTarget)&&Number.isFinite(savedTarget?.temperature)){lastTarget=savedTarget.temperature;this._lastSupportedTargetByEntity.set(entityId,lastTarget);}
   const minTarget=Number.isFinite(parseFloat(e.attributes?.min_temp))?parseFloat(e.attributes.min_temp):5;
   const offDroppedToMinimum=(e.state==="off"||!offSupported)&&Number.isFinite(incomingTarget)&&Number.isFinite(lastTarget)&&incomingTarget<=minTarget+.01&&lastTarget>incomingTarget+.01;
-  const ignoreOffTarget=e.state==="off"&&!offSupported||offDroppedToMinimum;
-  if(Number.isFinite(incomingTarget)&&!ignoreOffTarget)this._lastSupportedTargetByEntity.set(this._config.entity,incomingTarget);
+  const pendingRestoreFloor=savedTarget?.pendingRestore===true&&e.state!=="off"&&Number.isFinite(incomingTarget)&&incomingTarget<=minTarget+.01&&savedTarget.temperature>incomingTarget+.01;
+  const awaitingOffTarget=savedTarget?.awaitingOff===true&&e.state!=="off"&&Number.isFinite(incomingTarget)&&Math.abs(incomingTarget-savedTarget.temperature)<=.01;
+  const ignoreOffTarget=offDroppedToMinimum||pendingRestoreFloor;
+  if(Number.isFinite(incomingTarget)&&!ignoreOffTarget&&!awaitingOffTarget){
+    this._lastSupportedTargetByEntity.set(entityId,incomingTarget);
+    this._saveSetpoint(entityId,incomingTarget,e.state==="off");
+  }else if(Number.isFinite(lastTarget)&&e.state==="off"){
+    this._saveSetpoint(entityId,lastTarget,true,false);
+  }else if(Number.isFinite(lastTarget)&&(pendingRestoreFloor||offDroppedToMinimum)){
+    this._saveSetpoint(entityId,lastTarget,true,false);
+  }else if(Number.isFinite(lastTarget)&&awaitingOffTarget){
+    this._saveSetpoint(entityId,lastTarget,true,true);
+  }
   const targetTemp=ignoreOffTarget?(lastTarget??incomingTarget):incomingTarget;
 
   const i={
@@ -2864,7 +2945,12 @@ _adjustTemp(t,e){
   this._clearOptimisticTimer();
   this._optimisticTimer=setTimeout(()=>{this._optimisticTarget=void 0},5e3);
   const serviceTemp=Nt(a,minT,maxT);
-  this.hass.callService("climate","set_temperature",{entity_id:this._config.entity,temperature:serviceTemp});
+  const entityId=this._config.entity,climateEntity=this.hass.states?.[entityId],pendingRestore=climateEntity?.state==="off";
+  try{
+    const result=this.hass.callService("climate","set_temperature",{entity_id:entityId,temperature:serviceTemp});
+    if(result&&typeof result.then==="function")result.then(()=>{this._lastSupportedTargetByEntity??=new Map();this._lastSupportedTargetByEntity.set(entityId,serviceTemp);this._saveSetpoint(entityId,serviceTemp,pendingRestore);}).catch(error=>console.warn("[modern-thermostat] Could not set the requested temperature",error));
+    else{this._lastSupportedTargetByEntity??=new Map();this._lastSupportedTargetByEntity.set(entityId,serviceTemp);this._saveSetpoint(entityId,serviceTemp,pendingRestore);}
+  }catch(error){console.warn("[modern-thermostat] Could not set the requested temperature",error);}
   // Optional: nach Sollwertänderung Handbetrieb aktivieren
   if(!0===this._config.manual_on_temperature_change){
     const climateEntity=this.hass.states[this._config.entity];
@@ -2900,22 +2986,37 @@ async _turnOffClimate(){
   const entityId=this._config.entity,entity=this.hass.states?.[entityId],attrs=entity?.attributes??{};
   const modes=Array.isArray(attrs.hvac_modes)?attrs.hvac_modes:[],features=Number(attrs.supported_features??0);
   const supportsTurnOff=Number.isFinite(features)&&(features&128)!==0;
+  const currentTarget=attrs.temperature===undefined||attrs.temperature===null?NaN:parseFloat(attrs.temperature),savedTarget=this._getSavedSetpoint(entityId);
+  const rememberedTarget=this._lastSupportedTargetByEntity?.get(entityId),targetToRestore=Number.isFinite(rememberedTarget)?rememberedTarget:Number.isFinite(currentTarget)?currentTarget:savedTarget?.temperature;
+  if(!supportsTurnOff&&!modes.includes("off")){
+    console.info("[modern-thermostat] Off command skipped: this climate entity does not report off/turn_off support.");
+    return;
+  }
+  if(Number.isFinite(targetToRestore))this._saveSetpoint(entityId,targetToRestore,true,true);
   try{
     if(supportsTurnOff)await this.hass.callService("climate","turn_off",{entity_id:entityId});
-    else if(modes.includes("off"))await this.hass.callService("climate","set_hvac_mode",{entity_id:entityId,hvac_mode:"off"});
-    else{
-      console.info("[modern-thermostat] Off command skipped: this climate entity does not report off/turn_off support.");
-      return;
-    }
+    else await this.hass.callService("climate","set_hvac_mode",{entity_id:entityId,hvac_mode:"off"});
     setTimeout(()=>{"hvac"===this._activePanel&&(this._activePanel="none")},320);
-  }catch(error){console.warn("[modern-thermostat] Could not turn thermostat off",error);}
+  }catch(error){
+    const latest=this.hass.states?.[entityId],latestTarget=latest?.attributes?.temperature===undefined||latest?.attributes?.temperature===null?NaN:parseFloat(latest.attributes.temperature);
+    const minTarget=Number.isFinite(parseFloat(latest?.attributes?.min_temp))?parseFloat(latest.attributes.min_temp):5;
+    const targetDropped=Number.isFinite(targetToRestore)&&Number.isFinite(latestTarget)&&latestTarget<=minTarget+.01&&targetToRestore>latestTarget+.01;
+    if((latest?.state==="off"||targetDropped)&&Number.isFinite(targetToRestore)){this._saveSetpoint(entityId,targetToRestore,true,false);setTimeout(()=>this._restoreSavedSetpointIfNeeded(),0);}
+    else if(Number.isFinite(latestTarget))this._saveSetpoint(entityId,latestTarget,false,false);
+    console.warn("[modern-thermostat] Could not turn thermostat off",error);
+  }
 }
 _setMode(mode){
   if(!this.hass||!this._config)return;
   if(mode==="off"){void this._turnOffClimate();return;}
-  const entity=this.hass.states?.[this._config.entity],modes=entity?.attributes?.hvac_modes;
+  const entityId=this._config.entity,entity=this.hass.states?.[entityId],modes=entity?.attributes?.hvac_modes;
   if(!Array.isArray(modes)||!modes.includes(mode))return;
-  this.hass.callService("climate","set_hvac_mode",{entity_id:this._config.entity,hvac_mode:mode});
+  const wasOff=entity?.state==="off",savedTarget=this._getSavedSetpoint(entityId);
+  if(wasOff&&savedTarget)this._saveSetpoint(entityId,savedTarget.temperature,true);
+  try{
+   const result=this.hass.callService("climate","set_hvac_mode",{entity_id:entityId,hvac_mode:mode});
+   if(wasOff)Promise.resolve(result).then(()=>setTimeout(()=>this._restoreSavedSetpointIfNeeded(),400)).catch(error=>console.warn("[modern-thermostat] Could not switch thermostat mode back on",error));
+  }catch(error){console.warn("[modern-thermostat] Could not switch thermostat mode back on",error);}
   setTimeout(()=>{"hvac"===this._activePanel&&(this._activePanel="none")},320);
 }
 
@@ -2926,27 +3027,11 @@ _clearOptimisticTimer(){
   )
 }
 
-_repairOffSetpointMinimum(){
-  const id=this._config?.entity,entity=this.hass?.states?.[id],attrs=entity?.attributes??{};
-  const target=attrs.temperature===undefined||attrs.temperature===null?NaN:parseFloat(attrs.temperature);
-  const parsedMin=parseFloat(attrs.min_temp),min=Number.isFinite(parsedMin)?parsedMin:5;
-  const last=this._lastSupportedTargetByEntity?.get(id);
-  const features=Number(attrs.supported_features??0),modes=Array.isArray(attrs.hvac_modes)?attrs.hvac_modes:[],offSupported=modes.includes("off")||(Number.isFinite(features)&&(features&128)!==0);
-  const shouldRepair=(entity?.state==="off"||!offSupported)&&Number.isFinite(target)&&target<=min+.01&&Number.isFinite(last)&&last>target+.01;
-  if(!shouldRepair){this._unsupportedOffRecoveryKey=void 0;return;}
-  const key=`${id}|${target}|${last}`;
-  if(this._unsupportedOffRecoveryKey===key)return;
-  this._unsupportedOffRecoveryKey=key;
-  try{
-    const result=this.hass.callService("climate","set_temperature",{entity_id:id,temperature:last});
-    if(result&&typeof result.catch==="function")result.catch(error=>console.warn("[modern-thermostat] Could not restore the setpoint after an off-to-minimum change",error));
-  }catch(error){console.warn("[modern-thermostat] Could not restore the setpoint after an off-to-minimum change",error);}
-}
-
 disconnectedCallback(){
   this._cancelHeaderHold();
   super.disconnectedCallback();
   this._clearOptimisticTimer();
+  if(this._setpointRestoreTimer!==undefined){clearTimeout(this._setpointRestoreTimer);this._setpointRestoreTimer=void 0;this._setpointRestoreInFlight?.clear();}
   if(this._windowTimer!==void 0){clearTimeout(this._windowTimer);this._windowTimer=void 0;}
   if(this._boostTimer!==void 0){clearInterval(this._boostTimer);this._boostTimer=void 0;}
 }
@@ -2954,7 +3039,7 @@ updated(t){
   super.updated(t);
   this._syncWindowAutomation();
   this._syncBoostCountdown();
-  this._repairOffSetpointMinimum();
+  this._restoreSavedSetpointIfNeeded();
   if(this._isWindowOpen()&&"none"!==this._activePanel){
     this._activePanel="none";
   }

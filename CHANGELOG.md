@@ -5,6 +5,13 @@ All notable changes to **Modern Thermostat Card** are documented here.
 Format: `major.minor.patch` — [Semantic Versioning](https://semver.org/)
 
 ---
+## 2.5.3 - 2026-11-21
+
+- Persist the last confirmed setpoint per climate entity in browser storage so it survives dashboard and browser reloads.
+- After the thermostat is switched back to an active HVAC mode, restore the saved setpoint if the integration replaced it with its minimum temperature.
+- Apply the same recovery to window-contact automation and retry briefly until Home Assistant reports the restored target.
+- Validate matching internal and repository versions, identical root/dist card files, and matching valid translation files before release.
+
 ## 2.5.2 - 2026-11-20
 
 - Corrected the HACS dashboard layout: the card and all runtime translations are now under `dist/`, the default branch is available for review installs, and repository validation checks the same layout.
