@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Release version without the v prefix (for example 2.5.3)"
+        description: "Release version without the v prefix (for example 2.5.4)"
         required: true
-        default: "2.5.3"
+        default: "2.5.4"
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -19,6 +19,7 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          import json
           import os
           import re
           version = os.environ["INPUT_VERSION"]
@@ -31,6 +32,16 @@ jobs:
               raise SystemExit("Release input, VERSION.txt, and JavaScript version must match")
           if root != dist:
               raise SystemExit("Root and dist JavaScript files differ")
+          manifest = json.loads(Path("hacs.json").read_text(encoding="utf-8"))
+          if manifest.get("filename") != "modern-thermostat.js" or manifest.get("content_in_root") is not False:
+              raise SystemExit("Marketplace filename/content_in_root mismatch")
+          embedded_match = re.search(r"const MT_TRANSLATION_EMBEDDED=(\{.*?\});", text)
+          if not embedded_match:
+              raise SystemExit("Embedded translations are missing")
+          embedded = json.loads(embedded_match.group(1))
+          source = {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in Path("translations").glob("*.json")}
+          if not source or embedded != source:
+              raise SystemExit("Embedded translations differ from JSON sources")
           PY
       - name: Create release archive
         run: zip -r modern-thermostat-v${{ inputs.version }}.zip modern-thermostat.js translations
@@ -41,4 +52,6 @@ jobs:
           name: modern-thermostat V${{ inputs.version }}
           body_path: GITHUB_RELEASE_NOTES.md
           draft: true
-          files: modern-thermostat-v${{ inputs.version }}.zip
+          files: |
+            modern-thermostat.js
+            modern-thermostat-v${{ inputs.version }}.zip
