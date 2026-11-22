@@ -1,14 +1,11 @@
 # GitHub release for Modern Thermostat
 
-## Version 2.5.3
-
-The release workflow is manual and is not triggered by pushes to the default branch. It creates a draft release for review.
-
-When the reviewed files are approved for release:
+## Version 2.5.4
 
 1. Open **Actions → Release → Run workflow**.
-2. Enter `2.5.3` without a `v` prefix.
-3. Review the generated draft release: tag `v2.5.3`, title `modern-thermostat V2.5.3`, and asset `modern-thermostat-v2.5.3.zip`.
-4. Publish the draft only after the package and installation have been checked.
+2. Enter `2.5.4` without a `v` prefix.
+3. Review draft tag `v2.5.4` and title `modern-thermostat V2.5.4`.
+4. Confirm the release contains the standalone asset `modern-thermostat.js` and manual-install ZIP `modern-thermostat-v2.5.4.zip`. Marketplace requires the JavaScript asset name to match exactly.
+5. Publish only after the draft and installation are checked.
 
-The workflow creates a manual-install ZIP from the root `modern-thermostat.js` and `translations/`. HACS dashboard files are also available in `dist/` with `content_in_root` disabled.
+The ZIP contains `modern-thermostat.js` and `translations/` at the archive root. The JavaScript includes embedded translations as a fallback for single-file Marketplace installation.

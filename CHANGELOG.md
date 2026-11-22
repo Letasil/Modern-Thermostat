@@ -5,6 +5,12 @@ All notable changes to **Modern Thermostat Card** are documented here.
 Format: `major.minor.patch` — [Semantic Versioning](https://semver.org/)
 
 ---
+## 2.5.4 - 2026-11-22
+
+- Publish `modern-thermostat.js` as a standalone release asset with the exact filename Home Assistant Marketplace resolves.
+- Embed all nine translations as a built-in fallback for Marketplace single-file installs while keeping the JSON language files for repository and manual installs.
+- Validate embedded translations against the JSON sources and keep the manual ZIP contents at its root.
+
 ## 2.5.3 - 2026-11-21
 
 - Persist the last confirmed setpoint per climate entity in browser storage so it survives dashboard and browser reloads.

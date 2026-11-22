@@ -71,15 +71,19 @@ These previews show the standard card with its built-in trend, the compact layou
 3. Add `/local/community/modern-thermostat/modern-thermostat.js` as a JavaScript module resource if HACS has not added it automatically.
 4. Reload the browser.
 
+### Home Assistant Marketplace
+
+The release publishes a standalone asset named exactly `modern-thermostat.js`, which Marketplace uses to install the dashboard resource. All nine translations are embedded as a fallback in that file; the repository and manual-install ZIP also keep the JSON language files.
+
 ### Manual installation
 
-1. Download the `modern-thermostat-v2.5.3.zip` release asset.
+1. Download the `modern-thermostat-v2.5.4.zip` release asset.
 2. Copy `modern-thermostat.js` and the complete `translations/` folder into `config/www/community/modern-thermostat/`.
 3. Add the resource as a JavaScript module:
 
 ```yaml
 resources:
-  - url: /local/community/modern-thermostat/modern-thermostat.js?v=2.5.3
+  - url: /local/community/modern-thermostat/modern-thermostat.js?v=2.5.4
     type: module
 ```
 

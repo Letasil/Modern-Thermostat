@@ -1,8 +1,6 @@
-# modern-thermostat V2.5.3
+# modern-thermostat V2.5.4
 
-- Persist the last confirmed setpoint per climate entity in browser storage so it survives dashboard and browser reloads.
-- Restore the saved target after the thermostat returns from off to an active HVAC mode when its integration reset the target to the minimum.
-- Apply the same recovery to the optional window-contact automation and retry briefly until Home Assistant reports the restored target.
-- Add release checks for version consistency, identical root/dist card files, and matching valid translation files.
-
-The HACS distribution is in `dist/`. The release workflow creates a manual-install ZIP with `modern-thermostat.js` and `translations/` at its root.
+- Publish a standalone `modern-thermostat.js` release asset for Home Assistant Marketplace.
+- Embed German, English, Spanish, French, Dutch, Polish, Russian, Turkish, and Arabic translations as a fallback when Marketplace installs only the JavaScript file.
+- Keep the nine JSON translation files in the repository and manual-install ZIP.
+- Keep the manual-install ZIP structure as `modern-thermostat.js` and `translations/*.json` at the archive root.
