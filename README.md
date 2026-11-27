@@ -16,7 +16,8 @@ A standalone Home Assistant Lovelace thermostat card. The trend chart, setpoint 
 - Trend line with threshold colors, fading fill, extrema, times, setpoint history, and localized hover
 - Optional window-contact automation with independent open and close delays; disabled by default
 - Off controls are limited to modes/services advertised by the climate entity. If switching off drops the target to its minimum (commonly 5 °C), the card retains and restores the last confirmed setpoint, including when the integration keeps reporting an active HVAC mode.
-- The last confirmed setpoint is saved in browser storage and restored after the thermostat is switched back on.
+- Setpoint recovery preserves the previous target across connection loss and off/on transitions. Unconfirmed targets stay red until Home Assistant reports the requested value.
+- Press and hold an individual reading to open its history. Holding the room name or icon opens the thermostat details.
 - Expandable, localized editor sections with wide stacked window delay sliders
 - German, English, Spanish, French, Dutch, Polish, Russian, Turkish, and Arabic translations
 - Home Assistant light and dark theme support
@@ -77,13 +78,13 @@ The release publishes a standalone asset named exactly `modern-thermostat.js`, w
 
 ### Manual installation
 
-1. Download the `modern-thermostat-v2.5.4.zip` release asset.
+1. Download the `modern-thermostat-v2.6.0.zip` release asset.
 2. Copy `modern-thermostat.js` and the complete `translations/` folder into `config/www/community/modern-thermostat/`.
 3. Add the resource as a JavaScript module:
 
 ```yaml
 resources:
-  - url: /local/community/modern-thermostat/modern-thermostat.js?v=2.5.4
+  - url: /local/community/modern-thermostat/modern-thermostat.js?v=2.6.0
     type: module
 ```
 

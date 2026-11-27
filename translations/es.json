@@ -11,10 +11,10 @@
   "action": {
     "idle": "En espera",
     "off": "Apagado",
-    "heating": "Calentando",
-    "fan": "Ventilando",
-    "drying": "Deshumidificando",
-    "cooling": "Enfriando"
+    "heating": "Calor",
+    "fan": "Solo ventilador",
+    "drying": "Deshumidificación",
+    "cooling": "Frío"
   },
   "sensor": {
     "window_open": "Ventana abierta",
@@ -110,7 +110,8 @@
     "target_humidity": "Humedad objetivo",
     "default_name": "Termostato",
     "battery": "Batería",
-    "boost_short": "Boost"
+    "boost_short": "Boost",
+    "hold_history": "Mantén pulsado para abrir el historial"
   },
   "aria": {
     "decrease": "Bajar temperatura",

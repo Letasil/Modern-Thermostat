@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Release version without the v prefix (for example 2.5.4)"
+        description: "Release version without the v prefix (for example 2.6.0)"
         required: true
-        default: "2.5.4"
+        default: "2.6.0"
 jobs:
   release:
     runs-on: ubuntu-latest

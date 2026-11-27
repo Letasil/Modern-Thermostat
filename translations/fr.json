@@ -11,10 +11,10 @@
   "action": {
     "idle": "En veille",
     "off": "Arrêt",
-    "heating": "En chauffage",
-    "fan": "Ventilation",
-    "drying": "En déshumidification",
-    "cooling": "En climatisation"
+    "heating": "Chauffage",
+    "fan": "Ventilation seule",
+    "drying": "Déshumidification",
+    "cooling": "Climatisation"
   },
   "sensor": {
     "window_open": "Fenêtre ouverte",
@@ -110,7 +110,8 @@
     "target_humidity": "Humidité cible",
     "default_name": "Thermostat",
     "battery": "Batterie",
-    "boost_short": "Boost"
+    "boost_short": "Boost",
+    "hold_history": "Maintenir appuyé pour ouvrir l’historique"
   },
   "aria": {
     "decrease": "Diminuer la température",

@@ -11,10 +11,10 @@
   "action": {
     "idle": "Idle",
     "off": "Off",
-    "heating": "Heating",
-    "fan": "Fan running",
-    "drying": "Dehumidifying",
-    "cooling": "Cooling"
+    "heating": "Heat",
+    "fan": "Fan only",
+    "drying": "Dry",
+    "cooling": "Cool"
   },
   "sensor": {
     "window_open": "Window open",
@@ -110,7 +110,8 @@
     "target_humidity": "Target humidity",
     "default_name": "Thermostat",
     "battery": "Battery",
-    "boost_short": "Boost"
+    "boost_short": "Boost",
+    "hold_history": "Press and hold to open history"
   },
   "aria": {
     "decrease": "Decrease temperature",

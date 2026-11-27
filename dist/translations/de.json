@@ -11,10 +11,10 @@
   "action": {
     "idle": "Bereitschaft",
     "off": "Aus",
-    "heating": "Heizt",
-    "fan": "Lüftet",
-    "drying": "Entfeuchtet",
-    "cooling": "Kühlt"
+    "heating": "Heizen",
+    "fan": "Nur Lüften",
+    "drying": "Entfeuchten",
+    "cooling": "Kühlen"
   },
   "sensor": {
     "window_open": "Fenster offen",
@@ -110,7 +110,8 @@
     "target_humidity": "Soll-Feuchte",
     "default_name": "Thermostat",
     "battery": "Batterie",
-    "boost_short": "Boost"
+    "boost_short": "Boost",
+    "hold_history": "Gedrückt halten, um den Verlauf zu öffnen"
   },
   "aria": {
     "decrease": "Temperatur senken",

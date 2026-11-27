@@ -11,10 +11,10 @@
   "action": {
     "idle": "Stand-by",
     "off": "Uit",
-    "heating": "Aan het verwarmen",
-    "fan": "Ventileren",
-    "drying": "Aan het ontvochtigen",
-    "cooling": "Aan het koelen"
+    "heating": "Verwarmen",
+    "fan": "Alleen ventilator",
+    "drying": "Ontvochtigen",
+    "cooling": "Koelen"
   },
   "sensor": {
     "window_open": "Raam open",
@@ -110,7 +110,8 @@
     "target_humidity": "Doelluchtvochtigheid",
     "default_name": "Thermostaat",
     "battery": "Batterij",
-    "boost_short": "Boost"
+    "boost_short": "Boost",
+    "hold_history": "Houd ingedrukt om de geschiedenis te openen"
   },
   "aria": {
     "decrease": "Temperatuur verlagen",

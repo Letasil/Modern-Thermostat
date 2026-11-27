@@ -11,10 +11,10 @@
   "action": {
     "idle": "Beklemede",
     "off": "Kapalı",
-    "heating": "Isıtıyor",
-    "fan": "Fan çalışıyor",
-    "drying": "Nem alıyor",
-    "cooling": "Soğutuyor"
+    "heating": "Isıtma",
+    "fan": "Yalnızca fan",
+    "drying": "Nem alma",
+    "cooling": "Soğutma"
   },
   "sensor": {
     "window_open": "Pencere açık",
@@ -110,7 +110,8 @@
     "target_humidity": "Hedef nem",
     "default_name": "Termostat",
     "battery": "Pil",
-    "boost_short": "Boost"
+    "boost_short": "Boost",
+    "hold_history": "Geçmişi açmak için basılı tutun"
   },
   "aria": {
     "decrease": "Sıcaklığı düşür",
