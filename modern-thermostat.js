@@ -398,22 +398,17 @@ function t(t,e,i,a){var r,o=arguments.length,s=o<3?e:null===a?a=Object.getOwnPro
   }
 
   /* ── HVAC mode pills (inside panel slot) ──────────────── */
-  /* Zweireihiges Modusfeld v1.9.6 */
   .mt-mode-layout {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-flow: row wrap-reverse;
+    justify-content: center;
     gap: 7px;
     width: 100%;
     padding: 8px var(--mt-spacing) 10px;
   }
-  .mt-mode-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 7px;
-    width: 100%;
-    flex-wrap: nowrap;
+  .mt-panel-slot.open:has(> .mt-mode-layout),
+  .mt-unified-card.compact .mt-panel-slot.open:has(> .mt-mode-layout) {
+    max-height: none;
   }
   .mt-mode-option {
     position: relative;
@@ -637,7 +632,7 @@ function t(t,e,i,a){var r,o=arguments.length,s=o<3?e:null===a?a=Object.getOwnPro
   }
   .mt-stat ha-icon { --mdc-icon-size: 14px; opacity: 0.75; }
   .mt-stat.heating-demand ha-icon { color:var(--mt-heat,#ff6b35); opacity:1; }
-  .mt-stat-val { font-variant-numeric: tabular-nums; color: var(--primary-text-color); font-weight: 600; }
+  .mt-stat-val { font-variant-numeric: tabular-nums; color: var(--secondary-text-color); font-weight: 600; }
 
   /* ── Graph wrapper – seamless unified card ────────────── */
   /*
@@ -1379,7 +1374,7 @@ function t(t,e,i,a){var r,o=arguments.length,s=o<3?e:null===a?a=Object.getOwnPro
     .mt-btn-chevron { --mdc-icon-size: 11px !important; }
     .mt-status-bar { padding-left: 6px; padding-right: 6px; }
     .mt-stat { padding: 2px 5px; font-size: 10px; }
-    .mt-mode-row { gap: 5px; }
+    .mt-mode-layout { gap: 5px; }
     .mt-mode-option { width: auto; max-width: none; flex: 1 1 0; padding: 6px 5px; gap: 4px; font-size: 10px; }
     .mt-temp-control { gap: 4px; padding-left: 7px; padding-right: 7px; }
     .mt-adj-btn { width: 40px; height: 40px; }
@@ -1569,14 +1564,8 @@ function t(t,e,i,a){var r,o=arguments.length,s=o<3?e:null===a?a=Object.getOwnPro
     flex: 1 1 max-content;
     max-width: 100%;
   }
-  .mt-mode-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(112px, 100%), 112px));
-    justify-content: center;
-    flex-wrap: unset;
-  }
   .mt-mode-option {
-    width: 100%;
+    width: min(112px, 100%);
     min-width: 0;
     max-width: 112px;
     height: 38px;
@@ -1590,6 +1579,7 @@ function t(t,e,i,a){var r,o=arguments.length,s=o<3?e:null===a?a=Object.getOwnPro
   .mt-unified-card .mt-mode-option.active-boost ha-icon { color: #ff9800; }
   .mt-info-pill { max-width: 100%; }
   .mt-stat-val { min-width: 0; }
+  .mt-info-pill:not(.humidity-warning):is(.mt-humidity-row,.mt-compact-humidity) span { color: var(--secondary-text-color); }
 
 
 
@@ -1701,7 +1691,7 @@ class At{
     return raw;
   }
 }
-const kt=["critical","error","warning","info","normal"];function St(t){return kt.indexOf(t)}const Ct=new Set(["calibration","calibrating","kalibrierung","kalibrierfahrt","calibration_drive","reference_drive","referenzfahrt","valve_calibration","motor_calibration"]),Et=new Set(["valve_error","valve_blocked","valve_position_error","position_mismatch","motor_error","motor_blocked","ventilfehler","ventil_blockiert"]),Tt=new Set(["fault","error","failure","stoerung","fehler","sabotage","tamper","alarm"]),Mt=new Set(["unavailable","unknown","timeout","offline","not_reachable","communication_error"]),Pt=new Set(["update","updating","firmware_update","ota"]);const zt={off:"mdi:power",heat:"mdi:fire",cool:"mdi:snowflake",auto:"mdi:thermostat-auto",heat_cool:"mdi:autorenew",fan_only:"mdi:fan",dry:"mdi:water-off"};function Ot(t,e=1){return null==t?"—":t.toFixed(e)}function Nt(t,e,i){return Math.min(Math.max(t,e),i)}function Ht(t,e){return Math.round(t/e)*e}function jt(t){return t.startsWith("mdi:")?t:`mdi:${t}`}function Ut(t){const e=parseFloat(t);return isNaN(e)?null:e}const Dt="2.6.0";console.info(`%c MODERN-THERMOSTAT %c v${Dt} `,"background:#ff6b35;color:#fff;font-weight:700;border-radius:4px 0 0 4px;padding:2px 6px;","background:#1c2128;color:#ff6b35;font-weight:600;border-radius:0 4px 4px 0;padding:2px 6px;"),window.customCards=window.customCards??[],window.customCards.push({type:"modern-thermostat",name:"Modern Thermostat",description:"Modern TRV thermostat card with alert system and optional temperature graph.",preview:!0});let Lt=class extends nt{constructor(){var t;super(...arguments),this._localizer=new At(t,()=>this.requestUpdate()),this._activePanel="none",this._graphVisible=!1,this._windowTimer=void 0,this._windowLastOpen=null,this._windowTrackedSource=void 0,this._windowAutomationEnabled=false,this._windowRestoreMode=void 0,this._windowForcedMode=void 0,this._boostTimer=void 0,this._boostRemainingSeconds=null,this._lastSupportedTargetByEntity=new Map()}_delaySeconds(config,secondsKey,legacyMinutesKey,defaultSeconds){const seconds=config?.[secondsKey];if(seconds!==undefined&&seconds!==null&&Number.isFinite(Number(seconds)))return Math.min(3600,Math.max(0,Number(seconds)));const legacy=config?.[legacyMinutesKey];if(legacy!==undefined&&legacy!==null&&Number.isFinite(Number(legacy)))return Math.min(3600,Math.max(0,Number(legacy)*60));return defaultSeconds}setConfig(t){if(this._config?.entity!==t.entity){
+const kt=["critical","error","warning","info","normal"];function St(t){return kt.indexOf(t)}const Ct=new Set(["calibration","calibrating","kalibrierung","kalibrierfahrt","calibration_drive","reference_drive","referenzfahrt","valve_calibration","motor_calibration"]),Et=new Set(["valve_error","valve_blocked","valve_position_error","position_mismatch","motor_error","motor_blocked","ventilfehler","ventil_blockiert"]),Tt=new Set(["fault","error","failure","stoerung","fehler","sabotage","tamper","alarm"]),Mt=new Set(["unavailable","unknown","timeout","offline","not_reachable","communication_error"]),Pt=new Set(["update","updating","firmware_update","ota"]);const zt={off:"mdi:power",heat:"mdi:fire",cool:"mdi:snowflake",auto:"mdi:thermostat-auto",heat_cool:"mdi:autorenew",fan_only:"mdi:fan",dry:"mdi:water-off"};function Ot(t,e=1){return null==t?"—":t.toFixed(e)}function Nt(t,e,i){return Math.min(Math.max(t,e),i)}function Ht(t,e){return Math.round(t/e)*e}function jt(t){return t.startsWith("mdi:")?t:`mdi:${t}`}function Ut(t){const e=parseFloat(t);return isNaN(e)?null:e}const Dt="2.6.1";console.info(`%c MODERN-THERMOSTAT %c v${Dt} `,"background:#ff6b35;color:#fff;font-weight:700;border-radius:4px 0 0 4px;padding:2px 6px;","background:#1c2128;color:#ff6b35;font-weight:600;border-radius:0 4px 4px 0;padding:2px 6px;"),window.customCards=window.customCards??[],window.customCards.push({type:"modern-thermostat",name:"Modern Thermostat",description:"Modern TRV thermostat card with alert system and optional temperature graph.",preview:!0});let Lt=class extends nt{constructor(){var t;super(...arguments),this._localizer=new At(t,()=>this.requestUpdate()),this._activePanel="none",this._graphVisible=!1,this._windowTimer=void 0,this._windowLastOpen=null,this._windowTrackedSource=void 0,this._windowAutomationEnabled=false,this._windowRestoreMode=void 0,this._windowForcedMode=void 0,this._boostTimer=void 0,this._boostRemainingSeconds=null,this._lastSupportedTargetByEntity=new Map()}_delaySeconds(config,secondsKey,legacyMinutesKey,defaultSeconds){const seconds=config?.[secondsKey];if(seconds!==undefined&&seconds!==null&&Number.isFinite(Number(seconds)))return Math.min(3600,Math.max(0,Number(seconds)));const legacy=config?.[legacyMinutesKey];if(legacy!==undefined&&legacy!==null&&Number.isFinite(Number(legacy)))return Math.min(3600,Math.max(0,Number(legacy)*60));return defaultSeconds}setConfig(t){if(this._config?.entity!==t.entity){
  this._optimisticTarget=this._optimisticLow=this._optimisticHigh=this._restoreDisplayTarget=undefined;
 }try{!function(t){if(!t.entity)throw new Error("[modern-thermostat] Missing required field: entity");if(!t.entity.startsWith("climate."))throw new Error(`[modern-thermostat] Entity must be a climate entity, got: ${t.entity}`)}(t)}catch(ft){return void(this._error=ft.message)}this._config={show_hvac_modes:!0,show_current_temperature:!0,show_battery_warning:!0,show_battery_info:!0,show_valve_position:!0,show_status:!0,show_graph:!1,compact:!1,step:.5,decimals:1,hours_to_show:24,graph_line_width:2,battery_warning_level:25,humidity_warning_level:70,show_version:!1,show_debug_info:!1,show_battery:!1,show_graph_button:!1,show_temperature_limits:!0,manual_on_temperature_change:!1,show_heating_demand:!1,...t,show_header:!0,show_status:!0,show_window_status:!0,window_auto_off:!1,window_open_delay:1,window_close_delay:1,window_open_delay_seconds:this._delaySeconds(t,"window_open_delay_seconds","window_open_delay",60),window_close_delay_seconds:this._delaySeconds(t,"window_close_delay_seconds","window_close_delay",180),show_humidity:!0,show_target_humidity:!1,show_preset:!1,show_fan_mode:!1,show_swing_mode:!1,show_control_mode:!1},this._activePanel="none",this._graphVisible=!1,this._error=void 0}getCardSize(){if(!this._config)return 3;let t=this._config.compact?2:3;return this._graphVisible&&!this._config.compact&&(t+=2),t}static async getConfigElement(){return await Promise.resolve().then(function(){return Vt}),document.createElement("modern-thermostat-editor")}static getStubConfig(hass, entities, entitiesFallback) {
   const allEntities = [
@@ -2969,14 +2959,9 @@ _renderDualSetpoint(t,e){const i=this._config.decimals??1,a=void 0!==this._optim
       aria-label=${e.aria("set_mode")+": "+boostTitle} title=${boostTitle} @click=${()=>{if(!locked)this._setPresetMode(boostMode)}}>
       <ha-icon icon="mdi:rocket-launch"></ha-icon>${boostLabel}
     </button>`:B;
-  const swapBoostAndHeat=Boolean(boostMode&&hvacModes.includes("heat"));
-  const primaryModeButtons=(swapBoostAndHeat?[btnBoost,btnCool]:[btnHeat,btnCool]).filter(button=>button!==B);
-  const secondaryModeButtons=[btnAuto,swapBoostAndHeat?btnHeat:btnBoost,btnOff].filter(button=>button!==B);
-  return I`
-    <div class="mt-mode-layout">
-      ${primaryModeButtons.length?I`<div class="mt-mode-row mt-mode-row-primary">${primaryModeButtons}</div>`:B}
-      ${secondaryModeButtons.length?I`<div class="mt-mode-row mt-mode-row-secondary">${secondaryModeButtons}</div>`:B}
-    </div>`;
+  // Flex lines grow upwards, so list the bottom row's controls first.
+  const buttons=[btnAuto,btnHeat,btnOff,btnBoost,btnCool].filter(button=>button!==B);
+  return I`<div class="mt-mode-layout">${buttons}</div>`;
 }
 _setPresetMode(mode){
   if(!this.hass||!this._config||!mode||this._isWindowOpen())return;

@@ -5,6 +5,10 @@ All notable changes to **Modern Thermostat Card** are documented here.
 Format: `major.minor.patch` — [Semantic Versioning](https://semver.org/)
 
 ---
+## 2.6.1
+
+- Mode buttons fill each row from left to right, with extra rows above. The menu height follows its content. Status readings use the same secondary text color as the Trend button.
+
 ## 2.6.0
 
 - Preserve the previous setpoint across connection loss, incomplete climate updates and off/on transitions. Automatic recovery only raises a reported minimum after the device reports valid limits.

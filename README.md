@@ -78,13 +78,13 @@ The release publishes a standalone asset named exactly `modern-thermostat.js`, w
 
 ### Manual installation
 
-1. Download the `modern-thermostat-v2.6.0.zip` release asset.
+1. Download the `modern-thermostat-v2.6.1.zip` release asset.
 2. Copy `modern-thermostat.js` and the complete `translations/` folder into `config/www/community/modern-thermostat/`.
 3. Add the resource as a JavaScript module:
 
 ```yaml
 resources:
-  - url: /local/community/modern-thermostat/modern-thermostat.js?v=2.6.0
+  - url: /local/community/modern-thermostat/modern-thermostat.js?v=2.6.1
     type: module
 ```
 
